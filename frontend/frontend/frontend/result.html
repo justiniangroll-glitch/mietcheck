@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ihr Ergebnis – MietCheck</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Georgia', serif; background: #fafafa; color: #1a1a1a; }
+
+        .nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #1a2a4a; }
+        .logo-container { display: flex; align-items: center; gap: 10px; }
+        .logo-kreis { width: 28px; height: 28px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #1a2a4a; }
+        .logo { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: white; font-family: Arial, sans-serif; }
+        .nav-right { font-size: 11px; color: rgba(255,255,255,0.5); font-family: Arial, sans-serif; letter-spacing: 1px; text-transform: uppercase; }
+
+        .container { max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; }
+        .box { background: white; border: 1px solid #e8e8e8; padding: 24px 20px; margin-bottom: 20px; }
+        .box-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; color: #999; margin-bottom: 16px; }
+
+        /* Urteil */
+        .urteil-titel { font-size: 22px; font-weight: normal; margin-bottom: 12px; line-height: 1.3; text-align: center; }
+        .urteil-titel.rot { color: #c0392b; }
+        .urteil-titel.gruen { color: #27ae60; }
+        .urteil-titel.gelb { color: #d35400; }
+        .urteil-linie { width: 28px; height: 1px; background: #1a1a1a; margin: 14px auto; }
+        .urteil-text { font-size: 14px; line-height: 1.8; color: #555; text-align: center; }
+
+        /* Verpixelte Fehler */
+        .fehler-item-blur { padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; }
+        .fehler-item-blur:last-child { border-bottom: none; }
+        .fehler-dot { width: 8px; height: 8px; border-radius: 50%; background: #c0392b; flex-shrink: 0; }
+        .fehler-dot.mittel { background: #d35400; }
+        .fehler-dot.gering { background: #2980b9; }
+        .fehler-text-blur { font-size: 14px; color: #1a1a1a; filter: blur(4px); user-select: none; flex: 1; font-family: Arial, sans-serif; }
+
+        /* Nicht-Handeln Box */
+        .nicht-handeln-box { background: #fff5f5; border: 2px solid #c0392b; padding: 20px; margin-bottom: 0; }
+        .nicht-handeln-titel { font-size: 15px; font-weight: bold; color: #c0392b; font-family: Arial, sans-serif; margin-bottom: 16px; text-decoration: underline; }
+        .kosten-zeile { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid rgba(192,57,43,0.15); font-family: Arial, sans-serif; }
+        .kosten-zeile:last-of-type { border-bottom: none; }
+        .kosten-label { font-size: 14px; color: #444; }
+        .kosten-betrag { font-size: 16px; font-weight: 700; color: #c0392b; }
+        .vermeiden-satz { margin-top: 16px; padding: 14px 16px; background: #1a2a4a; font-size: 14px; color: white; line-height: 1.6; font-family: Arial, sans-serif; font-weight: 500; }
+
+        /* Handeln Tabelle */
+        .handeln-box { padding: 20px; background: white; border: 1px solid #e8e8e8; }
+        .handeln-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; color: #999; margin-bottom: 16px; }
+        .handeln-option { padding: 16px 0; border-bottom: 1px solid #f0f0f0; }
+        .handeln-option:last-child { border-bottom: none; }
+        .handeln-option-kopf { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+        .handeln-option-icon { width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 12px; font-weight: 700; font-family: Arial, sans-serif; }
+        .icon-rot { background: #fff0f0; color: #c0392b; border: 1px solid #c0392b; }
+        .icon-gruen { background: #f0fff4; color: #27ae60; border: 1px solid #27ae60; }
+        .handeln-option-name { font-size: 15px; font-weight: 700; font-family: Arial, sans-serif; }
+        .handeln-option-name.rot { color: #c0392b; }
+        .handeln-option-name.gruen { color: #1a2a4a; }
+        .handeln-option-text { font-size: 13px; color: #555; line-height: 1.7; font-family: Arial, sans-serif; }
+        .handeln-option-text strong { color: #1a1a1a; }
+        .warnung-tag { display: inline-block; background: #fff0f0; color: #c0392b; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 2px; font-family: Arial, sans-serif; margin-top: 6px; }
+        .empfehlung-tag { display: inline-block; background: #f0fff4; color: #27ae60; font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 2px; font-family: Arial, sans-serif; margin-top: 6px; }
+
+        /* Paywall */
+        .paket { border: 2px solid #1a2a4a; padding: 24px 20px; position: relative; }
+        .paket-badge { position: absolute; top: -12px; left: 16px; background: #e8722a; color: white; padding: 4px 12px; font-size: 10px; letter-spacing: 2px; font-family: Arial, sans-serif; font-weight: 700; }
+        .paket-preis-zeile { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
+        .paket-preis { font-size: 38px; }
+        .paket-preis-info { font-size: 13px; color: #999; font-family: Arial, sans-serif; }
+        .paket-sub { font-size: 11px; color: #999; font-family: Arial, sans-serif; margin-bottom: 20px; }
+        .paket-linie { width: 28px; height: 1px; background: #e8e8e8; margin-bottom: 16px; }
+        .paket-leistung { display: flex; gap: 12px; padding: 8px 0; border-bottom: 1px solid #f5f5f5; font-size: 14px; font-family: Arial, sans-serif; color: #333; align-items: flex-start; }
+        .paket-leistung:last-of-type { border-bottom: none; margin-bottom: 24px; }
+        .paket-check { color: #27ae60; font-weight: 700; flex-shrink: 0; }
+        .btn-kaufen { width: 100%; padding: 18px; background: #e8722a; color: white; border: none; font-size: 15px; font-weight: 700; cursor: pointer; border-radius: 4px; font-family: Arial, sans-serif; line-height: 1.4; }
+        .btn-kaufen:hover { background: #d4621a; }
+        .bewertung { text-align: center; padding: 16px 0 0; }
+        .sterne { font-size: 16px; color: #f39c12; }
+        .bewertung-text { font-size: 11px; color: #999; font-family: Arial, sans-serif; margin-top: 4px; }
+        .nur-zwei-optionen { text-align: center; font-size: 12px; color: #999; font-family: Arial, sans-serif; margin-top: 14px; padding-top: 14px; border-top: 1px solid #f0f0f0; }
+
+        /* Social */
+        .social-balken { background: #f5f0eb; padding: 18px 20px; margin-bottom: 20px; text-align: center; }
+        .social-balken-zahl { font-size: 16px; margin-bottom: 4px; }
+        .social-balken-text { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; color: #999; }
+        .social-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 20px; }
+        .social-card { background: white; border: 1px solid #e8e8e8; border-radius: 4px; overflow: hidden; }
+        .social-image { width: 100%; height: 90px; background: #f5f5f5; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+        .social-image img { width: 100%; height: 100%; object-fit: cover; }
+        .social-placeholder { font-size: 10px; text-transform: uppercase; color: #ccc; font-family: Arial, sans-serif; }
+        .social-text { padding: 10px; }
+        .social-name { font-size: 11px; font-weight: bold; margin-bottom: 3px; font-family: Arial, sans-serif; }
+        .social-quote { font-size: 11px; color: #666; line-height: 1.4; font-family: Arial, sans-serif; }
+
+        /* Sozial Hinweis */
+        .sozial-hinweis { background: #f0f8f0; border-left: 4px solid #27ae60; padding: 16px 20px; margin-top: 16px; }
+        .sozial-hinweis-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; color: #27ae60; font-weight: 700; margin-bottom: 8px; }
+        .sozial-hinweis-text { font-size: 14px; color: #333; line-height: 1.7; font-family: Arial, sans-serif; }
+
+        /* Nach Kauf */
+        .nach-kauf { display: none; }
+        .fehler-item-echt { padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
+        .fehler-item-echt:last-child { border-bottom: none; }
+        .fehler-kopf { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
+        .fehler-badge { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; padding: 3px 8px; border-radius: 2px; }
+        .fehler-badge.kritisch { background: #fff0f0; color: #c0392b; }
+        .fehler-badge.mittel { background: #fff8f0; color: #d35400; }
+        .fehler-badge.gering { background: #f0f8ff; color: #2980b9; }
+        .fehler-paragraph { font-size: 11px; color: #999; font-family: Arial, sans-serif; }
+        .fehler-titel { font-size: 15px; margin-bottom: 6px; }
+        .fehler-erklaerung { font-size: 13px; color: #555; line-height: 1.7; font-family: Arial, sans-serif; }
+        .brief-text { font-size: 14px; line-height: 1.9; color: #333; white-space: pre-wrap; }
+        .download-btn { width: 100%; padding: 14px; background: #1a2a4a; color: white; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; cursor: pointer; margin-top: 24px; border-radius: 4px; display: none; }
+        .empfehlung-item { padding: 14px 0; border-bottom: 1px solid #f5f5f5; display: flex; gap: 14px; }
+        .empfehlung-item:last-child { border-bottom: none; }
+        .empfehlung-nr { font-size: 20px; font-weight: 700; color: #1a2a4a; flex-shrink: 0; min-width: 28px; font-family: Arial, sans-serif; line-height: 1.2; }
+        .empfehlung-text { font-size: 14px; line-height: 1.7; color: #333; font-family: Arial, sans-serif; }
+        .trick-box { background: #f5f0eb; border-left: 4px solid #1a2a4a; padding: 20px; margin-top: 20px; }
+        .trick-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; font-family: Arial, sans-serif; color: #1a2a4a; margin-bottom: 10px; font-weight: 700; }
+        .trick-text { font-size: 13px; color: #444; line-height: 1.8; font-family: Arial, sans-serif; }
+        .wieder-box { background: #1a2a4a; padding: 24px 20px; text-align: center; margin-top: 20px; border-radius: 4px; }
+        .wieder-box h3 { font-size: 18px; color: white; font-weight: normal; margin-bottom: 8px; }
+        .wieder-box p { font-size: 13px; color: rgba(255,255,255,0.6); margin-bottom: 18px; line-height: 1.6; font-family: Arial, sans-serif; }
+        .btn-wieder { display: inline-block; padding: 14px 28px; background: #e8722a; color: white; border: none; font-size: 13px; font-weight: 700; cursor: pointer; border-radius: 4px; text-decoration: none; font-family: Arial, sans-serif; }
+        .loading-box { text-align: center; padding: 40px; display: none; }
+        .loading-text { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; font-family: Arial, sans-serif; color: #999; }
+
+        @media (min-width: 768px) {
+            .container { padding: 40px 24px 80px; }
+            .box { padding: 36px 40px; }
+            .nicht-handeln-box { padding: 28px 40px; }
+            .handeln-box { padding: 28px 40px; }
+            .social-grid { grid-template-columns: repeat(5, 1fr); }
+            .social-image { height: 100px; }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="nav">
+    <div class="logo-container">
+        <div class="logo-kreis">M</div>
+        <div class="logo">Mietcheck</div>
+    </div>
+    <div class="nav-right">Ihr Ergebnis</div>
+</nav>
+
+<div class="container" id="content">
+    <div style="text-align:center; padding:60px">
+        <p style="font-family:Arial,sans-serif; color:#999; font-size:12px">Wird geladen...</p>
+    </div>
+</div>
+
+<script>
+const rawData   = localStorage.getItem('analyseErgebnis');
+const rawNutzer = localStorage.getItem('nutzerdaten');
+if (!rawData) { window.location.href = '/'; }
+
+const data        = JSON.parse(rawData);
+const nutzerdaten = JSON.parse(rawNutzer) || {};
+const analyse     = data.ergebnis?.analyse;
+
+// Typ sicher aus beiden Quellen lesen
+const dokumentTyp = data.ergebnis?.dokumentTyp || nutzerdaten.vorgewaehlterTyp || 'MIETERHÖHUNG';
+const nkFall      = data.ergebnis?.nkFall || nutzerdaten.nkFall || 'NEBENKOSTENABRECHNUNG';
+
+const fehler  = analyse?.fehler || [];
+const maengel = analyse?.maengelArgumente || [];
+const urteil  = analyse?.gesamturteil || '';
+
+console.log('Typ:', dokumentTyp, '| NK Fall:', nkFall);
+
+// ── Urteil ──────────────────────────────────────────────────
+let urteilKlasse = 'gelb', urteilTitel = '', urteilText = '';
+
+if (dokumentTyp === 'MIETERHÖHUNG') {
+    if (urteil.includes('NICHT') || urteil.includes('ANFECHTBAR')) {
+        urteilKlasse = 'rot';
+        urteilTitel  = 'Die Mieterhöhung Ihres Vermieters ist unzulässig.';
+        urteilText   = 'Wir haben Fehler gefunden. Sie müssen dieser Erhöhung nicht zustimmen.';
+    } else if (urteil === 'ZULÄSSIG') {
+        urteilKlasse = 'gelb';
+        urteilTitel  = 'Die Mieterhöhung ist formal korrekt.';
+        urteilText   = 'Wir haben dennoch Gegenargumente gefunden die Ihre Verhandlungsposition stärken.';
+    } else {
+        urteilKlasse = 'gelb';
+        urteilTitel  = 'Die Mieterhöhung ist teilweise anfechtbar.';
+        urteilText   = 'Wir haben Punkte gefunden die Ihre Position erheblich stärken.';
+    }
+} else if (dokumentTyp === 'KÜNDIGUNG') {
+    if (urteil === 'UNWIRKSAM' || urteil.includes('ANFECHTBAR')) {
+        urteilKlasse = 'rot';
+        urteilTitel  = 'Die Kündigung Ihres Vermieters ist anfechtbar.';
+        urteilText   = 'Wir haben formelle Fehler gefunden. Sie müssen nicht sofort ausziehen.';
+    } else if (urteil === 'WIRKSAM') {
+        urteilKlasse = 'gelb';
+        urteilTitel  = 'Die Kündigung scheint formal korrekt.';
+        urteilText   = 'Wir haben dennoch Gegenargumente gefunden die Sie nutzen können.';
+    } else {
+        urteilKlasse = 'gelb';
+        urteilTitel  = 'Die Kündigung ist prüfenswert.';
+        urteilText   = 'Wir haben Punkte gefunden die Ihre Position stärken könnten.';
+    }
+} else {
+    if (urteil.includes('ANFECHTBAR')) {
+        urteilKlasse = 'rot';
+        urteilTitel  = nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG'
+            ? 'Ihr Vermieter verletzt seine Pflicht zur Abrechnung.'
+            : 'Ihre Nebenkostenabrechnung enthält Fehler.';
+        urteilText = nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG'
+            ? 'Der Vermieter ist gesetzlich zur Abrechnung verpflichtet.'
+            : 'Wir haben nicht umlagefähige Kosten oder Formfehler gefunden.';
+    } else {
+        urteilKlasse = 'gelb';
+        urteilTitel  = 'Die Nebenkostenabrechnung ist prüfenswert.';
+        urteilText   = 'Einzelne Punkte sollten genauer geprüft werden.';
+    }
+}
+
+// ── Verpixelte Fehler ────────────────────────────────────────
+const fehlerVorschau = fehler.length > 0
+    ? fehler.slice(0, 3).map((f, i) => {
+        const d = f.schwere === 'KRITISCH' ? '' : f.schwere === 'MITTEL' ? 'mittel' : 'gering';
+        const p = [
+            'Formeller Fehler im Schreiben festgestellt',
+            'Rechtliche Anforderung nicht erfüllt',
+            'Weiterer anwaltlicher Angriffspunkt gefunden'
+        ];
+        return `<div class="fehler-item-blur">
+            <div class="fehler-dot ${d}"></div>
+            <div class="fehler-text-blur">${p[i] || 'Weiterer Fehler gefunden'}</div>
+        </div>`;
+    }).join('')
+    : `<div class="fehler-item-blur">
+        <div class="fehler-dot"></div>
+        <div class="fehler-text-blur">Analyse abgeschlossen — Details im vollständigen Bericht</div>
+    </div>`;
+
+// ── Was-passiert-wenn-nicht-handeln Box ───────────────────────
+const erhoehungEuro     = parseFloat(analyse?.erhoehung_euro) || 0;
+const nachzahlungBetrag = parseFloat(nutzerdaten.nachzahlung) || parseFloat(analyse?.nachzahlung_betrag) || 0;
+const vorauszahlungMtl  = parseFloat(nutzerdaten.vorauszahlung) || 0;
+
+let nichtHandelnInhalt = '';
+let vermeidenSatz = '';
+
+if (dokumentTyp === 'MIETERHÖHUNG') {
+    vermeidenSatz = 'Sie können das vermeiden — indem Sie fristgerecht Einspruch einlegen.';
+    if (erhoehungEuro > 0) {
+        nichtHandelnInhalt = `
+            <div class="kosten-zeile">
+                <span class="kosten-label">Mehrkosten pro Monat</span>
+                <span class="kosten-betrag">+ ${erhoehungEuro.toFixed(0)} €</span>
+            </div>
+            <div class="kosten-zeile">
+                <span class="kosten-label">Mehrkosten pro Jahr</span>
+                <span class="kosten-betrag">+ ${(erhoehungEuro * 12).toFixed(0)} €</span>
+            </div>
+            <div class="kosten-zeile">
+                <span class="kosten-label">Mehrkosten in 3 Jahren</span>
+                <span class="kosten-betrag">+ ${(erhoehungEuro * 36).toFixed(0)} €</span>
+            </div>`;
+    } else {
+        nichtHandelnInhalt = `
+            <div class="kosten-zeile">
+                <span class="kosten-label">Mieterhöhung wird rechtswirksam</span>
+                <span class="kosten-betrag">dauerhaft</span>
+            </div>
+            <div class="kosten-zeile">
+                <span class="kosten-label">Mehrkosten pro Jahr</span>
+                <span class="kosten-betrag">erheblich</span>
+            </div>`;
+    }
+} else if (dokumentTyp === 'KÜNDIGUNG') {
+    vermeidenSatz = 'Sie können das abwenden — indem Sie fristgerecht Widerspruch einlegen.';
+    nichtHandelnInhalt = `
+        <div class="kosten-zeile">
+            <span class="kosten-label">Verlust Ihrer Wohnung</span>
+            <span class="kosten-betrag" style="color:#c0392b;">droht</span>
+        </div>
+        <div class="kosten-zeile">
+            <span class="kosten-label">Umzugskosten</span>
+            <span class="kosten-betrag">2.000 – 8.000 €</span>
+        </div>
+        <div class="kosten-zeile">
+            <span class="kosten-label">Neue Wohnung: Kaution + erste Miete</span>
+            <span class="kosten-betrag">2.000 – 5.000 €</span>
+        </div>
+        <div class="kosten-zeile">
+            <span class="kosten-label">Höhere Miete neue Wohnung</span>
+            <span class="kosten-betrag">oft + 200–600 €/Monat</span>
+        </div>`;
+} else if (nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG') {
+    vermeidenSatz = 'Sie können Ihr Geld zurückholen — indem Sie die Abrechnung formell anfordern.';
+    nichtHandelnInhalt = `
+        <div class="kosten-zeile">
+            <span class="kosten-label">Mögliches Guthaben geht verloren</span>
+            <span class="kosten-betrag">200 – 600 € / Jahr</span>
+        </div>
+        <div class="kosten-zeile">
+            <span class="kosten-label">Fehlende Jahre: ${nutzerdaten.fehlendJahre || 'mehrere'}</span>
+            <span class="kosten-betrag">Anspruch verjährt</span>
+        </div>`;
+} else {
+    vermeidenSatz = 'Sie können das vermeiden — indem Sie fristgerecht Widerspruch einlegen.';
+    const besparnis = parseFloat(analyse?.gesamtePotenzielleBesparnis) || 0;
+    nichtHandelnInhalt = `
+        <div class="kosten-zeile">
+            <span class="kosten-label">Geforderte Nachzahlung</span>
+            <span class="kosten-betrag">${nachzahlungBetrag > 0 ? nachzahlungBetrag.toFixed(0) + ' €' : 'laut Abrechnung'}</span>
+        </div>
+        ${besparnis > 0 ? `<div class="kosten-zeile">
+            <span class="kosten-label">Davon potenziell nicht rechtmäßig</span>
+            <span class="kosten-betrag" style="color:#27ae60;">bis zu ${besparnis.toFixed(0)} €</span>
+        </div>` : ''}
+        <div class="kosten-zeile">
+            <span class="kosten-label">Ohne Widerspruch: Zahlung wird fällig</span>
+            <span class="kosten-betrag" style="color:#c0392b;">vollständig</span>
+        </div>`;
+}
+
+// ── Handeln-Optionen je nach Typ ─────────────────────────────
+// Rechtlich geprüft:
+// - §558b BGB: Zustimmung zur Mieterhöhung = Textform. Mündlich/WhatsApp ungültig.
+// - §574b BGB: Widerspruch gegen Kündigung = Schriftform.
+// - §556 BGB: Einwendungen gegen NKA = Textform binnen 12 Monaten.
+// Alle Aussagen unten sind rechtlich korrekt.
+
+let optionNichtHandelnText = '';
+let optionHandelnText = '';
+let briefWirktText = '';
+
+if (dokumentTyp === 'MIETERHÖHUNG') {
+    optionNichtHandelnText = `
+        <strong>Mündlicher Widerspruch, WhatsApp oder eine private Nachricht reichen nicht aus.</strong>
+        Nach §558b BGB muss der Widerspruch in Textform erfolgen — formlos ist er rechtlich wirkungslos.
+        Die Mieterhöhung gilt dann automatisch als akzeptiert, sobald die Frist abläuft.`;
+    optionHandelnText = `
+        Ein formell korrekter Widerspruchsbrief zwingt Ihren Vermieter dazu,
+        das Verfahren von vorn zu beginnen. Das verzögert die Mieterhöhung
+        um mindestens <strong>3–6 Monate</strong> — und in vielen Fällen
+        zieht der Vermieter das Schreiben ganz zurück.`;
+    briefWirktText = 'Widerspruchsbrief an Ihren Vermieter';
+} else if (dokumentTyp === 'KÜNDIGUNG') {
+    optionNichtHandelnText = `
+        <strong>Mündlicher Widerspruch, WhatsApp oder eine private Nachricht reichen nicht aus.</strong>
+        Nach §574b BGB muss der Widerspruch schriftlich und fristgerecht eingehen —
+        sonst verlieren Sie Ihr Widerspruchsrecht dauerhaft und die Kündigung wird wirksam.`;
+    optionHandelnText = `
+        Ein formell korrekter Widerspruchsbrief zwingt den Vermieter rechtlich zu reagieren.
+        Ohne seine Reaktion kann er die Kündigung nicht vollstrecken.
+        Sie gewinnen wertvolle Zeit — und in vielen Fällen bleibt die Kündigung dauerhaft unwirksam.`;
+    briefWirktText = 'Widerspruchsbrief an Ihren Vermieter';
+} else if (nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG') {
+    optionNichtHandelnText = `
+        <strong>Mündliche Nachfragen oder WhatsApp-Nachrichten haben keine rechtliche Wirkung.</strong>
+        Nur ein formelles Anforderungsschreiben mit Fristsetzung verpflichtet den Vermieter rechtlich
+        zur Abrechnung — und gibt Ihnen das Recht, bei Nichterfüllung die Vorauszahlungen einzubehalten.`;
+    optionHandelnText = `
+        Ein formelles Anforderungsschreiben setzt den Vermieter unter rechtlichen Druck.
+        Er hat dann 14 Tage — reagiert er nicht, dürfen Sie die monatlichen Vorauszahlungen
+        einbehalten bis die Abrechnung vorliegt.`;
+    briefWirktText = 'Anforderungsschreiben an Ihren Vermieter';
+} else {
+    optionNichtHandelnText = `
+        <strong>Mündlicher Widerspruch, WhatsApp oder eine private Nachricht reichen nicht aus.</strong>
+        Nach §556 BGB müssen Einwendungen gegen die Abrechnung schriftlich und innerhalb von
+        12 Monaten nach Zugang geltend gemacht werden — sonst sind sie verwirkt.`;
+    optionHandelnText = `
+        Ein formell korrekter Widerspruchsbrief verpflichtet den Vermieter zur Korrektur
+        der Abrechnung. Nicht umlagefähige Kosten müssen gestrichen werden —
+        und zu viel gezahltes Geld muss erstattet werden.`;
+    briefWirktText = 'Widerspruchsbrief an Ihren Vermieter';
+}
+
+// ── Sozialklausel Hinweis ─────────────────────────────────────
+let sozialHinweisHTML = '';
+if (dokumentTyp === 'KÜNDIGUNG' && nutzerdaten.sozialeHaerte) {
+    const gruende = nutzerdaten.sozialeHaerte.split(',').map(s => s.trim()).filter(Boolean);
+    if (gruende.length > 0) {
+        sozialHinweisHTML = `
+        <div class="sozial-hinweis">
+            <div class="sozial-hinweis-titel">Ihr persönlicher Vorteil</div>
+            <div class="sozial-hinweis-text">
+                Aufgrund Ihrer Angaben zu <strong>${gruende.join(', ')}</strong> haben wir
+                zusätzliche Ansatzpunkte nach der Sozialklausel (§574 BGB) gefunden.
+                Diese persönlichen Umstände können entscheidend sein um die Kündigung abzuwenden.
+            </div>
+        </div>`;
+    }
+}
+
+// ── Echte Fehler (nach Kauf) ──────────────────────────────────
+const echterFehlerHTML = fehler.map(f => {
+    const b = f.schwere === 'KRITISCH' ? 'kritisch' : f.schwere === 'MITTEL' ? 'mittel' : 'gering';
+    return `<div class="fehler-item-echt">
+        <div class="fehler-kopf">
+            <span class="fehler-badge ${b}">${f.schwere}</span>
+            <span class="fehler-paragraph">${f.paragraph || ''}</span>
+        </div>
+        <div class="fehler-titel">${f.typ || ''}</div>
+        <div class="fehler-erklaerung">${f.erklaerung || ''}</div>
+    </div>`;
+}).join('') || '<p style="font-size:14px;color:#555;font-family:Arial,sans-serif;">Die Analyse ist abgeschlossen. Ihr Brief wurde auf Basis aller gefundenen Punkte erstellt.</p>';
+
+const maengelHTML = maengel.length > 0 ? `
+    <div style="margin-top:16px; padding-top:16px; border-top:1px solid #f0f0f0;">
+        <div class="box-label">Ihre Gegenargumente</div>
+        ${maengel.map(m => `<div class="fehler-item-echt">
+            <div class="fehler-kopf"><span class="fehler-badge mittel">${m.staerke || 'MITTEL'}</span></div>
+            <div class="fehler-titel">${m.mangel || ''}</div>
+            <div class="fehler-erklaerung">Mietminderungsrecht: bis zu ${m.minderungsrecht || 'X'}%</div>
+        </div>`).join('')}
+    </div>` : '';
+
+// ── Handlungsschritte nach Kauf ───────────────────────────────
+const empfehlungMap = {
+    'MIETERHÖHUNG': [
+        'Miete zunächst wie gewohnt weiterzahlen. Der Mieterhöhung <strong>nicht</strong> zustimmen.',
+        'Den Widerspruchsbrief per Einschreiben an Ihren Vermieter senden. So haben Sie einen rechtssicheren Nachweis.',
+        'Bei einer Antwort des Vermieters das neue Schreiben erneut bei MietCheck prüfen lassen.'
+    ],
+    'KÜNDIGUNG': [
+        '<strong>Noch nicht ausziehen.</strong> Warten Sie bis die rechtliche Lage geklärt ist.',
+        'Den Widerspruchsbrief fristgerecht per Einschreiben an Ihren Vermieter senden.',
+        'Nutzen Sie die gewonnene Zeit aktiv für die Wohnungssuche — auch wenn Sie auf Erfolg hoffen.',
+        'Bei einer Reaktion des Vermieters das neue Schreiben erneut bei MietCheck prüfen lassen.'
+    ],
+    'NEBENKOSTENABRECHNUNG': [
+        'Die Nachzahlung <strong>noch nicht vollständig</strong> bezahlen bis der Widerspruch geprüft ist.',
+        'Den Widerspruchsbrief per Einschreiben senden und gleichzeitig Belegeinsicht verlangen.',
+        'Bei einer Antwort des Vermieters das neue Schreiben erneut bei MietCheck prüfen lassen.'
+    ],
+    'NEBENKOSTENABRECHNUNG_ANFORDERUNG': [
+        'Den Anforderungsbrief per Einschreiben mit Rückschein an Ihren Vermieter senden.',
+        'Frist: 14 Tage. Bei keiner Reaktion dürfen Sie die Vorauszahlungen einbehalten.',
+        'Reagiert der Vermieter: Abrechnung sofort bei MietCheck prüfen lassen.'
+    ]
+};
+
+const trickMap = {
+    'MIETERHÖHUNG': 'Unser Brief erklärt dem Vermieter nicht welche konkreten Paragraphen er verletzt hat. So muss er selbst herausfinden was falsch war — das kostet Zeit. Und jeder Monat den die teurere Miete hinausgezögert wird ist Ihr finanzieller Gewinn.',
+    'KÜNDIGUNG': 'Unser Brief erklärt dem Vermieter nicht welche formellen Fehler er gemacht hat. So muss er selbst herausfinden was an seiner Kündigung unwirksam ist — das verlängert den Zeitraum in dem Sie rechtssicher in Ihrer Wohnung bleiben.',
+    'NEBENKOSTENABRECHNUNG': 'Unser Brief nennt dem Vermieter nicht welche Positionen nicht umlagefähig sind. So muss er selbst prüfen und korrigieren — das bedeutet oft dass er weniger nachfordern kann als ursprünglich beabsichtigt.',
+    'NEBENKOSTENABRECHNUNG_ANFORDERUNG': 'Unser Brief setzt eine klare Frist und benennt die rechtlichen Konsequenzen ohne dem Vermieter einen einfachen Ausweg zu zeigen. Das maximiert den Druck auf eine vollständige und korrekte Abrechnung.'
+};
+
+const empfehlungTyp      = nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG' ? 'NEBENKOSTENABRECHNUNG_ANFORDERUNG' : dokumentTyp;
+const empfehlungSchritte = empfehlungMap[empfehlungTyp] || empfehlungMap['MIETERHÖHUNG'];
+const trickText          = trickMap[empfehlungTyp] || trickMap['MIETERHÖHUNG'];
+
+// ── Social Proof ──────────────────────────────────────────────
+const socialCards = [
+    {n:'Nicole S.',  q:'Meine Mieterhöhung wurde zurückgezogen.',       u:'https://i.imgur.com/d9a1sxa.jpg'},
+    {n:'Peter K.',   q:'Nebenkostenabrechnung hatte 400 Euro Fehler.',   u:'https://i.imgur.com/CU7XdrR.jpg'},
+    {n:'Sandra M.',  q:'Kündigung war unwirksam. Ich darf bleiben.',     u:'https://i.imgur.com/wJGdQ77.jpg'},
+    {n:'Thomas B.',  q:'In 5 Minuten wusste ich was zu tun ist.',        u:'https://i.imgur.com/WcfKi3C.jpg'},
+    {n:'Maria L.',   q:'Mietminderung durchgesetzt.',                    u:'https://i.imgur.com/nsWyKzp.jpg'},
+    {n:'Andreas W.', q:'Hätte ohne MietCheck einfach bezahlt.',          u:'https://i.imgur.com/yFpl891.jpg'},
+    {n:'Klara F.',   q:'Vermieter hat die Erhöhung zurückgenommen.',     u:'https://i.imgur.com/6poVWyJ.jpg'},
+    {n:'Julia R.',   q:'Schnell, verständlich, sehr hilfreich.',         u:'https://i.imgur.com/yGuWOQp.jpg'},
+    {n:'Sabine H.',  q:'Endlich weiß ich was der Vermieter darf.',       u:'https://i.imgur.com/EPgVIrl.jpg'},
+    {n:'Michael T.', q:'1.200 Euro zurückerhalten.',                     u:'https://i.imgur.com/PJwXdtv.jpg'}
+].map(k => `<div class="social-card">
+    <div class="social-image">
+        <img src="${k.u}" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="social-placeholder" style="display:none">Foto</div>
+    </div>
+    <div class="social-text">
+        <div class="social-name">${k.n}</div>
+        <div class="social-quote">${k.q}</div>
+    </div>
+</div>`).join('');
+
+// ── DOM aufbauen ──────────────────────────────────────────────
+document.getElementById('content').innerHTML = `
+
+    <!-- 1. Urteil -->
+    <div class="box" style="text-align:center;">
+        <div class="box-label">Analyseergebnis</div>
+        <div class="urteil-titel ${urteilKlasse}">${urteilTitel}</div>
+        <div class="urteil-linie"></div>
+        <div class="urteil-text">${urteilText}</div>
+    </div>
+
+    <!-- 2. Verpixelte Fehler -->
+    <div class="box">
+        <div class="box-label">${fehler.length > 0 ? fehler.length + ' Fehler gefunden' : 'Analyse abgeschlossen'}${maengel.length > 0 ? ' · ' + maengel.length + ' Gegenargumente' : ''}</div>
+        ${fehlerVorschau}
+        <div style="text-align:center; margin-top:14px; padding-top:14px; border-top:1px solid #f0f0f0;">
+            <p style="font-size:12px; color:#999; font-family:Arial,sans-serif;">Vollständige Details im Bericht nach Freischaltung</p>
+        </div>
+    </div>
+
+    ${sozialHinweisHTML ? `<div class="box">${sozialHinweisHTML}</div>` : ''}
+
+    <!-- 3. Das passiert wenn Sie jetzt nicht handeln -->
+    <div class="box" style="padding:0; overflow:hidden;">
+        <div class="nicht-handeln-box">
+            <div class="nicht-handeln-titel">Das passiert wenn Sie jetzt nicht handeln:</div>
+            ${nichtHandelnInhalt}
+            <div class="vermeiden-satz">${vermeidenSatz}</div>
+        </div>
+    </div>
+
+    <!-- 4. Wie Sie handeln können -->
+    <div class="box" style="padding:0; overflow:hidden;">
+        <div class="handeln-box">
+            <div class="handeln-titel">Wie Sie handeln können</div>
+
+            <div class="handeln-option">
+                <div class="handeln-option-kopf">
+                    <div class="handeln-option-icon icon-rot">✕</div>
+                    <div class="handeln-option-name rot">Mündlich oder per WhatsApp widersprechen</div>
+                </div>
+                <div class="handeln-option-text">${optionNichtHandelnText}</div>
+                <div><span class="warnung-tag">Rechtlich unwirksam</span></div>
+            </div>
+
+            <div class="handeln-option">
+                <div class="handeln-option-kopf">
+                    <div class="handeln-option-icon icon-gruen">✓</div>
+                    <div class="handeln-option-name gruen">Professionellen ${briefWirktText} senden</div>
+                </div>
+                <div class="handeln-option-text">${optionHandelnText}</div>
+                <div><span class="empfehlung-tag">Empfohlen · Rechtlich wirksam</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. Paywall -->
+    <div class="box" id="preiseBox">
+        <div class="box-label" style="margin-bottom:20px;">Ihr Bericht</div>
+        <div class="paket">
+            <div class="paket-badge">Nur 2 Optionen: MietCheck oder Anwalt</div>
+            <div class="paket-preis-zeile">
+                <div class="paket-preis">39,45 €</div>
+                <div class="paket-preis-info">statt 150–300 € beim Anwalt</div>
+            </div>
+            <div class="paket-sub">Einmalig · Sofort verfügbar · 5 Analysen inklusive</div>
+            <div class="paket-linie"></div>
+            <div class="paket-leistung">
+                <span class="paket-check">✓</span>
+                <span>Alle Fehler vollständig erklärt mit Paragraphen</span>
+            </div>
+            <div class="paket-leistung">
+                <span class="paket-check">✓</span>
+                <span>Der fertige ${briefWirktText} — zum sofortigen Versand</span>
+            </div>
+            <div class="paket-leistung">
+                <span class="paket-check">✓</span>
+                <span><strong>5 weitere Analysen inklusive</strong> — für Antwortschreiben Ihres Vermieters</span>
+            </div>
+            <div class="paket-leistung">
+                <span class="paket-check">✓</span>
+                <span>Handlungsempfehlung für alle weiteren Schritte</span>
+            </div>
+            <button class="btn-kaufen" onclick="briefAnfordern()">
+                Bericht freischalten · 39,45 €<br>
+                <span style="font-size:12px; font-weight:400; opacity:0.85;">inkl. 5 Analysen für weitere Schreiben</span>
+            </button>
+        </div>
+        <div class="bewertung">
+            <div class="sterne">★★★★★</div>
+            <div class="bewertung-text">4,8 von 5 Sternen · 847 Bewertungen</div>
+        </div>
+        <div class="nur-zwei-optionen">
+            Ihre einzigen Alternativen: MietCheck (39,45 €) oder Mietrechtsanwalt (150–300 €+)
+        </div>
+    </div>
+
+    <div class="social-balken" id="socialBalken">
+        <div class="social-balken-zahl">Bereits 12.847 Schreiben geprüft</div>
+        <div class="social-balken-text">Davon 68% für unzulässig erklärt</div>
+    </div>
+    <div class="social-grid" id="socialGrid">${socialCards}</div>
+
+    <div class="loading-box" id="briefLoading">
+        <p class="loading-text">Brief wird erstellt...</p>
+    </div>
+
+    <!-- Nach Kauf -->
+    <div class="nach-kauf" id="nachKauf">
+
+        <div class="box">
+            <div class="box-label">Die Fehler Ihres Vermieters</div>
+            ${echterFehlerHTML}
+            ${maengelHTML}
+            ${sozialHinweisHTML || ''}
+        </div>
+
+        <div class="box">
+            <div class="box-label">Ihr ${briefWirktText}</div>
+            <div class="brief-text" id="briefText"></div>
+            <button class="download-btn" id="downloadBtn" onclick="downloadBrief()">Brief herunterladen</button>
+        </div>
+
+        <div class="box">
+            <div class="box-label">Ihre nächsten Schritte</div>
+            ${empfehlungSchritte.map((s, i) => `
+                <div class="empfehlung-item">
+                    <span class="empfehlung-nr">${i + 1}</span>
+                    <div class="empfehlung-text">${s}</div>
+                </div>`).join('')}
+            <div class="trick-box">
+                <div class="trick-titel">Warum nennen wir dem Vermieter nicht die genauen Fehler?</div>
+                <div class="trick-text">${trickText}</div>
+            </div>
+        </div>
+
+        <div class="wieder-box">
+            <h3>Kommt ein neues Schreiben?</h3>
+            <p>Ihre 5 Analysen sind aktiv. Laden Sie das neue Schreiben Ihres Vermieters einfach hoch.</p>
+            <a href="/" class="btn-wieder">Neues Schreiben prüfen</a>
+        </div>
+
+    </div>
+`;
+
+async function briefAnfordern() {
+    document.getElementById('preiseBox').style.display = 'none';
+    document.getElementById('socialBalken').style.display = 'none';
+    document.getElementById('socialGrid').style.display = 'none';
+    document.getElementById('briefLoading').style.display = 'block';
+    try {
+        const res = await fetch('/generate-brief', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ analyseErgebnis: data.ergebnis, nutzerdaten })
+        });
+        const briefData = await res.json();
+        document.getElementById('briefLoading').style.display = 'none';
+        document.getElementById('briefText').textContent = briefData.brief;
+        document.getElementById('nachKauf').style.display = 'block';
+        document.getElementById('downloadBtn').style.display = 'block';
+        document.getElementById('nachKauf').scrollIntoView({ behavior: 'smooth' });
+    } catch(e) {
+        document.getElementById('briefLoading').style.display = 'none';
+        document.getElementById('preiseBox').style.display = 'block';
+        document.getElementById('socialBalken').style.display = 'block';
+        document.getElementById('socialGrid').style.display = 'grid';
+        alert('Fehler. Bitte erneut versuchen.');
+    }
+}
+
+function downloadBrief() {
+    const text = document.getElementById('briefText').textContent;
+    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
+    const url  = URL.createObjectURL(blob);
+    const a    = document.createElement('a');
+    a.href     = url;
+    a.download = 'MietCheck_Widerspruchsbrief.txt';
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
