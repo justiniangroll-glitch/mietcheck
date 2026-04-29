@@ -29,8 +29,8 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
-app.get('/prüfen', (req, res) => {
-    res.sendFile(path.join(__dirname, 'frontend', 'index-prüfen.html'));
+app.get('/pruefen', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'prufen.html'));
 });
 
 app.get('/kuendigung', (req, res) => {
