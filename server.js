@@ -7,8 +7,13 @@ const fs = require('fs');
 const { analyzeDocument, generateBrief } = require('./analyze');
 const { accountErstellen, accountLogin, getHistory } = require('./accounts');
 
+const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+
 const app = express();
 app.use(cors());
+
+// Stripe Webhook braucht raw body — MUSS vor express.json() stehen
+app.use('/webhook', express.raw({ type: 'application/json' }));
 app.use(express.json());
 app.use(express.static('frontend'));
 
@@ -24,6 +29,10 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
 
+app.get('/prüfen', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'index-prüfen.html'));
+});
+
 app.get('/kuendigung', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'kuendigung.html'));
 });
@@ -37,21 +46,80 @@ app.get('/result.html', (req, res) => {
 });
 
 // ============================================================
+// STRIPE CHECKOUT
+// ============================================================
+app.post('/create-checkout', async (req, res) => {
+    try {
+        const { analyseErgebnis, nutzerdaten } = req.body;
+
+        const session = await stripe.checkout.sessions.create({
+            payment_method_types: ['card'],
+            line_items: [{
+                price_data: {
+                    currency: 'eur',
+                    product_data: {
+                        name: 'MietHilfe – Widerspruchsschreiben',
+                        description: '3 versandfertige Widerspruchsschreiben + vollständige Fehleranalyse'
+                    },
+                    unit_amount: 3945
+                },
+                quantity: 1
+            }],
+            mode: 'payment',
+            success_url: `${process.env.BASE_URL || 'https://miethilfe-online.xyz'}/result.html?success=true`,
+            cancel_url: `${process.env.BASE_URL || 'https://miethilfe-online.xyz'}/result.html?cancelled=true`,
+            metadata: {
+                analyse: JSON.stringify(analyseErgebnis).substring(0, 500),
+                nutzer_name: nutzerdaten?.name || '',
+                nutzer_email: nutzerdaten?.email || ''
+            }
+        });
+
+        res.json({ id: session.id });
+    } catch (error) {
+        console.error('Stripe Fehler:', error);
+        res.status(500).json({ error: error.message });
+    }
+});
+
+// ============================================================
+// STRIPE WEBHOOK
+// ============================================================
+app.post('/webhook', async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+    try {
+        event = stripe.webhooks.constructEvent(
+            req.body,
+            sig,
+            process.env.STRIPE_WEBHOOK_SECRET
+        );
+    } catch (err) {
+        console.error('Webhook Fehler:', err.message);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+
+    if (event.type === 'checkout.session.completed') {
+        const session = event.data.object;
+        console.log('Zahlung erfolgreich:', session.id);
+    }
+
+    res.json({ received: true });
+});
+
+// ============================================================
 // ACCOUNT ROUTEN
 // ============================================================
 app.post('/register', async (req, res) => {
     try {
         const { email, passwort } = req.body;
         if (!email || !passwort) {
-            return res.status(400).json({
-                success: false,
-                error: 'Email und Passwort erforderlich'
-            });
+            return res.status(400).json({ success: false, error: 'Email und Passwort erforderlich' });
         }
         const result = accountErstellen(email, passwort);
         res.json(result.erfolg
             ? { success: true }
-            : { success: false, error: result.fehler }
+            : { success: false, fehler: result.fehler }
         );
     } catch (error) {
         res.status(500).json({ success: false, error: error.message });
@@ -63,13 +131,7 @@ app.post('/login', async (req, res) => {
         const { email, passwort } = req.body;
         const result = accountLogin(email, passwort);
         if (result.erfolg) {
-            res.json({
-                success: true,
-                account: {
-                    email: result.account.email,
-                    analysenAnzahl: result.account.analysen.length
-                }
-            });
+            res.json({ success: true, account: { email: result.account.email, analysenAnzahl: result.account.analysen.length } });
         } else {
             res.status(401).json({ success: false, error: result.fehler });
         }
@@ -98,9 +160,7 @@ app.post('/analyze', upload.single('dokument'), async (req, res) => {
             const mimetype = req.file.mimetype;
             if (mimetype.startsWith('image/')) {
                 const AnthropicVision = require('@anthropic-ai/sdk');
-                const visionClient = new AnthropicVision({
-                    apiKey: process.env.ANTHROPIC_API_KEY
-                });
+                const visionClient = new AnthropicVision({ apiKey: process.env.ANTHROPIC_API_KEY });
                 const imageData = fs.readFileSync(req.file.path).toString('base64');
                 const response = await visionClient.messages.create({
                     model: 'claude-opus-4-5',
@@ -108,18 +168,8 @@ app.post('/analyze', upload.single('dokument'), async (req, res) => {
                     messages: [{
                         role: 'user',
                         content: [
-                            {
-                                type: 'image',
-                                source: {
-                                    type: 'base64',
-                                    media_type: mimetype,
-                                    data: imageData
-                                }
-                            },
-                            {
-                                type: 'text',
-                                text: 'Lies den gesamten Text aus diesem Bild eines Vermieter-Schreibens. Gib nur den reinen Text zurück.'
-                            }
+                            { type: 'image', source: { type: 'base64', media_type: mimetype, data: imageData } },
+                            { type: 'text', text: 'Lies den gesamten Text aus diesem Bild eines Vermieter-Schreibens. Gib nur den reinen Text zurück.' }
                         ]
                     }]
                 });
@@ -155,10 +205,9 @@ app.post('/analyze', upload.single('dokument'), async (req, res) => {
             auffaelligkeiten:    req.body.auffaelligkeiten || '',
             vorgewaehlterTyp:    req.body.vorgewaehlterTyp || 'MIETERHÖHUNG',
             nkFall:              req.body.nkFall || 'NEBENKOSTENABRECHNUNG',
-            maengel:             req.body.maengel
-                                   ? req.body.maengel.split(',').filter(Boolean)
-                                   : [],
-            maengelDetails:      req.body.maengelDetails || ''
+            maengel:             req.body.maengel ? req.body.maengel.split(',').filter(Boolean) : [],
+            maengelDetails:      req.body.maengelDetails || '',
+            weitereMaengel:      req.body.weitereMaengel || ''
         };
 
         console.log('Analyse für Typ:', nutzerdaten.vorgewaehlterTyp, '| NK Fall:', nutzerdaten.nkFall);
@@ -189,9 +238,10 @@ app.post('/generate-brief', async (req, res) => {
 // ============================================================
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`\nMietCheck Server läuft auf http://localhost:${PORT}`);
+    console.log(`\nMietHilfe Server läuft auf http://localhost:${PORT}`);
     console.log('Verfügbare Routen:');
     console.log(`  http://localhost:${PORT}/            → Mieterhöhung`);
+    console.log(`  http://localhost:${PORT}/prüfen      → Mieterhöhung AG2`);
     console.log(`  http://localhost:${PORT}/kuendigung  → Kündigung`);
     console.log(`  http://localhost:${PORT}/nebenkosten → Nebenkostenabrechnung`);
 });
