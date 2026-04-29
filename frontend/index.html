@@ -109,6 +109,7 @@
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 8px; }
         .form-group input[type="text"], .form-group input[type="number"], .form-group textarea { width: 100%; padding: 14px 0; border: none; border-bottom: 1px solid #e8e8e8; background: transparent; font-size: 16px; font-family: Georgia, serif; color: #1a1a1a; outline: none; }
+        .form-group textarea { color: #000000 !important; }
         .form-group input[type="file"] { width: 100%; padding: 14px 0; border: none; border-bottom: 1px solid #e8e8e8; font-size: 14px; color: #666; outline: none; background: transparent; }
         .form-group input:focus, .form-group textarea:focus { border-bottom-color: #1a2a4a; }
         .form-group textarea { resize: vertical; }
@@ -299,6 +300,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="checkbox-item"><input type="checkbox" value="Wasserschaden" class="mangel-check"><span class="checkbox-label">Wasserschaden</span></div>
         </div>
         <div class="form-group"><label>Details zu Mängeln (optional)</label><textarea id="maengelDetails" rows="3" placeholder="z.B. Heizung ausgefallen seit November 2024..."></textarea></div>
+        <div class="form-group"><label>Weitere Mängel (optional)</label><input type="text" id="weitereMaengel" placeholder="z.B. Schimmel im Bad, defekte Fenster..."></div>
         <button class="btn-analyse" onclick="startAnalyse()">Analyse starten</button>
         <div class="loading-overlay" id="loading"><p class="loading-text">Analyse läuft. Bitte warten...</p></div>
     </div>
@@ -359,7 +361,8 @@ async function startAnalyse() {
         qm: document.getElementById('qm').value,
         einzug: document.getElementById('einzug').value,
         maengel: maengel.join(','),
-        maengelDetails: document.getElementById('maengelDetails').value
+        maengelDetails: document.getElementById('maengelDetails').value,
+        weitereMaengel: document.getElementById('weitereMaengel').value
     };
     try {
         let response;
