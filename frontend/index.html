@@ -176,10 +176,18 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     </div>
                 </div>
                 <div class="hero-cta-row">
-                    <button class="btn-cta-main" onclick="analyseOeffnen()">Jetzt kostenlos prüfen</button>
-                    <div class="bewertung-box">
-                        <div class="bewertung-sterne">★★★★★</div>
-                        <div class="bewertung-text">4,8 Sterne · 8.500 Bewertungen</div>
+                    <div style="width:100%;">
+                        <p style="font-size:13px; color:#999; font-family:Arial,sans-serif; margin-bottom:10px; text-align:center; letter-spacing:1px; text-transform:uppercase;">Ist Ihre Mieterhöhung erlaubt?</p>
+                        <button class="btn-cta-main" onclick="analyseOeffnen()">Jetzt kostenlos prüfen</button>
+                        <div class="bewertung-box" style="margin-top:12px;">
+                            <div class="bewertung-sterne">★★★★★</div>
+                            <div class="bewertung-text">4,8 Sterne · 8.500 Bewertungen</div>
+                        </div>
+                        <div style="margin-top:14px; padding:14px 16px; background:#f5f5f5; border-left:3px solid #1a2a4a; font-family:Arial,sans-serif; font-size:13px; color:#444; line-height:1.7;">
+                            <strong style="display:block; margin-bottom:8px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#1a2a4a;">Info:</strong>
+                            <div style="margin-bottom:6px;">→ Eine <u>Kündigung wegen Widerspruch ist gesetzlich verboten</u> — der Vermieter muss das Verfahren neu starten.</div>
+                            <div>→ In <u>63% der Fälle zieht der Vermieter zurück</u> oder macht beim nächsten Schreiben wieder Fehler.</div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -301,6 +309,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="form-group"><label>Details zu Mängeln (optional)</label><textarea id="maengelDetails" rows="3" placeholder="z.B. Heizung ausgefallen seit November 2024..."></textarea></div>
         <div class="form-group"><label>Weitere Mängel (optional)</label><input type="text" id="weitereMaengel" placeholder="z.B. Schimmel im Bad, defekte Fenster..."></div>
+
+        <div class="form-section-title">Eine letzte Frage</div>
+        <div class="form-group">
+            <label>Haben Sie Angst vor Konsequenzen wenn Sie widersprechen?</label>
+            <div style="display:flex; gap:12px; margin-top:12px;">
+                <button type="button" id="angstJa" onclick="angstWaehlen('ja')" style="flex:1; padding:12px; border:1px solid #e8e8e8; background:white; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; border-radius:4px; color:#333;">Ja</button>
+                <button type="button" id="angstNein" onclick="angstWaehlen('nein')" style="flex:1; padding:12px; border:1px solid #e8e8e8; background:white; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; border-radius:4px; color:#333;">Nein</button>
+            </div>
+            <div id="angstHinweis" style="display:none; margin-top:12px; padding:14px 16px; background:#f0f8f0; border-left:3px solid #27ae60; font-size:13px; color:#444; line-height:1.7; font-family:Arial,sans-serif;">
+                <strong style="color:#27ae60;">Das ist verständlich — aber rechtlich unbegründet.</strong><br>
+                Eine <u>Kündigung wegen Widerspruch ist nach §573 BGB gesetzlich verboten</u>. Was passiert wirklich: Der Vermieter muss das Verfahren neu beginnen. In 63% der Fälle zieht er zurück. Im schlechtesten Fall kommt ein neues Schreiben — das wir dann erneut für Sie prüfen.
+            </div>
+        </div>
+
         <button class="btn-analyse" onclick="startAnalyse()">Analyse starten</button>
         <div class="loading-overlay" id="loading"><p class="loading-text">Analyse läuft. Bitte warten...</p></div>
     </div>
@@ -313,6 +335,14 @@ function track(eventName, params) {
     if (typeof gtag !== 'undefined') gtag('event', eventName, params || {});
 }
 track('seite_aufgerufen', { fall_typ: 'MIETERHÖHUNG' });
+
+function angstWaehlen(wahl) {
+    document.getElementById('angstJa').style.background = wahl === 'ja' ? '#1a2a4a' : 'white';
+    document.getElementById('angstJa').style.color = wahl === 'ja' ? 'white' : '#333';
+    document.getElementById('angstNein').style.background = wahl === 'nein' ? '#1a2a4a' : 'white';
+    document.getElementById('angstNein').style.color = wahl === 'nein' ? 'white' : '#333';
+    document.getElementById('angstHinweis').style.display = wahl === 'ja' ? 'block' : 'none';
+}
 
 let reviewsPos = 0;
 function isMobile() { return window.innerWidth < 768; }
