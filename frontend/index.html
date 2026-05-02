@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MietHilfe – Mieterhöhung ablehnen</title>
+    <title>MietHilfe – Mieterhöhung prüfen</title>
 
     <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -33,31 +33,42 @@
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #fafafa; color: #1a1a1a; }
+
+        /* Nav */
         .nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #1a2a4a; position: sticky; top: 0; z-index: 100; }
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .logo-kreis { width: 32px; height: 32px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; color: #1a2a4a; }
         .logo { font-size: 18px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; color: white; }
         .nav-login { font-size: 12px; color: rgba(255,255,255,0.7); cursor: pointer; letter-spacing: 1px; text-transform: uppercase; background: none; border: 1px solid rgba(255,255,255,0.3); padding: 8px 14px; border-radius: 4px; }
+
+        /* Hero */
         .hero { position: relative; min-height: 100svh; display: flex; align-items: flex-start; overflow: hidden; }
         .hero-bg { position: absolute; top: 0; left: 0; right: 0; bottom: 0; z-index: 0; background: #1a2a4a; }
         .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.35; }
         .hero-content { position: relative; z-index: 1; padding: 24px 16px 40px; width: 100%; }
         .hero-box { background: white; padding: 28px 20px; width: 100%; max-width: 560px; margin: 0 auto; }
         .hero-achtung-btn { background: #1a2a4a; color: white; padding: 10px 14px; font-size: 12px; font-weight: 700; margin-bottom: 20px; display: inline-block; }
-        .hero-box-title { font-size: 26px; font-weight: 700; color: #1a1a1a; line-height: 1.3; margin-bottom: 16px; }
-        .hero-box-text { font-size: 15px; color: #444; line-height: 1.7; margin-bottom: 24px; }
-        .hero-checks { margin-bottom: 28px; }
-        .hero-check { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 14px; padding-bottom: 14px; border-bottom: 1px solid #f0f0f0; }
+        .hero-box-title { font-size: 26px; font-weight: 700; color: #1a1a1a; line-height: 1.3; margin-bottom: 12px; }
+        .hero-box-text { font-size: 14px; color: #555; line-height: 1.6; margin-bottom: 20px; }
+        .hero-checks { margin-bottom: 24px; }
+        .hero-check { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; padding-bottom: 12px; border-bottom: 1px solid #f0f0f0; }
         .hero-check:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .check-icon { width: 22px; height: 22px; background: #1a2a4a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
-        .check-icon svg { width: 11px; height: 11px; fill: none; stroke: white; stroke-width: 2.5; }
-        .check-text { font-size: 14px; color: #333; line-height: 1.6; }
-        .check-text strong { display: block; margin-bottom: 2px; }
-        .hero-cta-row { display: flex; flex-direction: column; gap: 14px; }
+        .check-icon { width: 20px; height: 20px; background: #1a2a4a; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 2px; }
+        .check-icon svg { width: 10px; height: 10px; fill: none; stroke: white; stroke-width: 2.5; }
+        .check-text { font-size: 14px; color: #333; line-height: 1.5; }
+        .check-text strong { display: block; margin-bottom: 1px; }
+
+        /* CTA */
+        .cta-wrapper { display: flex; flex-direction: column; gap: 12px; }
+        .cta-label { font-size: 12px; color: #999; text-align: center; letter-spacing: 1px; text-transform: uppercase; }
         .btn-cta-main { display: block; width: 100%; padding: 18px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; border-radius: 4px; text-align: center; }
-        .bewertung-box { background: #f5f0eb; padding: 12px 16px; text-align: center; border-radius: 4px; }
-        .bewertung-sterne { font-size: 18px; color: #f39c12; }
-        .bewertung-text { font-size: 12px; color: #666; margin-top: 2px; }
+        .bewertung-box { background: #f5f0eb; padding: 10px 16px; text-align: center; border-radius: 4px; }
+        .bewertung-sterne { font-size: 16px; color: #f39c12; }
+        .bewertung-text { font-size: 11px; color: #666; margin-top: 2px; }
+        .info-box { margin-top: 12px; padding: 14px 16px; background: #f5f5f5; border-left: 3px solid #1a2a4a; font-size: 13px; color: #444; line-height: 1.7; }
+        .info-box strong { display: block; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a2a4a; margin-bottom: 8px; }
+
+        /* Ablauf */
         .ablauf-section { padding: 40px 16px; background: white; border-bottom: 1px solid #e8e8e8; }
         .section-label { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; text-align: center; margin-bottom: 28px; }
         .schritte { display: flex; flex-direction: row; gap: 12px; max-width: 900px; margin: 0 auto; }
@@ -67,6 +78,8 @@
         .schritt-nummer { font-size: 10px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-bottom: 6px; }
         .schritt h3 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
         .schritt p { font-size: 11px; color: #666; line-height: 1.5; }
+
+        /* Bilanz */
         .bilanz-section { padding: 40px 16px; background: #1a2a4a; text-align: center; }
         .bilanz-titel { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 28px; }
         .bilanz-grid { display: flex; flex-direction: row; gap: 16px; max-width: 700px; margin: 0 auto; justify-content: center; }
@@ -78,6 +91,8 @@
         .review-stat-zahl { font-size: 18px; font-weight: 700; color: white; margin-bottom: 2px; }
         .review-stat-stars { color: #e8722a; font-size: 11px; margin-bottom: 4px; }
         .review-stat-label { font-size: 9px; color: rgba(255,255,255,0.6); letter-spacing: 1px; text-transform: uppercase; }
+
+        /* Reviews */
         .reviews-section { padding: 40px 16px; background: #fafafa; border-bottom: 1px solid #e8e8e8; }
         .reviews-header { text-align: center; margin-bottom: 24px; }
         .reviews-header h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
@@ -92,40 +107,100 @@
         .reviews-nav { display: flex; justify-content: center; gap: 12px; margin-top: 20px; }
         .reviews-btn { width: 36px; height: 36px; border-radius: 50%; border: 1px solid #e8e8e8; background: white; cursor: pointer; font-size: 16px; display: flex; align-items: center; justify-content: center; }
         .reviews-btn:hover { background: #1a2a4a; color: white; border-color: #1a2a4a; }
+
+        /* CTA Final */
         .cta-final { padding: 48px 16px; background: white; text-align: center; }
         .cta-final h2 { font-size: 22px; font-weight: 700; margin-bottom: 10px; }
         .cta-final p { font-size: 15px; color: #666; margin-bottom: 24px; }
         .btn-cta-final { display: inline-block; width: 100%; max-width: 360px; padding: 18px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; border-radius: 4px; }
+
+        /* Footer */
         .footer { padding: 28px 16px; text-align: center; background: #1a2a4a; }
         .footer p { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.8; }
-        .analyse-page { display: none; background: white; min-height: 100vh; padding: 32px 16px 60px; }
+
+        /* Analyse Page */
+        .analyse-page { display: none; background: white; min-height: 100vh; padding: 0; }
         .analyse-page.aktiv { display: block; }
-        .analyse-container { max-width: 560px; margin: 0 auto; }
-        .analyse-back { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #999; cursor: pointer; margin-bottom: 32px; display: inline-block; }
-        .analyse-titel { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-bottom: 28px; }
-        .disclaimer { background: #f5f0eb; border-left: 3px solid #1a2a4a; padding: 16px 20px; margin-bottom: 32px; }
-        .disclaimer p { font-size: 13px; color: #666; line-height: 1.7; }
-        .form-section-title { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: #999; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e8e8e8; margin-top: 28px; }
+
+        /* Progress Bar */
+        .progress-bar-container { background: #f0f0f0; height: 4px; width: 100%; }
+        .progress-bar { height: 4px; background: #e8722a; transition: width 0.3s ease; }
+        .progress-steps { display: flex; justify-content: space-between; padding: 12px 20px 0; max-width: 560px; margin: 0 auto; }
+        .progress-step { font-size: 11px; color: #ccc; letter-spacing: 1px; text-transform: uppercase; }
+        .progress-step.aktiv { color: #e8722a; font-weight: 700; }
+        .progress-step.fertig { color: #27ae60; }
+
+        .analyse-container { max-width: 560px; margin: 0 auto; padding: 28px 20px 60px; }
+        .analyse-back { font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #999; cursor: pointer; margin-bottom: 28px; display: inline-block; }
+        .analyse-titel { font-size: 20px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+        .analyse-subtitel { font-size: 14px; color: #666; margin-bottom: 28px; line-height: 1.5; }
+        .disclaimer { background: #f5f0eb; border-left: 3px solid #1a2a4a; padding: 14px 16px; margin-bottom: 28px; font-size: 13px; color: #666; line-height: 1.6; }
+
+        /* Neue Form Styles — Box-Felder */
         .form-group { margin-bottom: 20px; }
-        .form-group label { display: block; font-size: 11px; letter-spacing: 1px; text-transform: uppercase; color: #999; margin-bottom: 8px; }
-        .form-group input[type="text"], .form-group input[type="number"], .form-group textarea { width: 100%; padding: 14px 0; border: none; border-bottom: 1px solid #e8e8e8; background: transparent; font-size: 16px; font-family: Georgia, serif; color: #1a1a1a; outline: none; }
-        .form-group textarea { color: #000000 !important; }
-        .form-group input[type="file"] { width: 100%; padding: 14px 0; border: none; border-bottom: 1px solid #e8e8e8; font-size: 14px; color: #666; outline: none; background: transparent; }
-        .form-group input:focus, .form-group textarea:focus { border-bottom-color: #1a2a4a; }
-        .form-group textarea { resize: vertical; }
-        .upload-oder { text-align: center; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #ccc; padding: 14px 0; }
-        .checkbox-gruppe { margin-bottom: 28px; }
-        .checkbox-item { display: flex; align-items: center; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f5f5f5; }
-        .checkbox-item input[type="checkbox"] { width: 20px; height: 20px; flex-shrink: 0; accent-color: #1a2a4a; }
-        .checkbox-label { font-size: 15px; font-family: Georgia, serif; color: #333; }
-        .btn-analyse { width: 100%; padding: 20px; background: #1a2a4a; color: white; border: none; font-size: 14px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 36px; border-radius: 4px; }
+        .form-group label { display: block; font-size: 13px; font-weight: 700; color: #333; margin-bottom: 8px; }
+        .form-group .optional-label { font-size: 11px; color: #999; font-weight: normal; margin-left: 6px; }
+        .form-group input[type="text"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #d0d0d0;
+            border-radius: 6px;
+            background: white;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            color: #1a1a1a;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .form-group input[type="text"]:focus,
+        .form-group input[type="number"]:focus {
+            border-color: #1a2a4a;
+        }
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #d0d0d0;
+            border-radius: 6px;
+            background: white;
+            font-size: 15px;
+            font-family: Arial, sans-serif;
+            color: #1a1a1a;
+            outline: none;
+            resize: vertical;
+            transition: border-color 0.2s;
+            min-height: 140px;
+        }
+        .form-group textarea:focus { border-color: #1a2a4a; }
+        .form-group input[type="file"] {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px dashed #d0d0d0;
+            border-radius: 6px;
+            font-size: 14px;
+            color: #666;
+            outline: none;
+            background: #fafafa;
+            cursor: pointer;
+        }
+        .upload-oder { text-align: center; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; color: #bbb; padding: 16px 0; }
+        .form-section-title { font-size: 13px; font-weight: 700; color: #333; margin-bottom: 14px; padding-bottom: 10px; border-bottom: 2px solid #e8e8e8; margin-top: 28px; }
+        .form-row { display: flex; gap: 12px; }
+        .form-row .form-group { flex: 1; }
+        .checkbox-gruppe { margin-bottom: 8px; }
+        .checkbox-item { display: flex; align-items: center; gap: 12px; padding: 12px 16px; border: 2px solid #e8e8e8; border-radius: 6px; margin-bottom: 8px; cursor: pointer; transition: border-color 0.2s; }
+        .checkbox-item:hover { border-color: #1a2a4a; }
+        .checkbox-item input[type="checkbox"] { width: 18px; height: 18px; flex-shrink: 0; accent-color: #1a2a4a; }
+        .checkbox-label { font-size: 14px; color: #333; }
+
+        .btn-analyse { width: 100%; padding: 20px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 28px; border-radius: 6px; letter-spacing: 1px; }
+        .btn-analyse:hover { background: #d4621a; }
         .loading-overlay { display: none; text-align: center; padding: 48px 0; }
         .loading-text { font-size: 12px; letter-spacing: 3px; text-transform: uppercase; color: #999; }
+
         @media (min-width: 768px) {
             .hero-content { padding: 48px 40px 60px; display: flex; justify-content: flex-start; }
             .hero-box { margin: 0; padding: 40px; }
-            .hero-cta-row { flex-direction: row; align-items: center; }
-            .btn-cta-main { width: auto; padding: 18px 32px; }
             .ablauf-section { padding: 60px 40px; }
             .schritt-bild { height: 180px; }
             .schritt h3 { font-size: 16px; }
@@ -134,7 +209,12 @@
             .bilanz-zahl { font-size: 44px; }
             .reviews-section { padding: 60px 40px; }
             .cta-final { padding: 80px 40px; }
-            .analyse-page { padding: 60px 40px; }
+            .analyse-container { padding: 40px 40px 80px; }
+        }
+
+        @media (max-width: 767px) {
+            .review-card { flex: 0 0 100%; }
+            .form-row { flex-direction: column; gap: 0; }
         }
     </style>
 </head>
@@ -158,36 +238,34 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
         <div class="hero-content">
             <div class="hero-box">
-                <div class="hero-achtung-btn">Achtung: Jedes dritte Schreiben ist ungültig.</div>
-                <div class="hero-box-title">Mieterhöhung ablehnen —<br>lass dir nicht alles gefallen.</div>
-                <p class="hero-box-text">MietHilfe prüft das Schreiben deines Vermieters <strong>gratis</strong>. Häufig liegen Formfehler oder nicht eingehaltene Fristen vor — und in vielen Fällen ist auch eine <strong>Mietminderung</strong> möglich.</p>
+                <div class="hero-achtung-btn">Jedes dritte Schreiben ist ungültig.</div>
+                <div class="hero-box-title">Mieterhöhung prüfen —<br>die Vermieter dürfen nicht alles.</div>
+                <p class="hero-box-text">MietHilfe analysiert das Schreiben deines Vermieters <strong>kostenlos</strong> auf Formfehler — und erstellt bei Bedarf den fertigen Widerspruch.</p>
                 <div class="hero-checks">
                     <div class="hero-check">
                         <div class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-                        <div class="check-text"><strong>Gratis Analyse</strong>Wir prüfen ob die Forderung deines Vermieters legal ist.</div>
+                        <div class="check-text"><strong>Gratis Analyse in 3 Minuten</strong>Wir prüfen ob die Forderung deines Vermieters legal ist.</div>
                     </div>
                     <div class="hero-check">
                         <div class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-                        <div class="check-text"><strong>63% Chancen auf Erfolg</strong>Die meisten Vermieter begehen formelle Fehler.</div>
+                        <div class="check-text"><strong>63% Erfolgsquote</strong>Die meisten Vermieter begehen formelle Fehler.</div>
                     </div>
                     <div class="hero-check">
                         <div class="check-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
-                        <div class="check-text"><strong>Ohne Anwaltskosten</strong>MietHilfe ist 24/7 erreichbar — kein Termin, kein Warten.</div>
+                        <div class="check-text"><strong>kein Anwalt nötig</strong>Kein Termin, kein Mietverein und auch keinen Anwalt — 24/7 online.</div>
                     </div>
                 </div>
-                <div class="hero-cta-row">
-                    <div style="width:100%;">
-                        <p style="font-size:13px; color:#999; font-family:Arial,sans-serif; margin-bottom:10px; text-align:center; letter-spacing:1px; text-transform:uppercase;">Ist Ihre Mieterhöhung erlaubt?</p>
-                        <button class="btn-cta-main" onclick="analyseOeffnen()">Jetzt kostenlos prüfen</button>
-                        <div class="bewertung-box" style="margin-top:12px;">
-                            <div class="bewertung-sterne">★★★★★</div>
-                            <div class="bewertung-text">4,8 Sterne · 8.500 Bewertungen</div>
-                        </div>
-                        <div style="margin-top:14px; padding:14px 16px; background:#f5f5f5; border-left:3px solid #1a2a4a; font-family:Arial,sans-serif; font-size:13px; color:#444; line-height:1.7;">
-                            <strong style="display:block; margin-bottom:8px; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#1a2a4a;">Info:</strong>
-                            <div style="margin-bottom:6px;">→ Eine <u>Kündigung wegen Widerspruch ist gesetzlich verboten</u> — der Vermieter muss das Verfahren neu starten.</div>
-                            <div>→ In <u>63% der Fälle zieht der Vermieter zurück</u> oder macht beim nächsten Schreiben wieder Fehler.</div>
-                        </div>
+                <div class="cta-wrapper">
+                    <p class="cta-label">Ist Ihre Mieterhöhung erlaubt?</p>
+                    <button class="btn-cta-main" onclick="analyseOeffnen()">Jetzt kostenlos prüfen</button>
+                    <div class="bewertung-box">
+                        <div class="bewertung-sterne">★★★★★</div>
+                        <div class="bewertung-text">4,8 Sterne · 8.500 Bewertungen</div>
+                    </div>
+                    <div class="info-box">
+                        <strong>Info:</strong>
+                        → <u>Kündigung wegen Widerspruch ist gesetzlich verboten</u> — der Vermieter muss das Verfahren neu starten.<br>
+                        → In <u>63% der Fälle zieht der Vermieter zurück</u> oder macht beim nächsten Schreiben wieder Fehler.
                     </div>
                 </div>
             </div>
@@ -213,7 +291,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <div class="schritt-bild"><img src="https://i.imgur.com/ANuBQst.jpg" alt="" onerror="this.style.display='none'"></div>
                 <div class="schritt-nummer">03</div>
                 <h3>Brief erhalten</h3>
-                <p>Professioneller Ablehnungsbrief für Ihren Vermieter.</p>
+                <p>Fertiger Widerspruchsbrief für Ihren Vermieter.</p>
             </div>
         </div>
     </section>
@@ -267,7 +345,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <section class="cta-final">
         <h2>Jetzt kostenlos prüfen</h2>
-        <p>Einfach das Schreiben eingeben und in 3 Minuten wissen ob Ihr Vermieter Recht hat.</p>
+        <p>In 3 Minuten wissen ob Ihr Vermieter Recht hat.</p>
         <button class="btn-cta-final" onclick="analyseOeffnen()">Jetzt kostenlos prüfen</button>
     </section>
 
@@ -276,55 +354,69 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </footer>
 </div>
 
+<!-- Analyse Seite -->
 <div class="analyse-page" id="analysePage">
+
+    <!-- Progress Bar -->
+    <div class="progress-bar-container">
+        <div class="progress-bar" id="progressBar" style="width: 33%"></div>
+    </div>
+    <div class="progress-steps">
+        <span class="progress-step aktiv" id="step1">1. Schreiben</span>
+        <span class="progress-step" id="step2">2. Details</span>
+        <span class="progress-step" id="step3">3. Analyse</span>
+    </div>
+
     <div class="analyse-container">
         <span class="analyse-back" onclick="analyseSchliessen()">← Zurück</span>
         <div class="analyse-titel">Mieterhöhung kostenlos prüfen</div>
+        <div class="analyse-subtitel">Geben Sie das Schreiben Ihres Vermieters ein — wir analysieren es sofort auf Fehler.</div>
         <div class="disclaimer">
-            <p><strong>Datenschutz:</strong> Ihre Daten werden ausschliesslich zur Analyse verwendet. Alle Dokumente werden nach 7 Tagen gelöscht. MietHilfe ist kein Rechtsanwalt.</p>
-        </div>
-        <div class="form-group">
-            <label>Text des Schreibens eingeben</label>
-            <textarea id="dokumentText" rows="7" placeholder="Vollständigen Text des Vermieter-Schreibens hier einfügen..."></textarea>
-        </div>
-        <div class="upload-oder">— oder —</div>
-        <div class="form-group">
-            <label>Foto oder Scan hochladen</label>
-            <input type="file" id="dokumentFoto" accept="image/*,.pdf">
-        </div>
-        <p style="font-size:13px; color:#999; margin:24px 0 16px; font-style:italic; line-height:1.6;">Diese Angaben helfen uns Ihren Fall besser einzuschätzen.</p>
-        <div class="form-group"><label>Ihr Name</label><input type="text" id="name" placeholder="Max Mustermann"></div>
-        <div class="form-group"><label>Stadt</label><input type="text" id="stadt" placeholder="z.B. Berlin"></div>
-        <div class="form-group"><label>Wohnungsgrösse in qm</label><input type="number" id="qm" placeholder="65"></div>
-        <div class="form-group"><label>Einzugsdatum</label><input type="text" id="einzug" placeholder="z.B. 01.03.2020"></div>
-        <div class="form-section-title">Offene Mängel (optional)</div>
-        <p style="font-size:13px; color:#999; margin-bottom:20px; line-height:1.6;">Mängel können Ihre Verhandlungsposition erheblich stärken.</p>
-        <div class="checkbox-gruppe">
-            <div class="checkbox-item"><input type="checkbox" value="Heizungsprobleme" class="mangel-check"><span class="checkbox-label">Heizungsprobleme</span></div>
-            <div class="checkbox-item"><input type="checkbox" value="Schimmel oder Feuchtigkeit" class="mangel-check"><span class="checkbox-label">Schimmel oder Feuchtigkeit</span></div>
-            <div class="checkbox-item"><input type="checkbox" value="Baulärm durch Vermieter" class="mangel-check"><span class="checkbox-label">Baulärm durch Vermieter</span></div>
-            <div class="checkbox-item"><input type="checkbox" value="Aufzug defekt" class="mangel-check"><span class="checkbox-label">Aufzug defekt</span></div>
-            <div class="checkbox-item"><input type="checkbox" value="Renovierungsstau" class="mangel-check"><span class="checkbox-label">Renovierungsstau</span></div>
-            <div class="checkbox-item"><input type="checkbox" value="Wasserschaden" class="mangel-check"><span class="checkbox-label">Wasserschaden</span></div>
-        </div>
-        <div class="form-group"><label>Details zu Mängeln (optional)</label><textarea id="maengelDetails" rows="3" placeholder="z.B. Heizung ausgefallen seit November 2024..."></textarea></div>
-        <div class="form-group"><label>Weitere Mängel (optional)</label><input type="text" id="weitereMaengel" placeholder="z.B. Schimmel im Bad, defekte Fenster..."></div>
-
-        <div class="form-section-title">Eine letzte Frage</div>
-        <div class="form-group">
-            <label>Haben Sie Angst vor Konsequenzen wenn Sie widersprechen?</label>
-            <div style="display:flex; gap:12px; margin-top:12px;">
-                <button type="button" id="angstJa" onclick="angstWaehlen('ja')" style="flex:1; padding:12px; border:1px solid #e8e8e8; background:white; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; border-radius:4px; color:#333;">Ja</button>
-                <button type="button" id="angstNein" onclick="angstWaehlen('nein')" style="flex:1; padding:12px; border:1px solid #e8e8e8; background:white; font-size:14px; font-family:Arial,sans-serif; cursor:pointer; border-radius:4px; color:#333;">Nein</button>
-            </div>
-            <div id="angstHinweis" style="display:none; margin-top:12px; padding:14px 16px; background:#f0f8f0; border-left:3px solid #27ae60; font-size:13px; color:#444; line-height:1.7; font-family:Arial,sans-serif;">
-                <strong style="color:#27ae60;">Das ist verständlich — aber rechtlich unbegründet.</strong><br>
-                Eine <u>Kündigung wegen Widerspruch ist nach §573 BGB gesetzlich verboten</u>. Was passiert wirklich: Der Vermieter muss das Verfahren neu beginnen. In 63% der Fälle zieht er zurück. Im schlechtesten Fall kommt ein neues Schreiben — das wir dann erneut für Sie prüfen.
-            </div>
+            🔒 <strong>Datenschutz:</strong> Ihre Daten werden nur zur Analyse verwendet und nach 7 Tagen gelöscht. MietHilfe ist kein Rechtsanwalt.
         </div>
 
-        <button class="btn-analyse" onclick="startAnalyse()">Analyse starten</button>
-        <div class="loading-overlay" id="loading"><p class="loading-text">Analyse läuft. Bitte warten...</p></div>
+        <!-- Schritt 1: Schreiben -->
+        <div id="formSchritt1">
+            <div class="form-group">
+                <label>Text des Schreibens eingeben</label>
+                <textarea id="dokumentText" placeholder="Vollständigen Text des Vermieter-Schreibens hier einfügen..."></textarea>
+            </div>
+            <div class="upload-oder">— oder Foto/Scan hochladen —</div>
+            <div class="form-group">
+                <input type="file" id="dokumentFoto" accept="image/*,.pdf">
+            </div>
+            <button class="btn-analyse" onclick="weiterZuSchritt2()">Weiter →</button>
+        </div>
+
+        <!-- Schritt 2: Details -->
+        <div id="formSchritt2" style="display:none;">
+            <div class="form-row">
+                <div class="form-group">
+                    <label>Stadt <span class="optional-label">(für Mietspiegel)</span></label>
+                    <input type="text" id="stadt" placeholder="z.B. Berlin">
+                </div>
+                <div class="form-group">
+                    <label>Wohnungsgrösse <span class="optional-label">(qm)</span></label>
+                    <input type="number" id="qm" placeholder="65">
+                </div>
+            </div>
+
+            <div class="form-section-title">Offene Mängel <span style="font-weight:normal; color:#999; font-size:12px;">(optional — stärken Ihre Position)</span></div>
+            <div class="checkbox-gruppe">
+                <label class="checkbox-item"><input type="checkbox" value="Heizungsprobleme" class="mangel-check"><span class="checkbox-label">Heizungsprobleme</span></label>
+                <label class="checkbox-item"><input type="checkbox" value="Schimmel oder Feuchtigkeit" class="mangel-check"><span class="checkbox-label">Schimmel oder Feuchtigkeit</span></label>
+                <label class="checkbox-item"><input type="checkbox" value="Baulärm durch Vermieter" class="mangel-check"><span class="checkbox-label">Baulärm durch Vermieter</span></label>
+                <label class="checkbox-item"><input type="checkbox" value="Aufzug defekt" class="mangel-check"><span class="checkbox-label">Aufzug defekt</span></label>
+                <label class="checkbox-item"><input type="checkbox" value="Renovierungsstau" class="mangel-check"><span class="checkbox-label">Renovierungsstau</span></label>
+                <label class="checkbox-item"><input type="checkbox" value="Wasserschaden" class="mangel-check"><span class="checkbox-label">Wasserschaden</span></label>
+            </div>
+
+            <button class="btn-analyse" onclick="startAnalyse()">Analyse starten</button>
+        </div>
+
+        <div class="loading-overlay" id="loading">
+            <p class="loading-text">Analyse läuft. Bitte warten...</p>
+        </div>
     </div>
 </div>
 
@@ -336,22 +428,13 @@ function track(eventName, params) {
 }
 track('seite_aufgerufen', { fall_typ: 'MIETERHÖHUNG' });
 
-function angstWaehlen(wahl) {
-    document.getElementById('angstJa').style.background = wahl === 'ja' ? '#1a2a4a' : 'white';
-    document.getElementById('angstJa').style.color = wahl === 'ja' ? 'white' : '#333';
-    document.getElementById('angstNein').style.background = wahl === 'nein' ? '#1a2a4a' : 'white';
-    document.getElementById('angstNein').style.color = wahl === 'nein' ? 'white' : '#333';
-    document.getElementById('angstHinweis').style.display = wahl === 'ja' ? 'block' : 'none';
-}
-
 let reviewsPos = 0;
 function isMobile() { return window.innerWidth < 768; }
-function cardsPerView() { return isMobile() ? 1 : 3; }
 
 function reviewsNext() {
     const track = document.getElementById('reviewsTrack');
     const total = track.children.length;
-    const max = total - cardsPerView();
+    const max = total - (isMobile() ? 1 : 3);
     if (reviewsPos < max) { reviewsPos++; updateReviews(); }
 }
 function reviewsPrev() {
@@ -370,30 +453,48 @@ function analyseOeffnen() {
     window.scrollTo(0, 0);
     track('analyse_geoeffnet', { fall_typ: 'MIETERHÖHUNG' });
 }
+
 function analyseSchliessen() {
     document.getElementById('landingpage').style.display = 'block';
     document.getElementById('analysePage').classList.remove('aktiv');
     window.scrollTo(0, 0);
 }
 
+function weiterZuSchritt2() {
+    const dokumentText = document.getElementById('dokumentText').value;
+    const fotoInput = document.getElementById('dokumentFoto');
+    if (!dokumentText.trim() && !fotoInput.files[0]) {
+        alert('Bitte Schreiben eingeben oder Foto hochladen.');
+        return;
+    }
+    document.getElementById('formSchritt1').style.display = 'none';
+    document.getElementById('formSchritt2').style.display = 'block';
+    document.getElementById('progressBar').style.width = '66%';
+    document.getElementById('step1').className = 'progress-step fertig';
+    document.getElementById('step2').className = 'progress-step aktiv';
+    window.scrollTo(0, 0);
+}
+
 async function startAnalyse() {
     const dokumentText = document.getElementById('dokumentText').value;
     const fotoInput = document.getElementById('dokumentFoto');
-    if (!dokumentText.trim() && !fotoInput.files[0]) { alert('Bitte Schreiben eingeben oder Foto hochladen.'); return; }
     const maengel = Array.from(document.querySelectorAll('.mangel-check:checked')).map(cb => cb.value);
+
     track('formular_abgeschickt', { fall_typ: 'MIETERHÖHUNG' });
-    document.querySelector('.btn-analyse').style.display = 'none';
+
+    document.getElementById('formSchritt2').style.display = 'none';
     document.getElementById('loading').style.display = 'block';
+    document.getElementById('progressBar').style.width = '100%';
+    document.getElementById('step2').className = 'progress-step fertig';
+    document.getElementById('step3').className = 'progress-step aktiv';
+
     const felder = {
         vorgewaehlterTyp: 'MIETERHÖHUNG',
-        name: document.getElementById('name').value,
         stadt: document.getElementById('stadt').value,
         qm: document.getElementById('qm').value,
-        einzug: document.getElementById('einzug').value,
-        maengel: maengel.join(','),
-        maengelDetails: document.getElementById('maengelDetails').value,
-        weitereMaengel: document.getElementById('weitereMaengel').value
+        maengel: maengel.join(',')
     };
+
     try {
         let response;
         if (fotoInput.files[0]) {
@@ -414,7 +515,7 @@ async function startAnalyse() {
         window.location.href = '/result.html';
     } catch (err) {
         alert('Fehler. Bitte versuchen Sie es erneut.');
-        document.querySelector('.btn-analyse').style.display = 'block';
+        document.getElementById('formSchritt2').style.display = 'block';
         document.getElementById('loading').style.display = 'none';
     }
 }
