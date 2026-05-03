@@ -5,14 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MietHilfe – Mieterhöhung prüfen</title>
 
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WD7CQ4GL');</script>
 
-    <!-- Microsoft Clarity -->
     <script type="text/javascript">
         (function(c,l,a,r,i,t,y){
             c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
@@ -21,7 +19,6 @@
         })(window, document, "clarity", "script", "wj01jbchse");
     </script>
 
-    <!-- Google Analytics 4 -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEF4E3N2EW"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
@@ -34,44 +31,41 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: Arial, sans-serif; background: #fafafa; color: #1a1a1a; }
 
-        .nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #1a2a4a; position: sticky; top: 0; z-index: 100; }
+        .nav { padding: 16px 20px; display: flex; align-items: center; background: #1a2a4a; }
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .logo-kreis { width: 32px; height: 32px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 15px; font-weight: bold; color: #1a2a4a; }
         .logo { font-size: 18px; letter-spacing: 4px; text-transform: uppercase; font-weight: 600; color: white; }
-        .nav-login { font-size: 12px; color: rgba(255,255,255,0.7); cursor: pointer; letter-spacing: 1px; text-transform: uppercase; background: none; border: 1px solid rgba(255,255,255,0.3); padding: 8px 14px; border-radius: 4px; }
 
-        /* Hero — kein Hintergrundbild */
+        /* Hero */
         .hero { background: #1a2a4a; padding: 40px 16px 48px; }
         .hero-inner { max-width: 640px; margin: 0 auto; }
-        .hero-badge { display: inline-block; background: rgba(255,255,255,0.15); color: white; padding: 6px 14px; font-size: 11px; letter-spacing: 2px; text-transform: uppercase; border-radius: 20px; margin-bottom: 20px; }
         .hero-title { font-size: 28px; font-weight: 700; color: white; line-height: 1.3; margin-bottom: 16px; font-family: Georgia, serif; }
         .hero-title u { text-decoration: underline; text-underline-offset: 4px; }
         .hero-subtitle { font-size: 15px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 28px; }
         .hero-subtitle u { text-decoration: underline; text-underline-offset: 3px; color: white; }
 
-        /* 16:9 Bild Platzhalter */
-        .hero-image { width: 100%; aspect-ratio: 16/9; background: #2a3a5a; border-radius: 8px; margin-bottom: 24px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+        /* Hero Bild */
+        .hero-image { width: 100%; aspect-ratio: 16/9; border-radius: 8px; margin-bottom: 24px; overflow: hidden; }
         .hero-image img { width: 100%; height: 100%; object-fit: cover; }
-        .hero-image-placeholder { color: rgba(255,255,255,0.3); font-size: 13px; letter-spacing: 2px; text-transform: uppercase; }
 
-        /* CTA mit Uhr */
+        /* CTA */
         .hero-cta-wrapper { position: relative; margin-bottom: 16px; }
         .btn-cta-main { display: block; width: 100%; padding: 18px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; border-radius: 6px; text-align: center; position: relative; }
         .btn-cta-main:hover { background: #d4621a; }
         .cta-zeit { position: absolute; bottom: 10px; right: 14px; font-size: 11px; color: rgba(255,255,255,0.75); display: flex; align-items: center; gap: 4px; }
         .cta-zeit svg { width: 12px; height: 12px; fill: none; stroke: rgba(255,255,255,0.75); stroke-width: 2; }
 
-        /* Bewertung */
         .bewertung-row { display: flex; align-items: center; justify-content: center; gap: 8px; }
         .bewertung-sterne { font-size: 16px; color: #f39c12; }
         .bewertung-text { font-size: 12px; color: rgba(255,255,255,0.6); }
 
-        /* Drei Punkte */
-        .drei-punkte { display: flex; gap: 0; max-width: 640px; margin: 0 auto; background: white; border-radius: 8px; overflow: hidden; }
-        .drei-punkt { flex: 1; padding: 20px 12px; text-align: center; border-right: 1px solid #f0f0f0; }
+        /* Drei Punkte mit Häkchen */
+        .drei-punkte { display: flex; gap: 0; max-width: 640px; margin: 0 auto; background: white; }
+        .drei-punkt { flex: 1; padding: 18px 10px; text-align: center; border-right: 1px solid #f0f0f0; }
         .drei-punkt:last-child { border-right: none; }
-        .drei-punkt-icon { font-size: 22px; margin-bottom: 6px; }
-        .drei-punkt-titel { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 3px; }
+        .drei-punkt-icon { width: 28px; height: 28px; background: #1a2a4a; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px; }
+        .drei-punkt-icon svg { width: 13px; height: 13px; fill: none; stroke: white; stroke-width: 2.5; }
+        .drei-punkt-titel { font-size: 12px; font-weight: 700; color: #1a1a1a; margin-bottom: 2px; }
         .drei-punkt-text { font-size: 11px; color: #999; }
 
         /* Ablauf */
@@ -88,7 +82,8 @@
         /* FAQ */
         .faq-section { padding: 48px 16px; background: white; border-bottom: 1px solid #e8e8e8; }
         .faq-section h2 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 32px; }
-        .faq-item { border-bottom: 1px solid #e8e8e8; max-width: 640px; margin: 0 auto; }
+        .faq-container { max-width: 640px; margin: 0 auto; }
+        .faq-item { border-bottom: 1px solid #e8e8e8; }
         .faq-frage { width: 100%; text-align: left; background: none; border: none; padding: 18px 0; font-size: 15px; font-weight: 700; font-family: Arial, sans-serif; color: #1a1a1a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
         .faq-icon { font-size: 20px; color: #e8722a; flex-shrink: 0; transition: transform 0.2s; }
         .faq-antwort { display: none; padding: 0 0 18px; font-size: 14px; color: #555; line-height: 1.7; }
@@ -103,18 +98,19 @@
         .bilanz-zahl { font-size: 32px; font-weight: 700; color: white; margin-bottom: 4px; font-family: Georgia, serif; }
         .bilanz-text { font-size: 11px; color: rgba(255,255,255,0.55); line-height: 1.4; }
 
-        /* Reviews */
+        /* Reviews — klein, nebeneinander */
         .reviews-section { padding: 48px 16px; background: #f5f5f5; }
         .reviews-section h2 { font-size: 22px; font-weight: 700; text-align: center; margin-bottom: 8px; }
-        .reviews-section p { font-size: 13px; color: #999; text-align: center; margin-bottom: 28px; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 900px; margin: 0 auto; }
-        .review-card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
-        .review-img { width: 100%; aspect-ratio: 3/4; background: #e8e8e8; border-radius: 6px; margin-bottom: 14px; overflow: hidden; }
+        .reviews-section p { font-size: 13px; color: #999; text-align: center; margin-bottom: 24px; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 640px; margin: 0 auto; }
+        .review-card { background: white; border-radius: 6px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+        .review-img { width: 100%; aspect-ratio: 3/4; background: #e8e8e8; overflow: hidden; }
         .review-img img { width: 100%; height: 100%; object-fit: cover; }
-        .review-top { display: flex; justify-content: space-between; margin-bottom: 8px; }
-        .review-name { font-size: 14px; font-weight: 700; }
-        .review-stars { color: #e8722a; font-size: 13px; }
-        .review-text { font-size: 13px; color: #555; line-height: 1.6; }
+        .review-body { padding: 8px; }
+        .review-top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .review-name { font-size: 11px; font-weight: 700; }
+        .review-stars { color: #e8722a; font-size: 10px; }
+        .review-text { font-size: 10px; color: #555; line-height: 1.4; }
 
         /* CTA Final */
         .cta-final { padding: 48px 16px; background: white; text-align: center; }
@@ -122,7 +118,6 @@
         .cta-final p { font-size: 15px; color: #666; margin-bottom: 24px; }
         .btn-cta-final { display: inline-block; width: 100%; max-width: 360px; padding: 18px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; border-radius: 6px; }
 
-        /* Footer */
         .footer { padding: 28px 16px; text-align: center; background: #1a2a4a; }
         .footer p { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.8; }
 
@@ -160,12 +155,11 @@
         .btn-analyse { width: 100%; padding: 20px; background: #e8722a; color: white; border: none; font-size: 16px; font-weight: 700; cursor: pointer; margin-top: 28px; border-radius: 6px; }
         .btn-analyse:hover { background: #d4621a; }
 
-        /* Loading */
         .loading-overlay { display: none; text-align: center; padding: 60px 20px; }
         .loading-logo { font-size: 24px; font-weight: 700; color: #1a2a4a; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 28px; }
         .loading-spinner { width: 56px; height: 56px; border: 4px solid #e8e8e8; border-top-color: #1a2a4a; border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 20px; }
         @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { font-size: 14px; color: #333; font-weight: 700; letter-spacing: 1px; }
+        .loading-text { font-size: 14px; color: #333; font-weight: 700; }
 
         @media (min-width: 768px) {
             .hero { padding: 60px 40px 64px; }
@@ -182,7 +176,6 @@
             .analyse-container { padding: 40px 40px 80px; }
         }
         @media (max-width: 767px) {
-            .reviews-grid { grid-template-columns: 1fr; }
             .form-row { flex-direction: column; gap: 0; }
         }
     </style>
@@ -198,23 +191,17 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <div class="logo-kreis">M</div>
             <div class="logo">MietHilfe</div>
         </div>
-        <button class="nav-login" onclick="analyseOeffnen()">Mieterhöhung kostenlos prüfen</button>
     </nav>
 
-    <!-- Hero -->
     <section class="hero">
         <div class="hero-inner">
-            <div class="hero-badge">Jedes dritte Schreiben ist ungültig</div>
             <h1 class="hero-title">Wir prüfen deine Mieterhöhung —<br>lass dich <u>nicht abzocken</u>.</h1>
             <p class="hero-subtitle">MietHilfe prüft die Mieterhöhung deines Vermieters auf <u>Gültigkeit</u>. Die meisten Mieter zahlen jeden Monat mehr — ohne zu wissen, dass sie sich <u>dagegen wehren können</u> und der Vermieter <u>nicht alles darf</u>.</p>
 
-            <!-- 16:9 Bild -->
             <div class="hero-image">
-                <!-- Bild hier einfügen wenn Link verfügbar: <img src="DEIN_IMGUR_LINK" alt="MietHilfe Analyse"> -->
-                <span class="hero-image-placeholder">Bild folgt</span>
+                <img src="https://i.imgur.com/MfuSOI0.jpg" alt="MietHilfe Mieterhöhung prüfen" onerror="this.parentElement.style.background='#2a3a5a'">
             </div>
 
-            <!-- CTA mit Uhr -->
             <div class="hero-cta-wrapper">
                 <button class="btn-cta-main" onclick="analyseOeffnen()">
                     Mieterhöhung kostenlos prüfen
@@ -225,7 +212,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 </button>
             </div>
 
-            <!-- Bewertung -->
             <div class="bewertung-row">
                 <span class="bewertung-sterne">★★★★★</span>
                 <span class="bewertung-text">4,8 Sterne · 8.500 Bewertungen</span>
@@ -233,22 +219,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Drei Punkte -->
+    <!-- Drei Punkte mit Häkchen -->
     <div class="drei-punkte">
         <div class="drei-punkt">
-            <div class="drei-punkt-icon">🔍</div>
+            <div class="drei-punkt-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
             <div class="drei-punkt-titel">Gratis Analyse</div>
             <div class="drei-punkt-text">in 3 Minuten</div>
         </div>
         <div class="drei-punkt">
-            <div class="drei-punkt-icon">✅</div>
+            <div class="drei-punkt-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
             <div class="drei-punkt-titel">63% Erfolgsquote</div>
             <div class="drei-punkt-text">nachgewiesen</div>
         </div>
         <div class="drei-punkt">
-            <div class="drei-punkt-icon">⚖️</div>
-            <div class="drei-punkt-titel">Kein Anwalt</div>
-            <div class="drei-punkt-text">nötig</div>
+            <div class="drei-punkt-icon"><svg viewBox="0 0 12 12"><polyline points="2,6 5,9 10,3"/></svg></div>
+            <div class="drei-punkt-titel">Kein Anwalt nötig</div>
+            <div class="drei-punkt-text">24/7 online</div>
         </div>
     </div>
 
@@ -280,44 +266,22 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- FAQ -->
     <section class="faq-section">
         <h2>Häufige Fragen</h2>
-
-        <div class="faq-item" id="fldp0">
-            <button class="faq-frage" onclick="toggleFldp(0)">
-                Wieso soll ich die Mieterhöhung prüfen lassen?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-antwort">
-                Viele Mieterhöhungen enthalten Formfehler — fehlende Begründungen, falsche Fristen oder ungültige Vergleichswohnungen. Diese Fehler machen das Schreiben rechtlich unwirksam. Als Mieter haben Sie das Recht zu widersprechen, ohne Konsequenzen befürchten zu müssen. MietHilfe prüft das kostenlos in 3 Minuten.
+        <div class="faq-container">
+            <div class="faq-item" id="fldp0">
+                <button class="faq-frage" onclick="toggleFldp(0)">Wieso soll ich die Mieterhöhung prüfen lassen?<span class="faq-icon">+</span></button>
+                <div class="faq-antwort">Viele Mieterhöhungen enthalten Formfehler — fehlende Begründungen, falsche Fristen oder ungültige Vergleichswohnungen. Diese Fehler machen das Schreiben rechtlich unwirksam. Als Mieter haben Sie das Recht zu widersprechen, ohne Konsequenzen befürchten zu müssen. MietHilfe prüft das kostenlos in 3 Minuten.</div>
             </div>
-        </div>
-
-        <div class="faq-item" id="fldp1">
-            <button class="faq-frage" onclick="toggleFldp(1)">
-                Was kann ich machen wenn die Mieterhöhung ungültig ist?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-antwort">
-                Sie haben zwei Optionen: Ein Mietrechtsanwalt kostet 150–300€, braucht 1–2 Wochen und ist oft ausgebucht. Oder MietHilfe: Wir erstellen den fertigen Widerspruchsbrief für 39€ — in 5 Minuten, ohne Termin, 24/7 verfügbar. Der Brief zwingt Ihren Vermieter zum Neustart des Verfahrens und verzögert die Mieterhöhung um mindestens 3–6 Monate.
+            <div class="faq-item" id="fldp1">
+                <button class="faq-frage" onclick="toggleFldp(1)">Was kann ich machen wenn die Mieterhöhung ungültig ist?<span class="faq-icon">+</span></button>
+                <div class="faq-antwort">Sie haben zwei Optionen: Ein Mietrechtsanwalt kostet 150–300€, braucht 1–2 Wochen und ist oft ausgebucht. Oder MietHilfe: Wir erstellen den fertigen Widerspruchsbrief für 39€ — in 5 Minuten, ohne Termin, 24/7 verfügbar. Der Brief zwingt Ihren Vermieter zum Neustart des Verfahrens und verzögert die Mieterhöhung um mindestens 3–6 Monate.</div>
             </div>
-        </div>
-
-        <div class="faq-item" id="fldp2">
-            <button class="faq-frage" onclick="toggleFldp(2)">
-                Kann ich auch alte Mieterhöhungen prüfen denen ich schon zugestimmt habe?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-antwort">
-                In bestimmten Fällen ja. Wenn die Mieterhöhung formelle Fehler enthielt und die Zustimmung unter falschen Voraussetzungen gegeben wurde, kann das Verfahren anfechtbar sein. MietHilfe analysiert auch ältere Schreiben und zeigt Ihnen welche Möglichkeiten Sie noch haben.
+            <div class="faq-item" id="fldp2">
+                <button class="faq-frage" onclick="toggleFldp(2)">Kann ich auch alte Mieterhöhungen prüfen denen ich schon zugestimmt habe?<span class="faq-icon">+</span></button>
+                <div class="faq-antwort">In bestimmten Fällen ja. Wenn die Mieterhöhung formelle Fehler enthielt und die Zustimmung unter falschen Voraussetzungen gegeben wurde, kann das Verfahren anfechtbar sein. MietHilfe analysiert auch ältere Schreiben und zeigt Ihnen welche Möglichkeiten Sie noch haben.</div>
             </div>
-        </div>
-
-        <div class="faq-item" id="fldp3">
-            <button class="faq-frage" onclick="toggleFldp(3)">
-                Was unterscheidet euch von Mietervereinen?
-                <span class="faq-icon">+</span>
-            </button>
-            <div class="faq-antwort">
-                Mietervereine arbeiten größtenteils ehrenamtlich — mit begrenzten Kapazitäten, langen Wartezeiten und Mitgliedschaftspflicht. MietHilfe ist sofort verfügbar, kostenlos in der Analyse und deutlich günstiger wenn ein Brief benötigt wird. Während Sie beim Mieterverein Wochen warten, haben Sie bei MietHilfe Ihr Ergebnis in 3 Minuten.
+            <div class="faq-item" id="fldp3">
+                <button class="faq-frage" onclick="toggleFldp(3)">Was unterscheidet euch von Mietervereinen?<span class="faq-icon">+</span></button>
+                <div class="faq-antwort">Mietervereine arbeiten größtenteils ehrenamtlich — mit begrenzten Kapazitäten, langen Wartezeiten und Mitgliedschaftspflicht. MietHilfe ist sofort verfügbar, kostenlos in der Analyse und deutlich günstiger wenn ein Brief benötigt wird. Während Sie beim Mieterverein Wochen warten, haben Sie bei MietHilfe Ihr Ergebnis in 3 Minuten.</div>
             </div>
         </div>
     </section>
@@ -332,30 +296,26 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         </div>
     </section>
 
-    <!-- Reviews — statisch, 3 nebeneinander mit 3:4 Bildern -->
+    <!-- Reviews klein nebeneinander -->
     <section class="reviews-section">
         <h2>Das sagen unsere Kunden</h2>
         <p>Über 8.500 Bewertungen · Durchschnitt 4,8 Sterne</p>
         <div class="reviews-grid">
             <div class="review-card">
                 <div class="review-img"><img src="https://i.imgur.com/d9a1sxa.jpg" alt="" onerror="this.style.display='none'"></div>
-                <div class="review-top"><span class="review-name">Nicole S.</span><span class="review-stars">5,0 ★</span></div>
-                <div class="review-text">Meine Mieterhöhung wurde zurückgezogen. Sehr zu empfehlen!</div>
+                <div class="review-body"><div class="review-top"><span class="review-name">Nicole S.</span><span class="review-stars">5,0 ★</span></div><div class="review-text">Meine Mieterhöhung wurde zurückgezogen.</div></div>
             </div>
             <div class="review-card">
                 <div class="review-img"><img src="https://i.imgur.com/WcfKi3C.jpg" alt="" onerror="this.style.display='none'"></div>
-                <div class="review-top"><span class="review-name">Thomas B.</span><span class="review-stars">5,0 ★</span></div>
-                <div class="review-text">In 5 Minuten wusste ich was zu tun ist. Mein Vermieter hatte keine Chance.</div>
+                <div class="review-body"><div class="review-top"><span class="review-name">Thomas B.</span><span class="review-stars">5,0 ★</span></div><div class="review-text">Vermieter hatte keine Chance.</div></div>
             </div>
             <div class="review-card">
                 <div class="review-img"><img src="https://i.imgur.com/PJwXdtv.jpg" alt="" onerror="this.style.display='none'"></div>
-                <div class="review-top"><span class="review-name">Michael T.</span><span class="review-stars">5,0 ★</span></div>
-                <div class="review-text">1.200 Euro zurückerhalten. Absolut empfehlenswert.</div>
+                <div class="review-body"><div class="review-top"><span class="review-name">Michael T.</span><span class="review-stars">5,0 ★</span></div><div class="review-text">1.200 € zurückerhalten.</div></div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Final -->
     <section class="cta-final">
         <h2>Jetzt kostenlos prüfen</h2>
         <p>In 3 Minuten wissen ob Ihr Vermieter Recht hat.</p>
@@ -381,7 +341,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <div class="analyse-container">
         <span class="analyse-back" onclick="analyseSchliessen()">← Zurück</span>
 
-        <!-- Schritt 1 -->
         <div id="formSchritt1">
             <div class="form-group">
                 <label>Text des Schreibens eingeben</label>
@@ -395,7 +354,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="btn-analyse" onclick="weiterZuSchritt2()">Weiter →</button>
         </div>
 
-        <!-- Schritt 2 -->
         <div id="formSchritt2" style="display:none;">
             <div class="form-row">
                 <div class="form-group">
@@ -407,7 +365,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                     <input type="number" id="qm" placeholder="65">
                 </div>
             </div>
-            <div class="form-section-title">Offene Mängel <span style="font-weight:normal; color:#999; font-size:12px;">(optional)</span></div>
+            <div class="form-section-title">Offene Mängel <span style="font-weight:normal;color:#999;font-size:12px;">(optional)</span></div>
             <div class="checkbox-gruppe">
                 <label class="checkbox-item"><input type="checkbox" value="Heizungsprobleme" class="mangel-check"><span class="checkbox-label">Heizungsprobleme</span></label>
                 <label class="checkbox-item"><input type="checkbox" value="Schimmel oder Feuchtigkeit" class="mangel-check"><span class="checkbox-label">Schimmel oder Feuchtigkeit</span></label>
@@ -419,7 +377,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <button class="btn-analyse" onclick="startAnalyse()">Analyse starten</button>
         </div>
 
-        <!-- Loading -->
         <div class="loading-overlay" id="loading">
             <div class="loading-logo">MietHilfe</div>
             <div class="loading-spinner"></div>
