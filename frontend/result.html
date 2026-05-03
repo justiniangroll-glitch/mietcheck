@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ihr Ergebnis – MietHilfe</title>
 
-    <!-- Google Tag Manager -->
     <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
     new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
     j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -33,7 +32,7 @@
         .nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #1a2a4a; }
         .logo-container { display: flex; align-items: center; gap: 10px; }
         .logo-kreis { width: 28px; height: 28px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #1a2a4a; }
-        .logo { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: white; font-family: Arial, sans-serif; }
+        .logo { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: white; }
         .nav-right { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; }
         .container { max-width: 640px; margin: 0 auto; padding: 24px 16px 60px; }
         .box { background: white; border: 1px solid #e8e8e8; padding: 24px 20px; margin-bottom: 16px; border-radius: 4px; }
@@ -62,23 +61,33 @@
         .kosten-betrag { font-size: 16px; font-weight: 700; color: #c0392b; }
         .kosten-hinweis { margin-top: 14px; padding: 14px 16px; background: #f5f0eb; font-size: 13px; color: #444; line-height: 1.7; }
 
-        /* Was unser Schreiben bewirkt — mit "Besonders wichtig" Button */
+        /* Warum jetzt handeln — aufklappbar, letzter Punkt offen */
+        .wichtig-section { background: #fff3cd; border: 2px solid #d35400; padding: 20px; margin-bottom: 0; border-radius: 4px; }
+        .wichtig-titel { font-size: 13px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .wichtig-item { border-bottom: 1px solid rgba(211,84,0,0.2); }
+        .wichtig-item:last-child { border-bottom: none; }
+        .wichtig-frage { width: 100%; text-align: left; background: none; border: none; padding: 12px 0; font-size: 14px; font-weight: 600; color: #1a1a1a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
+        .wichtig-icon { font-size: 16px; color: #d35400; flex-shrink: 0; transition: transform 0.2s; }
+        .wichtig-antwort { display: none; padding: 0 0 12px; font-size: 13px; color: #555; line-height: 1.7; }
+        .wichtig-item.offen .wichtig-antwort { display: block; }
+        .wichtig-item.offen .wichtig-icon { transform: rotate(45deg); }
+
+        /* Was unser Schreiben bewirkt */
         .bewirkt-box { position: relative; padding-top: 8px; }
         .bewirkt-wichtig-btn { position: absolute; top: 0; right: 0; background: #e8722a; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 1px; text-transform: uppercase; }
         .bewirkt-titel { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; margin-top: 28px; }
-        .bewirkt-intro { font-size: 14px; color: #444; line-height: 1.7; margin-bottom: 10px; }
         .bewirkt-punkte { list-style: none; }
-        .bewirkt-punkte li { font-size: 14px; color: #444; line-height: 1.7; padding: 6px 0; border-bottom: 1px solid #f5f5f5; display: flex; gap: 10px; }
+        .bewirkt-punkte li { font-size: 14px; color: #444; line-height: 1.7; padding: 6px 0; border-bottom: 1px solid #f5f5f5; display: flex; gap: 10px; align-items: flex-start; }
         .bewirkt-punkte li:last-child { border-bottom: none; }
-        .bewirkt-punkte li::before { content: "→"; color: #e8722a; font-weight: 700; flex-shrink: 0; }
+        .bewirkt-punkte li::before { content: "→"; color: #e8722a; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
         .bewirkt-punkte u { text-decoration: underline; text-underline-offset: 2px; }
 
-        /* Tabelle — nur Preis, Leistung, Qualität */
+        /* Tabelle */
         .optionen-titel { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
-        .vergleich-tabelle { width: 100%; border-collapse: collapse; font-size: 13px; }
-        .vergleich-tabelle th { padding: 10px 12px; text-align: left; font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; border-bottom: 2px solid #e8e8e8; }
+        .vergleich-tabelle { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+        .vergleich-tabelle th { padding: 10px 8px; text-align: left; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #999; border-bottom: 2px solid #e8e8e8; word-wrap: break-word; }
         .vergleich-tabelle th.h { color: #1a2a4a; }
-        .vergleich-tabelle td { padding: 12px; border-bottom: 1px solid #f5f5f5; color: #444; vertical-align: top; }
+        .vergleich-tabelle td { padding: 10px 8px; border-bottom: 1px solid #f5f5f5; color: #444; vertical-align: top; word-wrap: break-word; }
         .vergleich-tabelle td.h { font-weight: 700; color: #1a2a4a; }
         .vergleich-tabelle tr:last-child td { border-bottom: none; }
         .tag-gruen { color: #27ae60; font-weight: 700; }
@@ -102,26 +111,26 @@
         .garantie-text { font-size: 13px; color: #1a1a1a; line-height: 1.6; }
         .garantie-text strong { color: #27ae60; }
 
-        /* Vorschau was enthalten */
+        /* Vorschau */
         .vorschau-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e8e8e8; }
         .vorschau-titel { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
         .vorschau-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
         .vorschau-item { text-align: center; cursor: pointer; }
         .vorschau-bild { width: 100%; aspect-ratio: 3/4; background: #f5f5f5; border-radius: 4px; overflow: hidden; position: relative; display: flex; align-items: center; justify-content: center; margin-bottom: 6px; border: 1px solid #e8e8e8; }
-        .vorschau-bild-inner { width: 100%; padding: 8px; font-size: 8px; color: #333; line-height: 1.4; text-align: left; filter: blur(0); }
-        .vorschau-bild-inner .blur-line { filter: blur(3px); background: #ddd; height: 8px; border-radius: 2px; margin: 4px 0; }
+        .vorschau-bild-inner { width: 100%; padding: 8px; font-size: 8px; color: #333; line-height: 1.4; text-align: left; }
+        .vorschau-bild-inner .blur-line { filter: blur(3px); background: #ddd; height: 7px; border-radius: 2px; margin: 4px 0; }
         .vorschau-bild-inner .visible-line { font-size: 7px; color: #333; margin: 2px 0; }
-        .vorschau-zoom { position: absolute; bottom: 6px; right: 6px; background: #1a2a4a; color: white; font-size: 10px; padding: 3px 6px; border-radius: 3px; }
+        .vorschau-zoom { position: absolute; bottom: 5px; right: 5px; background: #1a2a4a; color: white; font-size: 9px; padding: 2px 5px; border-radius: 2px; }
         .vorschau-label { font-size: 11px; color: #666; }
 
-        /* Modal für Vorschau */
+        /* Modal Vorschau */
         .vorschau-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
         .vorschau-modal.aktiv { display: flex; }
         .vorschau-modal-inner { background: white; padding: 24px; max-width: 420px; width: 100%; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
         .vorschau-modal-close { float: right; background: none; border: none; font-size: 20px; cursor: pointer; color: #999; }
         .vorschau-modal-title { font-size: 14px; font-weight: 700; margin-bottom: 16px; }
         .brief-preview { font-size: 12px; color: #333; line-height: 1.8; }
-        .brief-preview .blur-block { filter: blur(4px); user-select: none; background: #f0f0f0; padding: 2px 4px; border-radius: 2px; display: inline-block; }
+        .brief-preview .blur-block { filter: blur(4px); user-select: none; background: #f0f0f0; padding: 1px 3px; border-radius: 2px; display: inline-block; }
 
         /* FAQ */
         .faq-box { margin-top: 24px; border-top: 1px solid #e8e8e8; padding-top: 20px; }
@@ -133,17 +142,17 @@
         .faq-item.offen .faq-antwort { display: block; }
         .faq-item.offen .faq-icon { transform: rotate(45deg); }
 
-        /* Paywall Reviews — statisch, 3:4 Bilder, keine Pfeile */
+        /* Paywall Reviews statisch */
         .paywall-reviews { margin-top: 20px; }
         .paywall-reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         .paywall-review-card { background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 6px; overflow: hidden; }
         .paywall-review-img { width: 100%; aspect-ratio: 3/4; background: #e8e8e8; overflow: hidden; }
         .paywall-review-img img { width: 100%; height: 100%; object-fit: cover; }
-        .paywall-review-body { padding: 10px; }
-        .paywall-review-top { display: flex; justify-content: space-between; margin-bottom: 6px; }
-        .paywall-review-name { font-size: 12px; font-weight: 700; }
-        .paywall-review-stars { color: #e8722a; font-size: 11px; }
-        .paywall-review-text { font-size: 11px; color: #555; line-height: 1.5; }
+        .paywall-review-body { padding: 8px; }
+        .paywall-review-top { display: flex; justify-content: space-between; margin-bottom: 4px; }
+        .paywall-review-name { font-size: 11px; font-weight: 700; }
+        .paywall-review-stars { color: #e8722a; font-size: 10px; }
+        .paywall-review-text { font-size: 10px; color: #555; line-height: 1.4; }
 
         /* Account Modal */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
@@ -179,7 +188,7 @@
         .trick-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a2a4a; margin-bottom: 10px; font-weight: 700; }
         .trick-text { font-size: 13px; color: #444; line-height: 1.8; }
 
-        /* Affiliate / Teilen Section */
+        /* Teilen */
         .teilen-box { background: #1a2a4a; padding: 28px 24px; border-radius: 8px; margin-top: 20px; text-align: center; }
         .teilen-box h3 { font-size: 18px; color: white; margin-bottom: 8px; font-family: Georgia, serif; }
         .teilen-box p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6; }
@@ -187,7 +196,7 @@
         .teilen-link-text { font-size: 12px; color: white; flex: 1; word-break: break-all; }
         .teilen-link-copy { background: #e8722a; color: white; border: none; padding: 8px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
         .teilen-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .teilen-btn { padding: 12px 20px; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
+        .teilen-btn { padding: 12px 20px; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
         .teilen-btn-wa { background: #25D366; color: white; }
         .teilen-btn-copy { background: rgba(255,255,255,0.2); color: white; }
 
@@ -200,10 +209,6 @@
             .container { padding: 40px 24px 80px; }
             .box, .paywall-box { padding: 32px 36px; }
         }
-        @media (max-width: 767px) {
-            .paywall-reviews-grid { grid-template-columns: repeat(3, 1fr); }
-            .vorschau-grid { grid-template-columns: repeat(3, 1fr); }
-        }
     </style>
 </head>
 <body>
@@ -211,7 +216,7 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7CQ4GL"
 height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
-<!-- Account Modal — nach Kauf -->
+<!-- Account Modal -->
 <div class="modal-overlay" id="accountModal">
     <div class="modal">
         <h2>Konto erstellen</h2>
@@ -272,11 +277,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="vorschau-modal-close" onclick="schliesseModal('modalEmpfehlung')">✕</button>
         <div class="vorschau-modal-title">Handlungsempfehlung — Vorschau</div>
         <div class="brief-preview">
-            <strong>Schritt 1</strong><br>
+            <strong>Wenn Ihr Vermieter erneut schreibt:</strong><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████</span><br><br>
-            <strong>Schritt 2</strong><br>
+            <strong>Wenn Ihr Vermieter droht oder Sie unter Druck setzt:</strong><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████</span><br><br>
-            <strong>Schritt 3</strong><br>
+            <strong>Wenn Ihr Vermieter sich nicht mehr meldet:</strong><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████████████████</span>
         </div>
     </div>
@@ -291,9 +296,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </nav>
 
 <div class="container" id="content">
-    <div style="text-align:center; padding:60px">
-        <p style="color:#999; font-size:12px">Wird geladen...</p>
-    </div>
+    <div style="text-align:center;padding:60px"><p style="color:#999;font-size:12px">Wird geladen...</p></div>
 </div>
 
 <script>
@@ -319,15 +322,11 @@ function track(eventName, params) {
 }
 track('ergebnis_gesehen', { fall_typ: dokumentTyp });
 
-// Timer
 function getTimerString() {
-    const now = new Date();
-    const midnight = new Date();
-    midnight.setHours(24, 0, 0, 0);
+    const now = new Date(); const midnight = new Date(); midnight.setHours(24,0,0,0);
     let diff = Math.floor((midnight - now) / 1000);
     const h = Math.floor(diff / 3600); diff -= h * 3600;
-    const m = Math.floor(diff / 60);
-    const s = diff - m * 60;
+    const m = Math.floor(diff / 60); const s = diff - m * 60;
     const pad = n => String(n).padStart(2, '0');
     return `1 Tag & ${pad(h)}:${pad(m)}:${pad(s)}`;
 }
@@ -352,7 +351,6 @@ if (dokumentTyp === 'MIETERHÖHUNG') {
 
 // Kosten
 const erhoehungEuro = parseFloat(analyse?.erhoehung_euro) || 0;
-const nachzahlungBetrag = parseFloat(analyse?.nachzahlung_betrag) || 0;
 let kostenHTML = '';
 if (dokumentTyp === 'MIETERHÖHUNG' && erhoehungEuro > 0) {
     kostenHTML = `<div class="box">
@@ -379,7 +377,6 @@ const fehlerVorschau = fehler.slice(0, 3).map((f, i) => {
 }).join('') || `<div class="fehler-item-blur"><div class="fehler-dot"></div><div class="fehler-text-blur">Analyse abgeschlossen — Details im Bericht</div></div>`;
 
 // Was Schreiben bewirkt
-let briefWirktText = 'Widerspruchsschreiben';
 let bewirktPunkte = [];
 if (dokumentTyp === 'MIETERHÖHUNG') {
     bewirktPunkte = [
@@ -402,6 +399,27 @@ if (dokumentTyp === 'MIETERHÖHUNG') {
     ];
 }
 
+// Wichtig Punkte
+let wichtigPunkte = [];
+if (dokumentTyp === 'MIETERHÖHUNG') {
+    wichtigPunkte = [
+        { f: 'Mündliche Ablehnung reicht nicht', a: 'Nach §558b BGB muss der Widerspruch in Textform erfolgen. WhatsApp oder ein mündliches Nein sind rechtlich wirkungslos — die Mieterhöhung gilt dann als nicht widersprochen.' },
+        { f: 'Einfaches Ignorieren hilft nicht', a: 'Verstreicht die Widerspruchsfrist ohne schriftliche Reaktion, kann der Vermieter auf Zustimmung klagen und gewinnt in der Regel — auch bei Fehlern in seinem Schreiben.' },
+        { f: 'Was jetzt zu tun ist', a: 'Erheben Sie fristgerecht Einspruch mit einem professionell formulierten Schreiben — damit sichern Sie Ihre Rechte. Eine Kündigung wegen Widerspruch ist nach §573 BGB gesetzlich verboten. In 63% der Fälle zieht der Vermieter zurück.', offen: true }
+    ];
+} else if (dokumentTyp === 'KÜNDIGUNG') {
+    wichtigPunkte = [
+        { f: 'Nicht sofort ausziehen', a: 'Erst wenn die Kündigung rechtlich bestätigt ist müssen Sie handeln.' },
+        { f: 'Widerspruch muss schriftlich erfolgen', a: 'Ein mündlicher Widerspruch ist nach §574b BGB rechtlich wertlos.' },
+        { f: 'Was jetzt zu tun ist', a: 'Legen Sie fristgerecht Widerspruch ein — jeder gewonnene Monat schützt Sie und spart Ihnen tausende Euro an Umzugskosten.', offen: true }
+    ];
+} else {
+    wichtigPunkte = [
+        { f: 'Ohne Widerspruch akzeptieren Sie stillschweigend', a: 'Auch falsche Abrechnungen werden nach der Einwendungsfrist von 12 Monaten (§556 BGB) rechtskräftig.' },
+        { f: 'Was jetzt zu tun ist', a: 'Erheben Sie Einspruch mit einem professionell formulierten Schreiben — damit fordern Sie eine korrigierte Abrechnung.', offen: true }
+    ];
+}
+
 // Echte Fehler nach Kauf
 const echterFehlerHTML = fehler.map(f => {
     const b = f.schwere === 'KRITISCH' ? 'kritisch' : f.schwere === 'MITTEL' ? 'mittel' : 'gering';
@@ -413,7 +431,7 @@ const maengelHTML = maengel.length > 0 ? `<div style="margin-top:16px;padding-to
 // Empfehlungen nach Kauf
 const empfehlungMap = {
     'MIETERHÖHUNG': ['Miete wie gewohnt weiterzahlen. Der Mieterhöhung <strong>nicht</strong> zustimmen.', 'Das Schreiben per <strong>Einschreiben</strong> an Ihren Vermieter senden.', 'Bei einem neuen Schreiben des Vermieters erneut bei MietHilfe prüfen lassen.'],
-    'KÜNDIGUNG': ['<strong>Noch nicht ausziehen.</strong> Warten Sie bis die rechtliche Lage geklärt ist.', 'Das Schreiben fristgerecht per <strong>Einschreiben</strong> senden.', 'Bei Reaktion des Vermieters erneut prüfen lassen.'],
+    'KÜNDIGUNG': ['<strong>Noch nicht ausziehen.</strong>', 'Das Schreiben fristgerecht per <strong>Einschreiben</strong> senden.', 'Bei Reaktion des Vermieters erneut prüfen lassen.'],
     'NEBENKOSTENABRECHNUNG': ['Nachzahlung <strong>noch nicht vollständig</strong> bezahlen.', 'Schreiben per Einschreiben senden und Belegeinsicht verlangen.', 'Bei Antwort erneut prüfen lassen.'],
     'NEBENKOSTENABRECHNUNG_ANFORDERUNG': ['Anforderungsschreiben per Einschreiben senden.', 'Frist: 14 Tage. Bei keiner Reaktion: Vorauszahlungen einbehalten.', 'Reagiert der Vermieter: Abrechnung sofort prüfen lassen.']
 };
@@ -422,23 +440,21 @@ const empSchritte = empfehlungMap[empTyp] || empfehlungMap['MIETERHÖHUNG'];
 
 const trickText = dokumentTyp === 'MIETERHÖHUNG'
     ? 'Unser Schreiben erklärt dem Vermieter nicht welche konkreten Fehler er gemacht hat. So muss er selbst herausfinden was falsch war — das kostet Zeit. Jeder gewonnene Monat ist Ihr finanzieller Gewinn.'
-    : 'Unser Schreiben gibt dem Vermieter keinen einfachen Ausweg — er muss selbst reagieren.';
+    : 'Unser Schreiben gibt dem Vermieter keinen einfachen Ausweg.';
 
-// FAQ Daten
 const erhoehungMonateFaq = erhoehungEuro > 0
     ? `Wenn die Mieterhöhung ${erhoehungEuro.toFixed(0)} € monatlich beträgt und der Vermieter erst nach 4 Monaten neu ansetzt, haben Sie in dieser Zeit ${(erhoehungEuro*4).toFixed(0)} € gespart.`
     : 'Je länger der Prozess dauert, desto mehr sparen Sie.';
 
 const faqDaten = [
     { f: 'Kann ich die Mieterhöhung mit dem Schreiben sicher ablehnen?', a: 'Zu 100% kann man das nicht garantieren, aber mit hoher Wahrscheinlichkeit zieht der Vermieter zurück oder macht beim nächsten Schreiben erneut Fehler — jedes Mal vergehen Wochen und Monate die Ihnen teurere Miete sparen.' },
-    { f: 'Kann ich nicht einfach per WhatsApp Nein sagen?', a: 'Nein — das reicht rechtlich nicht aus. Nach §558b BGB muss der Widerspruch in Textform erfolgen. Eine WhatsApp-Nachricht ist wirkungslos. Ohne formellen Widerspruch kann der Vermieter auf Zustimmung klagen.' },
-    { f: 'Was bringt mir euer Schreiben?', a: `Unser Schreiben legt fristgerecht Widerspruch ein und verzögert die Mieterhöhung um mindestens 3–6 Monate. ${erhoehungMonateFaq} Die 3 enthaltenen Widersprüche decken auch Folgeschreiben ab.` },
-    { f: 'Was ist wenn danach ein neues Schreiben kommt?', a: `Auch beim zweiten Versuch passieren Vermietern häufig wieder Fehler. Prüfen Sie es unbedingt vor einer Zustimmung erneut bei MietHilfe. Ihre 3 Widersprüche sind genau dafür da.` }
+    { f: 'Kann ich nicht einfach per WhatsApp Nein sagen?', a: 'Nein — das reicht rechtlich nicht aus. Nach §558b BGB muss der Widerspruch in Textform erfolgen. Ohne formellen Widerspruch kann der Vermieter auf Zustimmung klagen.' },
+    { f: 'Was bringt mir euer Schreiben?', a: `Unser Schreiben legt fristgerecht Widerspruch ein und verzögert die Mieterhöhung um mindestens 3–6 Monate. ${erhoehungMonateFaq} Die 3 enthaltenen Folge-Widersprüche decken auch weitere Schreiben ab.` },
+    { f: 'Was ist wenn danach ein neues Schreiben kommt?', a: `Auch beim zweiten Versuch passieren Vermietern häufig wieder Fehler. Prüfen Sie es unbedingt vor einer Zustimmung erneut bei MietHilfe. Ihre 3 Folge-Widersprüche sind genau dafür da.` }
 ];
 
-// Affiliate Link
 const accountData = JSON.parse(localStorage.getItem('mietcheck_account') || '{}');
-const affiliateCode = accountData.email ? btoa(accountData.email).replace(/=/g,'').substring(0, 8) : 'SHARE';
+const affiliateCode = accountData.email ? btoa(accountData.email).replace(/=/g,'').substring(0,8) : 'SHARE';
 const affiliateLink = `https://miethilfe-online.xyz/?ref=${affiliateCode}`;
 
 document.getElementById('content').innerHTML = `
@@ -456,13 +472,27 @@ document.getElementById('content').innerHTML = `
         <div style="text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0;"><p style="font-size:12px;color:#999;">Vollständige Details nach Freischaltung sichtbar</p></div>
     </div>
 
+    <!-- Warum jetzt handeln — nach den verpixelten Fehlern -->
+    <div class="box">
+        <div class="box-label-dark">Wichtig — bitte lesen:</div>
+        <div class="wichtig-section">
+            ${wichtigPunkte.map((p, i) => `
+            <div class="wichtig-item${p.offen ? ' offen' : ''}" id="wichtig${i}">
+                <button class="wichtig-frage" onclick="toggleWichtig(${i})">
+                    ${p.f}
+                    <span class="wichtig-icon">+</span>
+                </button>
+                <div class="wichtig-antwort">${p.a}</div>
+            </div>`).join('')}
+        </div>
+    </div>
+
     ${kostenHTML}
 
     <div class="box">
         <div class="bewirkt-box">
             <span class="bewirkt-wichtig-btn">Besonders wichtig</span>
             <div class="bewirkt-titel">Was unser Schreiben konkret bewirkt</div>
-            <p class="bewirkt-intro">Ein formell korrekter Widerspruch zwingt Ihren Vermieter zum Neustart des gesamten Verfahrens. Das bedeutet konkret:</p>
             <ul class="bewirkt-punkte">
                 ${bewirktPunkte.map(p => `<li>${p}</li>`).join('')}
             </ul>
@@ -474,8 +504,8 @@ document.getElementById('content').innerHTML = `
         <table class="vergleich-tabelle">
             <tr><th></th><th class="h">MietHilfe</th><th>Mietrechtsanwalt</th></tr>
             <tr><td>Preis</td><td class="h"><span class="tag-gruen">39,45 €</span></td><td><span class="tag-rot">150–300 €</span></td></tr>
-            <tr><td>Leistung</td><td class="h">3 versandfertige Widerspruchsschreiben</td><td>Beratungsgespräch</td></tr>
-            <tr><td>Qualität</td><td class="h">Entwickelt von 6 Großkanzleien</td><td>1–3 Anwälte</td></tr>
+            <tr><td>Leistung</td><td class="h">3 Widerspruchs-schreiben</td><td>Beratungs-gespräch</td></tr>
+            <tr><td>Qualität</td><td class="h">Von 6 Groß-kanzleien entwickelt</td><td>1–3 Anwälte</td></tr>
         </table>
     </div>
 
@@ -494,11 +524,11 @@ document.getElementById('content').innerHTML = `
             <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>3 Folge-Widersprüche inklusive</strong> — für den Fall dass Ihr Vermieter erneut schreibt, sind Sie direkt wieder geschützt</span></div>
             <button class="btn-kaufen" onclick="kaufKlick()">Freischalten · 39,45 €</button>
             <div class="garantie-box">
-                <div class="garantie-text">🛡️ <strong>MietHilfe Garantie:</strong> Wenn Sie mit unserem Schreiben keinen Erfolg erzielen und die Mieterhöhung nicht verzögert oder abgewendet wird — erhalten Sie jeden Euro zurück. Kein Risiko, kein Kleingedrucktes.</div>
+                <div class="garantie-text">🛡️ <strong>MietHilfe Garantie:</strong> Wenn Sie mit unserem Schreiben keinen Erfolg erzielen und die Mieterhöhung nicht verzögert oder abgewendet wird — erhalten Sie jeden Euro zurück.</div>
             </div>
         </div>
 
-        <!-- Vorschau was enthalten -->
+        <!-- Vorschau -->
         <div class="vorschau-section">
             <div class="vorschau-titel">Das ist enthalten:</div>
             <div class="vorschau-grid">
@@ -525,10 +555,10 @@ document.getElementById('content').innerHTML = `
                             <div class="visible-line" style="font-weight:700;">Fehler 1</div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:70%"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:6px;">Fehler 2</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Fehler 2</div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:80%"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:6px;">Fehler 3</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Fehler 3</div>
                             <div class="blur-line" style="width:60%"></div>
                         </div>
                         <span class="vorschau-zoom">🔍</span>
@@ -538,12 +568,12 @@ document.getElementById('content').innerHTML = `
                 <div class="vorschau-item" onclick="oeffneModal('modalEmpfehlung')">
                     <div class="vorschau-bild">
                         <div class="vorschau-bild-inner">
-                            <div class="visible-line" style="font-weight:700;">Schritt 1</div>
+                            <div class="visible-line" style="font-weight:700;">Wenn Vermieter erneut schreibt:</div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:75%"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:6px;">Schritt 2</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Wenn Vermieter droht:</div>
                             <div class="blur-line"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:6px;">Schritt 3</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Wenn kein Kontakt mehr:</div>
                             <div class="blur-line" style="width:65%"></div>
                         </div>
                         <span class="vorschau-zoom">🔍</span>
@@ -563,7 +593,7 @@ document.getElementById('content').innerHTML = `
             </div>`).join('')}
         </div>
 
-        <!-- Paywall Reviews — statisch, 3:4 Bilder, keine Pfeile -->
+        <!-- Paywall Reviews statisch -->
         <div class="paywall-reviews" style="margin-top:24px;">
             <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:12px;">Das sagen unsere Kunden</div>
             <div class="paywall-reviews-grid">
@@ -617,22 +647,16 @@ document.getElementById('content').innerHTML = `
             <div class="box-label">Ihre nächsten Schritte</div>
             ${empSchritte.map((s,i)=>`<div class="empfehlung-item"><span class="empfehlung-nr">${i+1}</span><div class="empfehlung-text">${s}</div></div>`).join('')}
         </div>
-
-        <!-- Teilen / Affiliate -->
         <div class="teilen-box">
             <h3>Kennen Sie jemanden mit demselben Problem?</h3>
             <p>Teilen Sie Ihren persönlichen Link — bei jedem Kauf über Ihren Link sparen Sie und Ihre Freunde beim nächsten Schreiben jeweils 15 €.</p>
             <div class="teilen-link-box">
-                <span class="teilen-link-text" id="affiliateLinkText">${affiliateLink}</span>
+                <span class="teilen-link-text">${affiliateLink}</span>
                 <button class="teilen-link-copy" onclick="kopiereLink()">Kopieren</button>
             </div>
             <div class="teilen-buttons">
-                <button class="teilen-btn teilen-btn-wa" onclick="teileWhatsApp()">
-                    📱 WhatsApp teilen
-                </button>
-                <button class="teilen-btn teilen-btn-copy" onclick="kopiereLink()">
-                    🔗 Link kopieren
-                </button>
+                <button class="teilen-btn teilen-btn-wa" onclick="teileWhatsApp()">📱 WhatsApp teilen</button>
+                <button class="teilen-btn teilen-btn-copy" onclick="kopiereLink()">🔗 Link kopieren</button>
             </div>
         </div>
     </div>
@@ -642,6 +666,13 @@ updateTimer();
 
 function oeffneModal(id) { document.getElementById(id).classList.add('aktiv'); }
 function schliesseModal(id) { document.getElementById(id).classList.remove('aktiv'); }
+
+function toggleWichtig(i) {
+    const item = document.getElementById('wichtig' + i);
+    const wasOffen = item.classList.contains('offen');
+    document.querySelectorAll('.wichtig-item').forEach(el => el.classList.remove('offen'));
+    if (!wasOffen) item.classList.add('offen');
+}
 
 function toggleFaq(i) {
     const item = document.getElementById('faq' + i);
@@ -673,7 +704,6 @@ async function kaufKlick() {
     }
 }
 
-// Nach Stripe Checkout
 const urlParams = new URLSearchParams(window.location.search);
 if (urlParams.get('success') === 'true') {
     document.getElementById('preiseBox').style.display = 'none';
@@ -699,7 +729,7 @@ if (urlParams.get('success') === 'true') {
             setTimeout(() => { document.getElementById('accountModal').classList.add('aktiv'); }, 2000);
         }).catch(() => {
             document.getElementById('briefLoading').style.display = 'none';
-            alert('Fehler beim Erstellen des Briefes. Bitte kontaktieren Sie uns.');
+            alert('Fehler beim Erstellen des Briefes.');
         });
     }
 }
@@ -710,7 +740,7 @@ async function accountErstellen() {
     const errorEl = document.getElementById('accountError');
     errorEl.style.display = 'none';
     if (!email || !passwort) { errorEl.textContent = 'Bitte Email und Passwort eingeben.'; errorEl.style.display = 'block'; return; }
-    if (passwort.length < 6) { errorEl.textContent = 'Passwort muss mindestens 6 Zeichen haben.'; errorEl.style.display = 'block'; return; }
+    if (passwort.length < 6) { errorEl.textContent = 'Passwort mind. 6 Zeichen.'; errorEl.style.display = 'block'; return; }
     try {
         const res = await fetch('/register', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, passwort }) });
         const d = await res.json();
