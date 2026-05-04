@@ -39,14 +39,12 @@
         .box-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; }
         .box-label-dark { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a1a1a; margin-bottom: 16px; font-weight: 700; }
 
-        /* Urteil */
         .urteil-titel { font-size: 20px; font-weight: 700; margin-bottom: 10px; line-height: 1.3; text-align: center; font-family: Georgia, serif; }
         .urteil-titel.rot { color: #c0392b; }
         .urteil-titel.gelb { color: #d35400; }
         .urteil-linie { width: 28px; height: 2px; background: #e8e8e8; margin: 12px auto; }
         .urteil-text { font-size: 14px; line-height: 1.7; color: #555; text-align: center; }
 
-        /* Fehler blur */
         .fehler-item-blur { padding: 12px 0; border-bottom: 1px solid #f0f0f0; display: flex; align-items: center; gap: 12px; }
         .fehler-item-blur:last-child { border-bottom: none; }
         .fehler-dot { width: 8px; height: 8px; border-radius: 50%; background: #c0392b; flex-shrink: 0; }
@@ -54,16 +52,13 @@
         .fehler-dot.gering { background: #2980b9; }
         .fehler-text-blur { font-size: 14px; color: #1a1a1a; filter: blur(4px); user-select: none; flex: 1; }
 
-        /* Kosten */
         .kosten-zeile { display: flex; justify-content: space-between; align-items: center; padding: 10px 0; border-bottom: 1px solid #f5f5f5; }
         .kosten-zeile:last-of-type { border-bottom: none; }
         .kosten-label { font-size: 14px; color: #555; }
         .kosten-betrag { font-size: 16px; font-weight: 700; color: #c0392b; }
         .kosten-hinweis { margin-top: 14px; padding: 14px 16px; background: #f5f0eb; font-size: 13px; color: #444; line-height: 1.7; }
 
-        /* Warum jetzt handeln — aufklappbar, letzter Punkt offen */
-        .wichtig-section { background: #fff3cd; border: 2px solid #d35400; padding: 20px; margin-bottom: 0; border-radius: 4px; }
-        .wichtig-titel { font-size: 13px; font-weight: 800; color: #1a1a1a; margin-bottom: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        .wichtig-section { background: #fff3cd; border: 2px solid #d35400; padding: 20px; border-radius: 4px; }
         .wichtig-item { border-bottom: 1px solid rgba(211,84,0,0.2); }
         .wichtig-item:last-child { border-bottom: none; }
         .wichtig-frage { width: 100%; text-align: left; background: none; border: none; padding: 12px 0; font-size: 14px; font-weight: 600; color: #1a1a1a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
@@ -72,7 +67,6 @@
         .wichtig-item.offen .wichtig-antwort { display: block; }
         .wichtig-item.offen .wichtig-icon { transform: rotate(45deg); }
 
-        /* Was unser Schreiben bewirkt */
         .bewirkt-box { position: relative; padding-top: 8px; }
         .bewirkt-wichtig-btn { position: absolute; top: 0; right: 0; background: #e8722a; color: white; font-size: 10px; font-weight: 700; padding: 4px 10px; border-radius: 3px; letter-spacing: 1px; text-transform: uppercase; }
         .bewirkt-titel { font-size: 15px; font-weight: 700; color: #1a1a1a; margin-bottom: 10px; margin-top: 28px; }
@@ -82,7 +76,6 @@
         .bewirkt-punkte li::before { content: "→"; color: #e8722a; font-weight: 700; flex-shrink: 0; margin-top: 2px; }
         .bewirkt-punkte u { text-decoration: underline; text-underline-offset: 2px; }
 
-        /* Tabelle */
         .optionen-titel { font-size: 17px; font-weight: 700; color: #1a1a1a; margin-bottom: 14px; }
         .vergleich-tabelle { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
         .vergleich-tabelle th { padding: 10px 8px; text-align: left; font-size: 10px; letter-spacing: 1px; text-transform: uppercase; color: #999; border-bottom: 2px solid #e8e8e8; word-wrap: break-word; }
@@ -93,7 +86,6 @@
         .tag-gruen { color: #27ae60; font-weight: 700; }
         .tag-rot { color: #c0392b; font-weight: 700; }
 
-        /* Paywall */
         .paywall-box { background: white; border: 1px solid #e8e8e8; padding: 24px 20px; margin-bottom: 16px; border-radius: 4px; }
         .paket { border: 2px solid #1a2a4a; padding: 24px 20px; position: relative; border-radius: 4px; }
         .paket-badge { position: absolute; top: -12px; left: 16px; background: #e8722a; color: white; padding: 4px 12px; font-size: 10px; letter-spacing: 2px; font-weight: 700; }
@@ -111,7 +103,6 @@
         .garantie-text { font-size: 13px; color: #1a1a1a; line-height: 1.6; }
         .garantie-text strong { color: #27ae60; }
 
-        /* Vorschau */
         .vorschau-section { margin-top: 24px; padding-top: 20px; border-top: 1px solid #e8e8e8; }
         .vorschau-titel { font-size: 13px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
         .vorschau-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
@@ -123,7 +114,6 @@
         .vorschau-zoom { position: absolute; bottom: 5px; right: 5px; background: #1a2a4a; color: white; font-size: 9px; padding: 2px 5px; border-radius: 2px; }
         .vorschau-label { font-size: 11px; color: #666; }
 
-        /* Modal Vorschau */
         .vorschau-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.7); z-index: 300; align-items: center; justify-content: center; padding: 20px; }
         .vorschau-modal.aktiv { display: flex; }
         .vorschau-modal-inner { background: white; padding: 24px; max-width: 420px; width: 100%; border-radius: 8px; max-height: 80vh; overflow-y: auto; }
@@ -132,7 +122,6 @@
         .brief-preview { font-size: 12px; color: #333; line-height: 1.8; }
         .brief-preview .blur-block { filter: blur(4px); user-select: none; background: #f0f0f0; padding: 1px 3px; border-radius: 2px; display: inline-block; }
 
-        /* FAQ */
         .faq-box { margin-top: 24px; border-top: 1px solid #e8e8e8; padding-top: 20px; }
         .faq-titel { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #999; margin-bottom: 16px; }
         .faq-item { border-bottom: 1px solid #e8e8e8; }
@@ -142,7 +131,6 @@
         .faq-item.offen .faq-antwort { display: block; }
         .faq-item.offen .faq-icon { transform: rotate(45deg); }
 
-        /* Paywall Reviews statisch */
         .paywall-reviews { margin-top: 20px; }
         .paywall-reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
         .paywall-review-card { background: #f9f9f9; border: 1px solid #e8e8e8; border-radius: 6px; overflow: hidden; }
@@ -154,7 +142,6 @@
         .paywall-review-stars { color: #e8722a; font-size: 10px; }
         .paywall-review-text { font-size: 10px; color: #555; line-height: 1.4; }
 
-        /* Account Modal */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
         .modal-overlay.aktiv { display: flex; }
         .modal { background: white; padding: 32px 24px; max-width: 400px; width: 100%; border-radius: 8px; }
@@ -166,7 +153,6 @@
         .modal-skip { width: 100%; padding: 12px; background: none; border: 1px solid #e8e8e8; color: #999; font-size: 13px; cursor: pointer; border-radius: 4px; margin-top: 10px; }
         .modal-error { font-size: 13px; color: #c0392b; margin-top: 8px; display: none; }
 
-        /* Nach Kauf */
         .nach-kauf { display: none; }
         .fehler-item-echt { padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
         .fehler-item-echt:last-child { border-bottom: none; }
@@ -180,6 +166,7 @@
         .fehler-erklaerung { font-size: 13px; color: #555; line-height: 1.7; }
         .brief-text { font-size: 14px; line-height: 1.9; color: #333; white-space: pre-wrap; }
         .download-btn { width: 100%; padding: 14px; background: #1a2a4a; color: white; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 24px; border-radius: 4px; display: none; }
+        .platzhalter-hinweis { background: #f5f0eb; border-left: 4px solid #e8722a; padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.7; }
         .empfehlung-item { padding: 14px 0; border-bottom: 1px solid #f5f5f5; display: flex; gap: 14px; }
         .empfehlung-item:last-child { border-bottom: none; }
         .empfehlung-nr { font-size: 20px; font-weight: 700; color: #1a2a4a; flex-shrink: 0; min-width: 28px; }
@@ -188,7 +175,6 @@
         .trick-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a2a4a; margin-bottom: 10px; font-weight: 700; }
         .trick-text { font-size: 13px; color: #444; line-height: 1.8; }
 
-        /* Teilen */
         .teilen-box { background: #1a2a4a; padding: 28px 24px; border-radius: 8px; margin-top: 20px; text-align: center; }
         .teilen-box h3 { font-size: 18px; color: white; margin-bottom: 8px; font-family: Georgia, serif; }
         .teilen-box p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6; }
@@ -220,7 +206,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <div class="modal-overlay" id="accountModal">
     <div class="modal">
         <h2>Konto erstellen</h2>
-        <p class="modal-sub">Mit einem Konto können Sie sich jederzeit wieder anmelden und haben Zugriff auf weitere kostenlose Schreibleistungen für neue Vermieter-Schreiben.</p>
+        <p class="modal-sub">Mit einem Konto können Sie sich jederzeit wieder anmelden und haben Zugriff auf Ihre 3 enthaltenen Folge-Widersprüche.</p>
         <input class="modal-input" type="email" id="accountEmail" placeholder="Ihre E-Mail-Adresse">
         <input class="modal-input" type="password" id="accountPasswort" placeholder="Passwort (mind. 6 Zeichen)">
         <button class="btn-modal" onclick="accountErstellen()">Konto erstellen</button>
@@ -235,22 +221,20 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="vorschau-modal-close" onclick="schliesseModal('modalBrief')">✕</button>
         <div class="vorschau-modal-title">Widerspruchsschreiben — Vorschau</div>
         <div class="brief-preview">
-            Max Mustermann<br>
-            Musterstraße 1, 10115 Berlin<br><br>
-            Frau/Herr Mustermann (Vermieter)<br>
-            Vermieterstraße 1, 10115 Berlin<br><br>
-            Berlin, den <span class="blur-block">01.01.2025</span><br><br>
-            <strong>Widerspruch gegen Mieterhöhung vom <span class="blur-block">01.01.2025</span></strong><br><br>
+            [Ihr Name]<br>
+            [Ihre Adresse]<br><br>
+            An den Vermieter<br><br>
+            [Ort], [Datum]<br><br>
+            <strong>Widerspruch gegen Mieterhöhung</strong><br><br>
             Sehr geehrte Damen und Herren,<br><br>
-            hiermit widerspreche ich fristgerecht der Mieterhöhung vom <span class="blur-block">01.01.2025</span> gemäß <span class="blur-block">§558a BGB</span>.<br><br>
-            Das Schreiben weist folgende formelle Fehler auf:<br><br>
+            hiermit widerspreche ich fristgerecht der Mieterhöhung gemäß <span class="blur-block">§558a BGB</span>.<br><br>
+            Das Schreiben entspricht nicht den gesetzlichen Anforderungen:<br><br>
             1. <span class="blur-block">████████████████████████████████████████████████</span><br>
             <span class="blur-block">████████████████████████████████████████████████</span><br><br>
-            2. <span class="blur-block">████████████████████████████████████████████████</span><br>
-            <span class="blur-block">████████████████████████████████████████████████</span><br><br>
+            2. <span class="blur-block">████████████████████████████████████████████████</span><br><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████████</span><br><br>
             Mit freundlichen Grüßen<br>
-            Max Mustermann
+            [Ihr Name]
         </div>
     </div>
 </div>
@@ -260,13 +244,13 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         <button class="vorschau-modal-close" onclick="schliesseModal('modalParagraphen')">✕</button>
         <div class="vorschau-modal-title">Fehleranalyse — Vorschau</div>
         <div class="brief-preview">
-            <strong>Fehler 1 — <span class="blur-block">KRITISCH</span></strong><br>
-            Paragraph: <span class="blur-block">§558a Abs. 2 BGB</span><br>
-            <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████</span><br><br>
-            <strong>Fehler 2 — <span class="blur-block">MITTEL</span></strong><br>
+            <strong>Problem 1 — <span class="blur-block">KRITISCH</span></strong><br>
             Paragraph: <span class="blur-block">§558 Abs. 3 BGB</span><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████</span><br><br>
-            <strong>Fehler 3 — <span class="blur-block">GERING</span></strong><br>
+            <strong>Problem 2 — <span class="blur-block">MITTEL</span></strong><br>
+            Paragraph: <span class="blur-block">§558a BGB</span><br>
+            <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████</span><br><br>
+            <strong>Problem 3 — <span class="blur-block">GERING</span></strong><br>
             <span class="blur-block">████████████████████████████████████████████████████████████████████████████████████████</span>
         </div>
     </div>
@@ -311,6 +295,7 @@ const nutzerdaten = JSON.parse(rawNutzer) || {};
 const analyse = data.ergebnis?.analyse;
 const dokumentTyp = data.ergebnis?.dokumentTyp || nutzerdaten.vorgewaehlterTyp || 'MIETERHÖHUNG';
 const nkFall = data.ergebnis?.nkFall || nutzerdaten.nkFall || 'NEBENKOSTENABRECHNUNG';
+const modus = data.ergebnis?.modus || 'fragebogen';
 const fehler = analyse?.fehler || [];
 const maengel = analyse?.maengelArgumente || [];
 const urteil = analyse?.gesamturteil || '';
@@ -336,12 +321,18 @@ setInterval(updateTimer, 1000);
 // Urteil
 let urteilKlasse = 'gelb', urteilTitel = '', urteilText = '';
 if (dokumentTyp === 'MIETERHÖHUNG') {
-    if (urteil.includes('NICHT') || urteil.includes('ANFECHTBAR')) {
-        urteilKlasse = 'rot'; urteilTitel = 'Die Mieterhöhung Ihres Vermieters ist unzulässig.'; urteilText = 'Wir haben Fehler gefunden. Sie müssen dieser Erhöhung nicht zustimmen.';
-    } else { urteilKlasse = 'gelb'; urteilTitel = 'Die Mieterhöhung ist prüfenswert.'; urteilText = 'Wir haben Gegenargumente gefunden die Ihre Position stärken.'; }
+    if (urteil.includes('NICHT') || urteil.includes('ANFECHTBAR') || urteil === 'NICHT ZULÄSSIG') {
+        urteilKlasse = 'rot';
+        urteilTitel = 'Die Mieterhöhung Ihres Vermieters ist anfechtbar.';
+        urteilText = 'Wir haben Probleme gefunden. Sie müssen dieser Erhöhung nicht einfach zustimmen.';
+    } else {
+        urteilKlasse = 'gelb';
+        urteilTitel = 'Die Mieterhöhung ist prüfenswert.';
+        urteilText = 'Wir haben Gegenargumente gefunden die Ihre Position stärken.';
+    }
 } else if (dokumentTyp === 'KÜNDIGUNG') {
     if (urteil === 'UNWIRKSAM' || urteil.includes('ANFECHTBAR')) {
-        urteilKlasse = 'rot'; urteilTitel = 'Die Kündigung ist anfechtbar.'; urteilText = 'Formelle Fehler gefunden. Sie müssen nicht sofort ausziehen.';
+        urteilKlasse = 'rot'; urteilTitel = 'Die Kündigung ist anfechtbar.'; urteilText = 'Fehler gefunden. Sie müssen nicht sofort ausziehen.';
     } else { urteilKlasse = 'gelb'; urteilTitel = 'Die Kündigung ist prüfenswert.'; urteilText = 'Wir haben Gegenargumente gefunden.'; }
 } else {
     urteilKlasse = urteil.includes('ANFECHTBAR') ? 'rot' : 'gelb';
@@ -349,8 +340,12 @@ if (dokumentTyp === 'MIETERHÖHUNG') {
     urteilText = 'Wir haben mögliche Fehler gefunden.';
 }
 
-// Kosten
-const erhoehungEuro = parseFloat(analyse?.erhoehung_euro) || 0;
+// Kosten — Fallback auf nutzerdaten wenn kein Schreiben analysiert
+const erhoehungEuro = parseFloat(analyse?.erhoehung_euro) ||
+                      parseFloat(nutzerdaten.erhoehungEuro) || 0;
+const aktuelleMinete = parseFloat(analyse?.aktuelle_miete) ||
+                       parseFloat(nutzerdaten.aktuelleMinete) || 0;
+
 let kostenHTML = '';
 if (dokumentTyp === 'MIETERHÖHUNG' && erhoehungEuro > 0) {
     kostenHTML = `<div class="box">
@@ -358,7 +353,7 @@ if (dokumentTyp === 'MIETERHÖHUNG' && erhoehungEuro > 0) {
         <div class="kosten-zeile"><span class="kosten-label">Mehrkosten pro Monat</span><span class="kosten-betrag">+ ${erhoehungEuro.toFixed(0)} €</span></div>
         <div class="kosten-zeile"><span class="kosten-label">Mehrkosten pro Jahr</span><span class="kosten-betrag">+ ${(erhoehungEuro*12).toFixed(0)} €</span></div>
         <div class="kosten-zeile"><span class="kosten-label">Mehrkosten in 3 Jahren</span><span class="kosten-betrag">+ ${(erhoehungEuro*36).toFixed(0)} €</span></div>
-        <div class="kosten-hinweis">Sie können das vermeiden — indem Sie fristgerecht <strong>Einspruch</strong> einlegen.</div>
+        <div class="kosten-hinweis">Sie können das vermeiden — indem Sie fristgerecht <strong>Widerspruch</strong> einlegen.</div>
     </div>`;
 } else if (dokumentTyp === 'KÜNDIGUNG') {
     kostenHTML = `<div class="box">
@@ -370,11 +365,15 @@ if (dokumentTyp === 'MIETERHÖHUNG' && erhoehungEuro > 0) {
 }
 
 // Fehler Vorschau
+const fehlerVorschauTexte = [
+    'Rechtliches Problem festgestellt',
+    'Weitere Ungültigkeit gefunden',
+    'Zusätzlicher Angriffspunkt'
+];
 const fehlerVorschau = fehler.slice(0, 3).map((f, i) => {
     const d = f.schwere === 'KRITISCH' ? '' : f.schwere === 'MITTEL' ? 'mittel' : 'gering';
-    const p = ['Formeller Fehler festgestellt', 'Rechtliche Anforderung verletzt', 'Weiterer Angriffspunkt gefunden'];
-    return `<div class="fehler-item-blur"><div class="fehler-dot ${d}"></div><div class="fehler-text-blur">${p[i] || 'Weiterer Fehler'}</div></div>`;
-}).join('') || `<div class="fehler-item-blur"><div class="fehler-dot"></div><div class="fehler-text-blur">Analyse abgeschlossen — Details im Bericht</div></div>`;
+    return `<div class="fehler-item-blur"><div class="fehler-dot ${d}"></div><div class="fehler-text-blur">${fehlerVorschauTexte[i] || 'Weiteres Problem'}</div></div>`;
+}).join('') || `<div class="fehler-item-blur"><div class="fehler-dot"></div><div class="fehler-text-blur">Analyse abgeschlossen</div></div>`;
 
 // Was Schreiben bewirkt
 let bewirktPunkte = [];
@@ -384,7 +383,7 @@ if (dokumentTyp === 'MIETERHÖHUNG') {
         `Zwingt Ihren Vermieter zum <u>Neustart des Verfahrens</u>`,
         `Verzögert die Mieterhöhung um <u>mindestens 3–6 Monate</u>`,
         `In 63% der Fälle zieht der Vermieter <u>vollständig zurück</u>`,
-        `Enthält bewusst keine konkreten Fehlerhinweise — <u>der Vermieter kann nicht einfach nachbessern</u>`
+        `Enthält bewusst keine konkreten Hinweise — <u>der Vermieter kann nicht einfach nachbessern</u>`
     ];
 } else if (dokumentTyp === 'KÜNDIGUNG') {
     bewirktPunkte = [
@@ -403,20 +402,20 @@ if (dokumentTyp === 'MIETERHÖHUNG') {
 let wichtigPunkte = [];
 if (dokumentTyp === 'MIETERHÖHUNG') {
     wichtigPunkte = [
-        { f: 'Mündliche Ablehnung reicht nicht', a: 'Nach §558b BGB muss der Widerspruch in Textform erfolgen. WhatsApp oder ein mündliches Nein sind rechtlich wirkungslos — die Mieterhöhung gilt dann als nicht widersprochen.' },
-        { f: 'Einfaches Ignorieren hilft nicht', a: 'Verstreicht die Widerspruchsfrist ohne schriftliche Reaktion, kann der Vermieter auf Zustimmung klagen und gewinnt in der Regel — auch bei Fehlern in seinem Schreiben.' },
-        { f: 'Was jetzt zu tun ist', a: 'Erheben Sie fristgerecht Einspruch mit einem professionell formulierten Schreiben — damit sichern Sie Ihre Rechte. Eine Kündigung wegen Widerspruch ist nach §573 BGB gesetzlich verboten. In 63% der Fälle zieht der Vermieter zurück.', offen: true }
+        { f: 'Mündliche Ablehnung reicht nicht', a: 'Nach §558b BGB muss der Widerspruch in Textform erfolgen. WhatsApp oder ein mündliches Nein sind rechtlich wirkungslos.' },
+        { f: 'Einfaches Ignorieren hilft nicht', a: 'Verstreicht die Widerspruchsfrist ohne schriftliche Reaktion, kann der Vermieter auf Zustimmung klagen und gewinnt in der Regel.' },
+        { f: 'Was jetzt zu tun ist', a: 'Legen Sie fristgerecht Widerspruch ein. Eine Kündigung wegen Widerspruch ist nach §573 BGB gesetzlich verboten. In 63% der Fälle zieht der Vermieter zurück.', offen: true }
     ];
 } else if (dokumentTyp === 'KÜNDIGUNG') {
     wichtigPunkte = [
         { f: 'Nicht sofort ausziehen', a: 'Erst wenn die Kündigung rechtlich bestätigt ist müssen Sie handeln.' },
         { f: 'Widerspruch muss schriftlich erfolgen', a: 'Ein mündlicher Widerspruch ist nach §574b BGB rechtlich wertlos.' },
-        { f: 'Was jetzt zu tun ist', a: 'Legen Sie fristgerecht Widerspruch ein — jeder gewonnene Monat schützt Sie und spart Ihnen tausende Euro an Umzugskosten.', offen: true }
+        { f: 'Was jetzt zu tun ist', a: 'Legen Sie fristgerecht Widerspruch ein — jeder gewonnene Monat schützt Sie.', offen: true }
     ];
 } else {
     wichtigPunkte = [
-        { f: 'Ohne Widerspruch akzeptieren Sie stillschweigend', a: 'Auch falsche Abrechnungen werden nach der Einwendungsfrist von 12 Monaten (§556 BGB) rechtskräftig.' },
-        { f: 'Was jetzt zu tun ist', a: 'Erheben Sie Einspruch mit einem professionell formulierten Schreiben — damit fordern Sie eine korrigierte Abrechnung.', offen: true }
+        { f: 'Ohne Widerspruch akzeptieren Sie stillschweigend', a: 'Auch falsche Abrechnungen werden nach der Einwendungsfrist von 12 Monaten rechtskräftig.' },
+        { f: 'Was jetzt zu tun ist', a: 'Erheben Sie Einspruch mit einem professionell formulierten Schreiben.', offen: true }
     ];
 }
 
@@ -443,11 +442,11 @@ const trickText = dokumentTyp === 'MIETERHÖHUNG'
     : 'Unser Schreiben gibt dem Vermieter keinen einfachen Ausweg.';
 
 const erhoehungMonateFaq = erhoehungEuro > 0
-    ? `Wenn die Mieterhöhung ${erhoehungEuro.toFixed(0)} € monatlich beträgt und der Vermieter erst nach 4 Monaten neu ansetzt, haben Sie in dieser Zeit ${(erhoehungEuro*4).toFixed(0)} € gespart.`
+    ? `Bei ${erhoehungEuro.toFixed(0)} € monatlich und 4 Monaten Verzögerung sparen Sie bereits ${(erhoehungEuro*4).toFixed(0)} €.`
     : 'Je länger der Prozess dauert, desto mehr sparen Sie.';
 
 const faqDaten = [
-    { f: 'Kann ich die Mieterhöhung mit dem Schreiben sicher ablehnen?', a: 'Zu 100% kann man das nicht garantieren, aber mit hoher Wahrscheinlichkeit zieht der Vermieter zurück oder macht beim nächsten Schreiben erneut Fehler — jedes Mal vergehen Wochen und Monate die Ihnen teurere Miete sparen.' },
+    { f: 'Kann ich die Mieterhöhung mit dem Schreiben sicher ablehnen?', a: 'Mit hoher Wahrscheinlichkeit zieht der Vermieter zurück oder macht beim nächsten Schreiben erneut Fehler — jedes Mal vergehen Wochen und Monate die Ihnen teurere Miete sparen.' },
     { f: 'Kann ich nicht einfach per WhatsApp Nein sagen?', a: 'Nein — das reicht rechtlich nicht aus. Nach §558b BGB muss der Widerspruch in Textform erfolgen. Ohne formellen Widerspruch kann der Vermieter auf Zustimmung klagen.' },
     { f: 'Was bringt mir euer Schreiben?', a: `Unser Schreiben legt fristgerecht Widerspruch ein und verzögert die Mieterhöhung um mindestens 3–6 Monate. ${erhoehungMonateFaq} Die 3 enthaltenen Folge-Widersprüche decken auch weitere Schreiben ab.` },
     { f: 'Was ist wenn danach ein neues Schreiben kommt?', a: `Auch beim zweiten Versuch passieren Vermietern häufig wieder Fehler. Prüfen Sie es unbedingt vor einer Zustimmung erneut bei MietHilfe. Ihre 3 Folge-Widersprüche sind genau dafür da.` }
@@ -457,30 +456,35 @@ const accountData = JSON.parse(localStorage.getItem('mietcheck_account') || '{}'
 const affiliateCode = accountData.email ? btoa(accountData.email).replace(/=/g,'').substring(0,8) : 'SHARE';
 const affiliateLink = `https://miethilfe-online.xyz/?ref=${affiliateCode}`;
 
+// Platzhalter-Hinweis nur bei Fragebogen-Modus
+const platzhalterHinweis = modus === 'fragebogen'
+    ? `<div class="platzhalter-hinweis">
+        <strong>Bitte beachten:</strong> Da Sie kein Schreiben hochgeladen haben, enthält der Brief Platzhalter wie <strong>[Ihr Name]</strong> und <strong>[Ihre Adresse]</strong>. Bitte ersetzen Sie diese vor dem Versenden mit Ihren echten Daten.
+       </div>`
+    : '';
+
 document.getElementById('content').innerHTML = `
 
     <div class="box" style="text-align:center;">
-        <div class="box-label">Analyseergebnis</div>
+        <div class="box-label">Überprüfungsergebnis</div>
         <div class="urteil-titel ${urteilKlasse}">${urteilTitel}</div>
         <div class="urteil-linie"></div>
         <div class="urteil-text">${urteilText}</div>
     </div>
 
     <div class="box">
-        <div class="box-label">${fehler.length > 0 ? fehler.length + ' Fehler gefunden' : 'Analyse abgeschlossen'}${maengel.length > 0 ? ' · ' + maengel.length + ' Gegenargumente' : ''}</div>
+        <div class="box-label">${fehler.length > 0 ? fehler.length + ' Probleme gefunden' : 'Überprüfung abgeschlossen'}${maengel.length > 0 ? ' · ' + maengel.length + ' Gegenargumente' : ''}</div>
         ${fehlerVorschau}
         <div style="text-align:center;margin-top:12px;padding-top:12px;border-top:1px solid #f0f0f0;"><p style="font-size:12px;color:#999;">Vollständige Details nach Freischaltung sichtbar</p></div>
     </div>
 
-    <!-- Warum jetzt handeln — nach den verpixelten Fehlern -->
     <div class="box">
         <div class="box-label-dark">Wichtig — bitte lesen:</div>
         <div class="wichtig-section">
             ${wichtigPunkte.map((p, i) => `
             <div class="wichtig-item${p.offen ? ' offen' : ''}" id="wichtig${i}">
                 <button class="wichtig-frage" onclick="toggleWichtig(${i})">
-                    ${p.f}
-                    <span class="wichtig-icon">+</span>
+                    ${p.f}<span class="wichtig-icon">+</span>
                 </button>
                 <div class="wichtig-antwort">${p.a}</div>
             </div>`).join('')}
@@ -504,7 +508,7 @@ document.getElementById('content').innerHTML = `
         <table class="vergleich-tabelle">
             <tr><th></th><th class="h">MietHilfe</th><th>Mietrechtsanwalt</th></tr>
             <tr><td>Preis</td><td class="h"><span class="tag-gruen">39,45 €</span></td><td><span class="tag-rot">150–300 €</span></td></tr>
-            <tr><td>Leistung</td><td class="h">3 Widerspruchs-schreiben</td><td>Beratungs-gespräch</td></tr>
+            <tr><td>Leistung</td><td class="h">3 Widerspr.-schreiben</td><td>Beratungs-gespräch</td></tr>
             <tr><td>Qualität</td><td class="h">Von 6 Groß-kanzleien entwickelt</td><td>1–3 Anwälte</td></tr>
         </table>
     </div>
@@ -519,24 +523,23 @@ document.getElementById('content').innerHTML = `
             <div class="paket-preis">39,45 €</div>
             <div class="paket-sub">Einmalig · Sofort verfügbar</div>
             <div class="paket-linie"></div>
-            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>Schreiben zur Ablehnung der Mieterhöhung</strong> — sofort versandfertig, mit sofortiger Wirkung</span></div>
-            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>Vollständige Fehleranalyse</strong> — alle Formfehler mit Paragraphen erklärt</span></div>
-            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>3 Folge-Widersprüche inklusive</strong> — für den Fall dass Ihr Vermieter erneut schreibt, sind Sie direkt wieder geschützt</span></div>
+            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>Fertiger Widerspruchsbrief</strong> — sofort versandfertig, mit sofortiger Wirkung</span></div>
+            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>Vollständige Problemanalyse</strong> — alle Schwachstellen mit Paragraphen erklärt</span></div>
+            <div class="paket-leistung"><span class="paket-check">✓</span><span><strong>3 Folge-Widersprüche inklusive</strong> — für den Fall dass Ihr Vermieter erneut schreibt</span></div>
             <button class="btn-kaufen" onclick="kaufKlick()">Freischalten · 39,45 €</button>
             <div class="garantie-box">
                 <div class="garantie-text">🛡️ <strong>MietHilfe Garantie:</strong> Wenn Sie mit unserem Schreiben keinen Erfolg erzielen und die Mieterhöhung nicht verzögert oder abgewendet wird — erhalten Sie jeden Euro zurück.</div>
             </div>
         </div>
 
-        <!-- Vorschau -->
         <div class="vorschau-section">
             <div class="vorschau-titel">Das ist enthalten:</div>
             <div class="vorschau-grid">
                 <div class="vorschau-item" onclick="oeffneModal('modalBrief')">
                     <div class="vorschau-bild">
                         <div class="vorschau-bild-inner">
-                            <div class="visible-line">Max Mustermann</div>
-                            <div class="visible-line">Musterstr. 1, Berlin</div>
+                            <div class="visible-line">[Ihr Name]</div>
+                            <div class="visible-line">[Ihre Adresse]</div>
                             <div class="blur-line"></div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:60%"></div>
@@ -552,18 +555,18 @@ document.getElementById('content').innerHTML = `
                 <div class="vorschau-item" onclick="oeffneModal('modalParagraphen')">
                     <div class="vorschau-bild">
                         <div class="vorschau-bild-inner">
-                            <div class="visible-line" style="font-weight:700;">Fehler 1</div>
+                            <div class="visible-line" style="font-weight:700;">Problem 1</div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:70%"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Fehler 2</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Problem 2</div>
                             <div class="blur-line"></div>
                             <div class="blur-line" style="width:80%"></div>
-                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Fehler 3</div>
+                            <div class="visible-line" style="font-weight:700;margin-top:5px;">Problem 3</div>
                             <div class="blur-line" style="width:60%"></div>
                         </div>
                         <span class="vorschau-zoom">🔍</span>
                     </div>
-                    <div class="vorschau-label">Fehleranalyse</div>
+                    <div class="vorschau-label">Problemanalyse</div>
                 </div>
                 <div class="vorschau-item" onclick="oeffneModal('modalEmpfehlung')">
                     <div class="vorschau-bild">
@@ -583,7 +586,6 @@ document.getElementById('content').innerHTML = `
             </div>
         </div>
 
-        <!-- FAQ -->
         <div class="faq-box">
             <div class="faq-titel">Häufige Fragen</div>
             ${faqDaten.map((faq, i) => `
@@ -593,7 +595,6 @@ document.getElementById('content').innerHTML = `
             </div>`).join('')}
         </div>
 
-        <!-- Paywall Reviews statisch -->
         <div class="paywall-reviews" style="margin-top:24px;">
             <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:12px;">Das sagen unsere Kunden</div>
             <div class="paywall-reviews-grid">
@@ -615,31 +616,30 @@ document.getElementById('content').innerHTML = `
         <div style="text-align:center;padding:16px 0 0;border-top:1px solid #f0f0f0;margin-top:16px;">
             <div style="font-size:16px;color:#f39c12;">★★★★★</div>
             <div style="font-size:11px;color:#999;margin-top:4px;">4,8 von 5 Sternen · 8.500 Bewertungen</div>
-            <div style="font-size:12px;color:#999;margin-top:10px;">Ihre einzigen Alternativen: MietHilfe (39,45 €) oder Mietrechtsanwalt (150–300 €+)</div>
         </div>
     </div>
 
     <div class="loading-box" id="briefLoading">
         <div class="loading-spinner"></div>
-        <div class="loading-text">Ihr Bericht wird erstellt...</div>
+        <div class="loading-text">Ihr Schreiben wird erstellt...</div>
     </div>
 
-    <!-- Nach Kauf -->
     <div class="nach-kauf" id="nachKauf">
         <div class="box">
             <div class="box-label">Ihr Widerspruchsschreiben</div>
             <div class="brief-text" id="briefText"></div>
+            ${platzhalterHinweis}
             <button class="download-btn" id="downloadBtn" onclick="downloadBrief()">Brief herunterladen</button>
         </div>
         <div class="box">
-            <div class="box-label">Warum nennen wir dem Vermieter nicht die genauen Fehler?</div>
+            <div class="box-label">Warum nennen wir dem Vermieter nicht die genauen Probleme?</div>
             <div class="trick-box">
                 <div class="trick-titel">Unsere Strategie</div>
                 <div class="trick-text">${trickText}</div>
             </div>
         </div>
         <div class="box">
-            <div class="box-label">Die genauen Fehler Ihres Vermieters</div>
+            <div class="box-label">Die genauen Probleme Ihres Vermieters</div>
             ${echterFehlerHTML}
             ${maengelHTML}
         </div>
@@ -758,7 +758,7 @@ function downloadBrief() {
     const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
-    a.href = url; a.download = 'MietHilfe_Schreiben.txt';
+    a.href = url; a.download = 'MietHilfe_Widerspruch.txt';
     document.body.appendChild(a); a.click();
     document.body.removeChild(a); URL.revokeObjectURL(url);
 }
@@ -768,7 +768,7 @@ function kopiereLink() {
 }
 
 function teileWhatsApp() {
-    const text = encodeURIComponent(`Ich habe meine Mieterhöhung mit MietHilfe erfolgreich abgewehrt. Prüf deine auch kostenlos: ${affiliateLink}`);
+    const text = encodeURIComponent(`Ich habe meine Mieterhöhung mit MietHilfe erfolgreich geprüft. Prüf deine auch kostenlos: ${affiliateLink}`);
     window.open(`https://wa.me/?text=${text}`, '_blank');
 }
 </script>
