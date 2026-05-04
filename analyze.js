@@ -14,6 +14,24 @@ async function callClaude(prompt) {
     return message.content[0].text;
 }
 
+async function callClaudeVision(base64, mediaType, textPrompt) {
+    const message = await client.messages.create({
+        model: 'claude-opus-4-5',
+        max_tokens: 2000,
+        messages: [{
+            role: 'user',
+            content: [
+                {
+                    type: 'image',
+                    source: { type: 'base64', media_type: mediaType, data: base64 }
+                },
+                { type: 'text', text: textPrompt }
+            ]
+        }]
+    });
+    return message.content[0].text;
+}
+
 function parseJSON(text) {
     try {
         return JSON.parse(text.replace(/```json|```/g, '').trim());
@@ -23,95 +41,167 @@ function parseJSON(text) {
     }
 }
 
+// ============================================================
+// FOTO EXTRAKTION — schnelle Vorverarbeitung
+// ============================================================
+async function extractFromFoto(base64, mediaType) {
+    console.log('Extrahiere Daten aus Foto...');
+    const raw = await callClaudeVision(base64, mediaType, prompts.fotoExtraktionPrompt());
+    return parseJSON(raw) || {};
+}
+
+// ============================================================
+// HAUPT-ANALYSE
+// ============================================================
 async function analyzeDocument(dokumentText, nutzerdaten) {
     console.log('Starte Analyse...');
-
-    // vorgewaehlterTyp ist IMMER führend - niemals überschreiben
     const vorgewaehlterTyp = nutzerdaten.vorgewaehlterTyp || 'MIETERHÖHUNG';
     const nkFall = nutzerdaten.nkFall || 'NEBENKOSTENABRECHNUNG';
+    const istFragebogen = nutzerdaten.fragebogen === true;
+    const hatFoto = nutzerdaten.fotoBase64 && nutzerdaten.fotoMediaType;
 
-    // Sonderfall: NK Anforderung ohne Dokument
+    // NK Anforderung ohne Dokument
     if (nkFall === 'NEBENKOSTENABRECHNUNG_ANFORDERUNG') {
-        console.log('NK Anforderung erkannt');
-        const analyseRaw = await callClaude(
-            prompts.analyseNKAnforderungPrompt(nutzerdaten)
-        );
+        const analyseRaw = await callClaude(prompts.analyseNKAnforderungPrompt(nutzerdaten));
         const analyse = parseJSON(analyseRaw);
+        const empfehlungRaw = await callClaude(
+            prompts.verhaltensempfehlungPrompt({ analyse, dokumentTyp: 'NEBENKOSTENABRECHNUNG' }, null)
+        );
+        const empfehlung = parseJSON(empfehlungRaw);
+        const ergebnis = {
+            dokumentTyp: 'NEBENKOSTENABRECHNUNG',
+            extraktion: {},
+            analyse,
+            empfehlung,
+            rohtext: ''
+        };
+        if (nutzerdaten.email) analyseHinzufuegen(nutzerdaten.email, ergebnis);
+        return ergebnis;
+    }
+
+    // FRAGEBOGEN MODUS — keine Dokumentanalyse
+    if (istFragebogen && !hatFoto) {
+        console.log('Fragebogen-Modus aktiv');
+        const analyseRaw = await callClaude(prompts.analyseFragebogenPrompt(nutzerdaten));
+        const analyse = parseJSON(analyseRaw);
+        console.log('Urteil:', analyse?.gesamturteil);
 
         const empfehlungRaw = await callClaude(
-            prompts.verhaltensempfehlungPrompt(
-                { analyse, dokumentTyp: 'NEBENKOSTENABRECHNUNG' },
-                nutzerdaten.email ? getHistory(nutzerdaten.email) : null
-            )
+            prompts.verhaltensempfehlungPrompt({ analyse, dokumentTyp: 'MIETERHÖHUNG' }, null)
         );
         const empfehlung = parseJSON(empfehlungRaw);
 
         const ergebnis = {
-            dokumentTyp: 'NEBENKOSTENABRECHNUNG',
-            nkFall: 'NEBENKOSTENABRECHNUNG_ANFORDERUNG',
-            extraktion: {},
+            dokumentTyp: 'MIETERHÖHUNG',
+            extraktion: {
+                aktuelle_miete: nutzerdaten.aktuelleMinete,
+                erhoehung_euro: nutzerdaten.erhoehungEuro,
+                neue_miete: (parseFloat(nutzerdaten.aktuelleMinete) + parseFloat(nutzerdaten.erhoehungEuro)).toFixed(0)
+            },
             analyse,
             empfehlung,
-            rohtext: nutzerdaten.sachverhalt || ''
+            rohtext: '',
+            modus: 'fragebogen'
         };
-
-        if (nutzerdaten.email) {
-            analyseHinzufuegen(nutzerdaten.email, ergebnis);
-        }
+        if (nutzerdaten.email) analyseHinzufuegen(nutzerdaten.email, ergebnis);
         return ergebnis;
     }
 
-    // Normaler Flow - vorgewaehlterTyp wird NICHT durch Erkennung überschrieben
-    // Erkennung nur zur Bestätigung nutzen, nicht als Override
-    console.log('Verwende Typ:', vorgewaehlterTyp);
+    // FOTO MODUS — vollständige Analyse mit Bild
+    if (hatFoto) {
+        console.log('Foto-Modus aktiv');
 
-    // Extraktion direkt mit vorgewaehlterTyp
-    const extraktionRaw = await callClaude(
-        prompts.extraktionsPrompt(dokumentText, vorgewaehlterTyp, nutzerdaten)
-    );
+        // Erst Foto lesen für Text-Extraktion
+        const fotoText = await callClaudeVision(
+            nutzerdaten.fotoBase64,
+            nutzerdaten.fotoMediaType,
+            `Lies dieses Mieterhöhungsschreiben vollständig und gib den kompletten Text wieder. 
+             Dann antworte mit: TEXT: [vollständiger Text des Schreibens]`
+        );
+
+        const textMatch = fotoText.match(/TEXT:\s*([\s\S]+)/i);
+        const extrahierterText = textMatch ? textMatch[1].trim() : fotoText;
+
+        // Erkennnung
+        const erkennungRaw = await callClaude(prompts.erkennungsPrompt(extrahierterText, vorgewaehlterTyp));
+        const erkennung = parseJSON(erkennungRaw);
+        const dokumentTyp = erkennung?.typ || vorgewaehlterTyp;
+
+        // Extraktion
+        const extraktionRaw = await callClaude(
+            prompts.extraktionsPrompt(extrahierterText, dokumentTyp, nutzerdaten)
+        );
+        const extraktion = parseJSON(extraktionRaw);
+
+        // Analyse — nutzt BEIDE: Dokument-Formfehler UND strukturelle Prüfung
+        const nurFragebogenDaten = {
+            ...nutzerdaten,
+            erhoehungEuro: extraktion?.erhoehung_euro || nutzerdaten.erhoehungEuro,
+            aktuelleMinete: extraktion?.aktuelle_miete || nutzerdaten.aktuelleMinete
+        };
+
+        let analyseRaw;
+        if (dokumentTyp === 'MIETERHÖHUNG') {
+            analyseRaw = await callClaude(prompts.analyseMieterhöhungPrompt(extraktion, nurFragebogenDaten));
+        } else if (dokumentTyp === 'KÜNDIGUNG') {
+            analyseRaw = await callClaude(prompts.analyseKündigungPrompt(extraktion, nutzerdaten));
+        } else {
+            analyseRaw = await callClaude(prompts.analyseNebenkostenPrompt(extraktion, nutzerdaten));
+        }
+        const analyse = parseJSON(analyseRaw);
+        console.log('Urteil:', analyse?.gesamturteil);
+
+        const empfehlungRaw = await callClaude(
+            prompts.verhaltensempfehlungPrompt({ analyse, dokumentTyp }, null)
+        );
+        const empfehlung = parseJSON(empfehlungRaw);
+
+        const ergebnis = {
+            dokumentTyp,
+            extraktion,
+            analyse,
+            empfehlung,
+            rohtext: extrahierterText,
+            modus: 'foto'
+        };
+        if (nutzerdaten.email) analyseHinzufuegen(nutzerdaten.email, ergebnis);
+        return ergebnis;
+    }
+
+    // TEXT MODUS — normaler Flow mit eingefügtem Text
+    const erkennungRaw = await callClaude(prompts.erkennungsPrompt(dokumentText, vorgewaehlterTyp));
+    const erkennung = parseJSON(erkennungRaw);
+    const dokumentTyp = erkennung?.typ || vorgewaehlterTyp;
+    console.log('Typ erkannt:', dokumentTyp);
+
+    const extraktionRaw = await callClaude(prompts.extraktionsPrompt(dokumentText, dokumentTyp, nutzerdaten));
     const extraktion = parseJSON(extraktionRaw);
-    console.log('Extraktion abgeschlossen');
 
-    // Analyse je nach vorgewaehlterTyp
     let analyseRaw;
-    if (vorgewaehlterTyp === 'MIETERHÖHUNG') {
-        analyseRaw = await callClaude(
-            prompts.analyseMieterhöhungPrompt(extraktion, nutzerdaten)
-        );
-    } else if (vorgewaehlterTyp === 'KÜNDIGUNG') {
-        analyseRaw = await callClaude(
-            prompts.analyseKündigungPrompt(extraktion, nutzerdaten)
-        );
+    if (dokumentTyp === 'MIETERHÖHUNG') {
+        analyseRaw = await callClaude(prompts.analyseMieterhöhungPrompt(extraktion, nutzerdaten));
+    } else if (dokumentTyp === 'KÜNDIGUNG') {
+        analyseRaw = await callClaude(prompts.analyseKündigungPrompt(extraktion, nutzerdaten));
     } else {
-        analyseRaw = await callClaude(
-            prompts.analyseNebenkostenPrompt(extraktion, nutzerdaten)
-        );
+        analyseRaw = await callClaude(prompts.analyseNebenkostenPrompt(extraktion, nutzerdaten));
     }
     const analyse = parseJSON(analyseRaw);
     console.log('Urteil:', analyse?.gesamturteil);
 
-    const verlauf = nutzerdaten.email ? getHistory(nutzerdaten.email) : null;
     const empfehlungRaw = await callClaude(
-        prompts.verhaltensempfehlungPrompt(
-            { analyse, dokumentTyp: vorgewaehlterTyp },
-            verlauf
-        )
+        prompts.verhaltensempfehlungPrompt({ analyse, dokumentTyp }, null)
     );
     const empfehlung = parseJSON(empfehlungRaw);
 
     const ergebnis = {
-        dokumentTyp: vorgewaehlterTyp,
-        nkFall: nkFall,
+        dokumentTyp,
         extraktion,
         analyse,
         empfehlung,
-        rohtext: dokumentText
+        rohtext: dokumentText,
+        modus: 'text'
     };
-
-    if (nutzerdaten.email) {
-        analyseHinzufuegen(nutzerdaten.email, ergebnis);
-    }
-
+    if (nutzerdaten.email) analyseHinzufuegen(nutzerdaten.email, ergebnis);
     return ergebnis;
 }
 
@@ -125,4 +215,4 @@ async function generateBrief(analyseErgebnis, nutzerdaten) {
     );
 }
 
-module.exports = { analyzeDocument, generateBrief };
+module.exports = { analyzeDocument, generateBrief, extractFromFoto };
