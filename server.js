@@ -4,7 +4,7 @@ const multer = require('multer');
 const cors = require('cors');
 const path = require('path');
 const fs = require('fs');
-const { analyzeDocument, generateBrief } = require('./analyze');
+const { analyzeDocument, generateBrief, extractFromFoto } = require('./analyze');
 const { accountErstellen, accountLogin, getHistory } = require('./accounts');
 
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -207,7 +207,13 @@ app.post('/analyze', upload.single('dokument'), async (req, res) => {
             nkFall:              req.body.nkFall || 'NEBENKOSTENABRECHNUNG',
             maengel:             req.body.maengel ? req.body.maengel.split(',').filter(Boolean) : [],
             maengelDetails:      req.body.maengelDetails || '',
-            weitereMaengel:      req.body.weitereMaengel || ''
+            weitereMaengel:      req.body.weitereMaengel || '',
+            fragebogen:          req.body.fragebogen === true || req.body.fragebogen === 'true',
+            erhoehungEuro:       req.body.erhoehungEuro || '',
+            aktuelleMinete:      req.body.aktuelleMinete || '',
+            wohndauer:           req.body.wohndauer || '',
+            fotoBase64:          req.body.fotoBase64 || '',
+            fotoMediaType:       req.body.fotoMediaType || ''
         };
 
         console.log('Analyse für Typ:', nutzerdaten.vorgewaehlterTyp, '| NK Fall:', nutzerdaten.nkFall);
@@ -244,4 +250,21 @@ app.listen(PORT, () => {
     console.log(`  http://localhost:${PORT}/prüfen      → Mieterhöhung AG2`);
     console.log(`  http://localhost:${PORT}/kuendigung  → Kündigung`);
     console.log(`  http://localhost:${PORT}/nebenkosten → Nebenkostenabrechnung`);
+});
+
+// ============================================================
+// FOTO EXTRAKTION — schnelle Vorverarbeitung für Fragebogen
+// ============================================================
+app.post('/extract-foto', async (req, res) => {
+    try {
+        const { base64, mediaType } = req.body;
+        if (!base64 || !mediaType) {
+            return res.status(400).json({ error: 'base64 und mediaType erforderlich' });
+        }
+        const extracted = await extractFromFoto(base64, mediaType);
+        res.json(extracted);
+    } catch (error) {
+        console.error('Foto-Extraktion Fehler:', error);
+        res.status(500).json({ error: error.message });
+    }
 });
