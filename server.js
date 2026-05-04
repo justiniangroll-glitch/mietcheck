@@ -25,6 +25,14 @@ const upload = multer({
 // ============================================================
 // SEITEN ROUTEN
 // ============================================================
+app.get('/impressum', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'impressum.html'));
+});
+
+app.get('/datenschutz', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'datenschutz.html'));
+});
+
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'frontend', 'index.html'));
 });
