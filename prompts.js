@@ -129,57 +129,23 @@ function analyseFragebogenPrompt(nutzerdaten) {
 
     return `${WISSENSBASIS_MIETERHOEHUNG}
 
-Analysiere diese Mieterhöhung anhand der Angaben des Mieters.
-Der Mieter hat kein Schreiben eingereicht — analysiere rein auf Basis der Zahlen und Angaben.
 
-ANGABEN DES MIETERS:
-Erhöhungsbetrag: ${erhoehungEuro} € pro Monat
-Aktuelle Kaltmiete: ${aktuelleMinete} €
-Erhöhung in Prozent: ${erhoehungProzent}%
-Wohndauer: ${nutzerdaten.wohndauer || 'unbekannt'}
-Stadt: ${nutzerdaten.stadt || 'unbekannt'} (${isAngespannt ? 'ANGESPANNTER MARKT — Kappungsgrenze 15%' : 'normaler Markt — Kappungsgrenze 20%'})
-Wohnungsgröße: ${nutzerdaten.qm || 'unbekannt'} qm
-Gemeldete Mängel: ${nutzerdaten.maengel || 'keine'}
+DATEN: Erhöhung ${erhoehungEuro}€ (${erhoehungProzent}% der Miete ${aktuelleMinete}€) | Stadt: ${nutzerdaten.stadt} (${isAngespannt ? 'angespannt 15%' : 'normal 20%'}) | ${nutzerdaten.qm}qm | Wohndauer: ${nutzerdaten.wohndauer} | Mängel: ${nutzerdaten.maengel || 'keine'}
 
-PRÜFE SYSTEMATISCH:
-1. KAPPUNGSGRENZE: Überschreitet ${erhoehungProzent}% die Grenze von ${kappungsgrenze}% für ${nutzerdaten.stadt}?
-2. SPERRFRIST: Wohndauer ${nutzerdaten.wohndauer} — könnte Sperrfrist von 15 Monaten verletzt sein?
-3. MIETSPIEGEL-PLAUSIBILITÄT: Ist die neue Miete von ${aktuelleMinete + erhoehungEuro}€ für ${nutzerdaten.qm}qm in ${nutzerdaten.stadt} plausibel oder über dem Mietspiegel?
-4. MÄNGEL ALS GEGENARGUMENT: ${nutzerdaten.maengel ? 'Mängel vorhanden — Mietminderungsrecht prüfen' : 'Keine Mängel gemeldet'}
-5. ALLGEMEINE HINWEISE: Gibt es weitere Hinweise die für den Mieter sprechen?
-
-WICHTIG: Finde bei nahezu jeder Mieterhöhung mindestens einen Angriffspunkt.
-Selbst wenn die Kappungsgrenze nicht überschritten ist, gibt es fast immer:
-- Zweifel an der Mietspiegel-Einordnung
-- Mögliche Formfehler im Schreiben (da kein Schreiben vorliegt, können wir nicht ausschließen dass Fehler vorhanden sind)
-- Mängel die als Gegenargument dienen
-- Zweifel ob die ortsübliche Vergleichsmiete korrekt berechnet wurde
+Prüfe: Kappungsgrenze ${kappungsgrenze}%, Sperrfrist, Mietspiegel-Plausibilität, Mängel. Finde mind. 2-3 Angriffspunkte.
 
 Antworte NUR mit JSON:
 {
-  "fehler": [
-    {
-      "typ": "Name des Problems",
-      "paragraph": "§XXX BGB",
-      "schwere": "KRITISCH oder MITTEL oder GERING",
-      "erklaerung": "Einfache Erklärung in 1-2 Sätzen für einen Laien"
-    }
-  ],
-  "maengelArgumente": [
-    {
-      "mangel": "Art des Mangels",
-      "minderungsrecht": "Prozentsatz als Text",
-      "staerke": "STARK oder MITTEL oder SCHWACH"
-    }
-  ],
+  "fehler": [{"typ":"Name","paragraph":"§XXX BGB","schwere":"KRITISCH/MITTEL/GERING","erklaerung":"Kurze Erklärung"}],
+  "maengelArgumente": [{"mangel":"Art","minderungsrecht":"X%","staerke":"STARK/MITTEL/SCHWACH"}],
   "erhoehung_euro": ${erhoehungEuro},
   "aktuelle_miete": ${aktuelleMinete},
   "kappungsgrenze": ${kappungsgrenze},
-  "erhoehung_prozent": ${erhoehungProzent || 0},
-  "gesamturteil": "NICHT ZULÄSSIG oder TEILWEISE ANFECHTBAR oder ZULÄSSIG",
-  "anfechtungsstaerke": "SEHR STARK oder STARK oder MITTEL oder SCHWACH",
-  "zusammenfassung": "2-3 Sätze einfache Sprache was das Ergebnis bedeutet",
-  "empfehlung": "Was soll der Mieter konkret tun"
+  "erhoehung_prozent": ${erhoehungProzent},
+  "gesamturteil": "NICHT ZULÄSSIG/TEILWEISE ANFECHTBAR/ZULÄSSIG",
+  "anfechtungsstaerke": "SEHR STARK/STARK/MITTEL/SCHWACH",
+  "zusammenfassung": "2 Sätze",
+  "empfehlung": "Was tun"
 }`;
 }
 
