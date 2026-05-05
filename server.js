@@ -11,7 +11,9 @@ let stripeInstance = null;
 function getStripe() {
     if (!stripeInstance) {
         if (!process.env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY nicht gesetzt');
-        stripeInstance = require('stripe')(process.env.STRIPE_SECRET_KEY);
+        const key = process.env.STRIPE_SECRET_KEY.trim().replace(/[\r\n\s]/g, '');
+        console.log('Stripe Key Länge:', key.length, '| Start:', key.substring(0, 12));
+        stripeInstance = require('stripe')(key);
     }
     return stripeInstance;
 }
