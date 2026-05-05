@@ -7,7 +7,14 @@ const fs = require('fs');
 const { analyzeDocument, generateBrief, extractFromFoto } = require('./analyze');
 const { accountErstellen, accountLogin, getHistory } = require('./accounts');
 
-const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
+let stripeInstance = null;
+function getStripe() {
+    if (!stripeInstance) {
+        if (!process.env.STRIPE_SECRET_KEY) throw new Error('STRIPE_SECRET_KEY nicht gesetzt');
+        stripeInstance = require('stripe')(process.env.STRIPE_SECRET_KEY);
+    }
+    return stripeInstance;
+}
 
 const app = express();
 app.use(cors());
@@ -60,7 +67,7 @@ app.post('/create-checkout', async (req, res) => {
     try {
         const { analyseErgebnis, nutzerdaten } = req.body;
 
-        const session = await stripe.checkout.sessions.create({
+        const session = await getStripe().checkout.sessions.create({
             payment_method_types: ['card'],
             line_items: [{
                 price_data: {
@@ -97,7 +104,7 @@ app.post('/webhook', async (req, res) => {
     const sig = req.headers['stripe-signature'];
     let event;
     try {
-        event = stripe.webhooks.constructEvent(
+        event = getStripe().webhooks.constructEvent(
             req.body,
             sig,
             process.env.STRIPE_WEBHOOK_SECRET
