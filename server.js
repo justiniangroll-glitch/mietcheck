@@ -76,7 +76,7 @@ app.post('/create-checkout', async (req, res) => {
                     currency: 'eur',
                     product_data: {
                         name: 'MietHilfe – Widerspruchsschreiben',
-                        description: '3 versandfertige Widerspruchsschreiben + vollständige Fehleranalyse'
+                        description: 'Juristisch fundiertes Widerspruchsschreiben nach anwaltlichen Standards + 3 Folge-Widersprüche inklusive'
                     },
                     unit_amount: 3945
                 },
