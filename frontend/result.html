@@ -4,187 +4,156 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ihr Ergebnis – MietHilfe</title>
-
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-WD7CQ4GL');</script>
-    <script type="text/javascript">
-        (function(c,l,a,r,i,t,y){
-            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-        })(window, document, "clarity", "script", "wj01jbchse");
-    </script>
+    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-WD7CQ4GL');</script>
+    <script type="text/javascript">(function(c,l,a,r,i,t,y){c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);})(window,document,"clarity","script","wj01jbchse");</script>
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WEF4E3N2EW"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        gtag('config', 'G-WEF4E3N2EW');
-    </script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-WEF4E3N2EW');</script>
     <script src="https://js.stripe.com/v3/"></script>
-
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: Arial, sans-serif; background: #fafafa; color: #1a1a1a; line-height: 1.7; }
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:Arial,sans-serif;background:#fafafa;color:#1a1a1a;line-height:1.6;}
+        .nav{padding:14px 16px;display:flex;justify-content:space-between;align-items:center;background:#1a2a4a;}
+        .logo-container{display:flex;align-items:center;gap:8px;}
+        .logo-kreis{width:26px;height:26px;border-radius:50%;background:white;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;color:#1a2a4a;}
+        .logo{font-size:15px;letter-spacing:3px;text-transform:uppercase;font-weight:600;color:white;}
+        .nav-right{font-size:11px;color:rgba(255,255,255,0.5);letter-spacing:1px;text-transform:uppercase;}
+        .seite{max-width:580px;margin:0 auto;padding:0 14px 60px;}
 
-        .nav { padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; background: #1a2a4a; }
-        .logo-container { display: flex; align-items: center; gap: 10px; }
-        .logo-kreis { width: 28px; height: 28px; border-radius: 50%; background: white; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: bold; color: #1a2a4a; }
-        .logo { font-size: 16px; letter-spacing: 3px; text-transform: uppercase; font-weight: 600; color: white; }
-        .nav-right { font-size: 11px; color: rgba(255,255,255,0.5); letter-spacing: 1px; text-transform: uppercase; }
+        /* URTEIL */
+        .urteil-block{padding:20px 0 16px;border-bottom:1px solid #e8e8e8;}
+        .urteil-highlight{padding:14px 16px;border-radius:6px;margin-bottom:0;}
+        .urteil-highlight.rot{background:#fff0f0;border-left:4px solid #c0392b;}
+        .urteil-highlight.gruen{background:#f0fff4;border-left:4px solid #27ae60;}
+        .urteil-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;font-weight:700;margin-bottom:4px;}
+        .urteil-label.rot{color:#c0392b;}
+        .urteil-label.gruen{color:#27ae60;}
+        .urteil-titel{font-size:18px;font-weight:700;line-height:1.3;margin-bottom:4px;}
+        .urteil-sub{font-size:13px;color:#555;line-height:1.5;}
 
-        .seite { max-width: 600px; margin: 0 auto; padding: 0 16px 80px; }
+        /* HANDELN */
+        .handeln-block{padding:16px 0;border-bottom:1px solid #e8e8e8;}
+        .aber-headline{font-size:18px;font-weight:900;color:#1a1a1a;margin-bottom:8px;text-transform:uppercase;letter-spacing:1px;}
+        .handeln-text{font-size:14px;color:#444;margin-bottom:10px;line-height:1.6;}
+        .handeln-text u{text-underline-offset:3px;}
+        .wichtig-block{padding:12px 14px;background:#eef4ff;border-left:4px solid #1a2a4a;border-radius:0 4px 4px 0;}
+        .wichtig-label{font-size:12px;font-weight:900;color:#1a2a4a;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;}
+        .wichtig-text{font-size:13px;color:#333;line-height:1.6;}
+        .wichtig-text u{text-underline-offset:3px;}
+        .wichtig-paragraph{font-size:11px;color:#1a2a4a;font-weight:700;margin-top:6px;}
+        .tipp-text{font-size:12px;color:#999;margin-top:10px;font-style:italic;}
 
-        /* BLOCK 1 — URTEIL */
-        .urteil-block { padding: 36px 0 28px; border-bottom: 1px solid #e8e8e8; }
-        .urteil-highlight { padding: 20px 20px; border-radius: 8px; margin-bottom: 16px; }
-        .urteil-highlight.rot { background: #fff0f0; border-left: 5px solid #c0392b; }
-        .urteil-highlight.gruen { background: #f0fff4; border-left: 5px solid #27ae60; }
-        .urteil-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; font-weight: 700; margin-bottom: 8px; }
-        .urteil-label.rot { color: #c0392b; }
-        .urteil-label.gruen { color: #27ae60; }
-        .urteil-titel { font-size: 22px; font-weight: 700; line-height: 1.3; font-family: Georgia, serif; margin-bottom: 10px; }
-        .urteil-sub { font-size: 15px; color: #555; line-height: 1.6; }
+        /* ANGEBOT */
+        .angebot-block{padding:16px 0;border-bottom:1px solid #e8e8e8;}
+        .angebot-intro{display:flex;align-items:center;gap:8px;font-size:14px;color:#1a2a4a;font-weight:700;margin-bottom:12px;line-height:1.4;}
+        .angebot-intro .logo-kreis-small{width:22px;height:22px;border-radius:50%;background:#1a2a4a;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:white;flex-shrink:0;}
+        .angebot-bild{width:100%;aspect-ratio:16/9;border-radius:6px;overflow:hidden;margin-bottom:16px;}
+        .angebot-bild img{width:100%;height:100%;object-fit:cover;}
+        .leistungen-titel{font-size:12px;letter-spacing:1px;text-transform:uppercase;color:#999;margin-bottom:10px;font-weight:700;}
+        .leistungen-liste{margin-bottom:16px;}
+        .leistung-item{display:flex;gap:10px;padding:10px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start;}
+        .leistung-item:last-child{border-bottom:none;margin-bottom:0;}
+        .leistung-check{color:#1a2a4a;font-weight:900;font-size:15px;flex-shrink:0;margin-top:1px;}
+        .leistung-text{font-size:14px;color:#333;line-height:1.5;}
+        .leistung-text strong{color:#1a1a1a;}
+        .btn-kaufen{display:block;width:100%;padding:18px;background:#e8722a;color:white;border:none;font-size:17px;font-weight:700;cursor:pointer;border-radius:6px;text-align:center;margin:14px 0 8px;}
+        .btn-kaufen:hover{background:#d4621a;}
+        .btn-sub{display:flex;justify-content:center;gap:16px;margin-bottom:14px;}
+        .btn-sub-item{font-size:11px;color:#bbb;}
 
-        /* BILD PLATZHALTER 1 — nach Urteil */
-        .bild-platzhalter { width: 100%; border-radius: 8px; overflow: hidden; margin: 20px 0; background: #e8e8e8; display: flex; align-items: center; justify-content: center; }
-        .bild-platzhalter img { width: 100%; height: 100%; object-fit: cover; }
-        .bild-platzhalter-label { font-size: 11px; color: #999; padding: 40px; text-align: center; letter-spacing: 2px; text-transform: uppercase; }
+        /* GARANTIE */
+        .garantie-block{background:#f0fff4;border:1.5px solid #27ae60;border-radius:6px;padding:14px 16px;margin-bottom:0;position:relative;}
+        .garantie-badge{position:absolute;top:-1px;right:-1px;background:#27ae60;color:white;font-size:10px;font-weight:700;padding:3px 10px;border-radius:0 6px 0 6px;letter-spacing:0.5px;}
+        .garantie-titel{font-size:13px;font-weight:700;color:#27ae60;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px;}
+        .garantie-text{font-size:13px;color:#333;line-height:1.6;}
 
-        /* BLOCK 2 — HANDELN */
-        .handeln-block { padding: 28px 0; border-bottom: 1px solid #e8e8e8; }
-        .aber-headline { font-size: 22px; font-weight: 900; color: #1a1a1a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
-        .handeln-text { font-size: 15px; color: #444; margin-bottom: 14px; line-height: 1.7; }
-        .handeln-text u { text-decoration: underline; text-underline-offset: 3px; }
-        .wichtig-block { margin-top: 20px; padding: 18px 20px; background: #eef4ff; border-left: 5px solid #1a2a4a; border-radius: 0 6px 6px 0; }
-        .wichtig-label { font-size: 14px; font-weight: 900; color: #1a2a4a; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 10px; }
-        .wichtig-text { font-size: 14px; color: #333; line-height: 1.7; }
-        .wichtig-text u { text-underline-offset: 3px; }
-        .wichtig-paragraph { font-size: 12px; color: #1a2a4a; font-weight: 700; margin-top: 8px; }
-        .tipp-text { font-size: 13px; color: #888; margin-top: 14px; font-style: italic; }
+        /* BILANZ */
+        .bilanz-block{background:#1a2a4a;padding:20px 14px;margin:0 -14px;}
+        .bilanz-titel{font-size:10px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.4);margin-bottom:14px;text-align:center;}
+        .bilanz-grid{display:flex;gap:0;}
+        .bilanz-item{flex:1;text-align:center;padding:0 6px;border-right:1px solid rgba(255,255,255,0.1);}
+        .bilanz-item:last-child{border-right:none;}
+        .bilanz-zahl{font-size:20px;font-weight:700;color:white;font-family:Georgia,serif;margin-bottom:3px;}
+        .bilanz-label{font-size:10px;color:rgba(255,255,255,0.45);line-height:1.4;}
 
-        /* BLOCK 3 — ANGEBOT */
-        .angebot-block { padding: 28px 0; border-bottom: 1px solid #e8e8e8; }
-        .angebot-intro { font-size: 15px; color: #1a2a4a; font-weight: 700; margin-bottom: 20px; line-height: 1.5; }
-        .preis-zeile { display: flex; align-items: baseline; gap: 12px; margin-bottom: 4px; }
-        .preis-neu { font-size: 42px; font-weight: 700; color: #1a2a4a; font-family: Georgia, serif; }
-        .preis-alt { font-size: 18px; color: #bbb; text-decoration: line-through; }
-        .preis-sub { font-size: 12px; color: #999; margin-bottom: 24px; }
-
-        /* BILD PLATZHALTER 2 — im Angebot */
-        .angebot-bild { width: 100%; aspect-ratio: 16/7; border-radius: 8px; overflow: hidden; margin: 16px 0; background: #e8e8e8; display: flex; align-items: center; justify-content: center; }
-        .angebot-bild img { width: 100%; height: 100%; object-fit: cover; }
-
-        .leistungen-liste { margin: 20px 0; }
-        .leistung-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid #f0f0f0; align-items: flex-start; }
-        .leistung-item:last-child { border-bottom: none; margin-bottom: 4px; }
-        .leistung-check { color: #1a2a4a; font-weight: 900; font-size: 16px; flex-shrink: 0; margin-top: 2px; }
-        .leistung-text { font-size: 15px; color: #333; line-height: 1.6; }
-        .leistung-text strong { color: #1a1a1a; }
-
-        .garantie-block { background: #f0fff4; border: 2px solid #27ae60; border-radius: 8px; padding: 18px 20px; margin: 20px 0; }
-        .garantie-titel { font-size: 14px; font-weight: 700; color: #27ae60; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
-        .garantie-text { font-size: 14px; color: #333; line-height: 1.6; }
-
-        .btn-kaufen { display: block; width: 100%; padding: 20px; background: #e8722a; color: white; border: none; font-size: 18px; font-weight: 700; cursor: pointer; border-radius: 6px; text-align: center; margin: 20px 0 8px; }
-        .btn-kaufen:hover { background: #d4621a; }
-
-        /* BLOCK 4 — BILANZ */
-        .bilanz-block { background: #1a2a4a; padding: 28px 20px; margin: 0 -16px; }
-        .bilanz-titel { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 20px; text-align: center; }
-        .bilanz-grid { display: flex; gap: 0; }
-        .bilanz-item { flex: 1; text-align: center; padding: 0 8px; border-right: 1px solid rgba(255,255,255,0.1); }
-        .bilanz-item:last-child { border-right: none; }
-        .bilanz-zahl { font-size: 24px; font-weight: 700; color: white; font-family: Georgia, serif; margin-bottom: 4px; }
-        .bilanz-label { font-size: 11px; color: rgba(255,255,255,0.5); line-height: 1.4; }
-
-        /* BLOCK 5 — REVIEWS */
-        .reviews-block { padding: 28px 0; border-bottom: 1px solid #e8e8e8; }
-        .reviews-titel { font-size: 13px; font-weight: 700; color: #1a2a4a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-        .review-card { background: white; border: 1px solid #e8e8e8; border-radius: 6px; padding: 14px; }
-        .review-sterne { color: #e8722a; font-size: 12px; margin-bottom: 6px; }
-        .review-text { font-size: 12px; color: #555; line-height: 1.5; margin-bottom: 8px; }
-        .review-name { font-size: 11px; color: #999; font-weight: 700; }
-
-        /* BILD PLATZHALTER 3 — nach Reviews */
-        .vertrauen-bild { width: 100%; aspect-ratio: 16/6; border-radius: 8px; overflow: hidden; margin: 20px 0; background: #e8e8e8; display: flex; align-items: center; justify-content: center; }
+        /* REVIEWS */
+        .reviews-block{padding:16px 0;border-bottom:1px solid #e8e8e8;}
+        .reviews-titel{font-size:11px;font-weight:700;color:#1a2a4a;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+        .reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;}
+        .review-card{border-radius:6px;padding:12px;}
+        .review-sterne{color:#e8722a;font-size:11px;margin-bottom:4px;}
+        .review-text{font-size:11px;color:#555;line-height:1.4;margin-bottom:6px;}
+        .review-name{font-size:10px;color:#999;font-weight:700;}
 
         /* FAQ */
-        .faq-block { padding: 28px 0; }
-        .faq-titel { font-size: 13px; font-weight: 700; color: #1a2a4a; margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
-        .faq-item { border-bottom: 1px solid #f0f0f0; }
-        .faq-frage { width: 100%; text-align: left; background: none; border: none; padding: 14px 0; font-size: 14px; font-weight: 600; color: #1a1a1a; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 12px; }
-        .faq-icon { font-size: 18px; color: #999; flex-shrink: 0; transition: transform 0.2s; }
-        .faq-antwort { display: none; padding: 0 0 14px; font-size: 14px; color: #555; line-height: 1.7; }
-        .faq-item.offen .faq-antwort { display: block; }
-        .faq-item.offen .faq-icon { transform: rotate(45deg); }
+        .faq-block{padding:16px 0;}
+        .faq-titel{font-size:11px;font-weight:700;color:#1a2a4a;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;}
+        .faq-item{border-bottom:1px solid #f0f0f0;}
+        .faq-frage{width:100%;text-align:left;background:none;border:none;padding:12px 0;font-size:14px;font-weight:600;color:#1a1a1a;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;}
+        .faq-icon{font-size:16px;color:#999;flex-shrink:0;transition:transform 0.2s;}
+        .faq-antwort{display:none;padding:0 0 12px;font-size:13px;color:#555;line-height:1.6;}
+        .faq-item.offen .faq-antwort{display:block;}
+        .faq-item.offen .faq-icon{transform:rotate(45deg);}
 
         /* Modal */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.6); z-index: 200; align-items: center; justify-content: center; padding: 16px; }
-        .modal-overlay.aktiv { display: flex; }
-        .modal { background: white; padding: 32px 24px; max-width: 400px; width: 100%; border-radius: 8px; }
-        .modal h2 { font-size: 20px; margin-bottom: 8px; }
-        .modal-sub { font-size: 13px; color: #555; margin-bottom: 24px; line-height: 1.6; }
-        .modal-input { width: 100%; padding: 14px 16px; border: 2px solid #d0d0d0; border-radius: 6px; font-size: 15px; outline: none; margin-bottom: 12px; }
-        .modal-input:focus { border-color: #1a2a4a; }
-        .btn-modal { width: 100%; padding: 16px; background: #1a2a4a; color: white; border: none; font-size: 14px; font-weight: 700; cursor: pointer; border-radius: 4px; }
-        .modal-skip { width: 100%; padding: 12px; background: none; border: 1px solid #e8e8e8; color: #999; font-size: 13px; cursor: pointer; border-radius: 4px; margin-top: 10px; }
-        .modal-error { font-size: 13px; color: #c0392b; margin-top: 8px; display: none; }
+        .modal-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.6);z-index:200;align-items:center;justify-content:center;padding:16px;}
+        .modal-overlay.aktiv{display:flex;}
+        .modal{background:white;padding:28px 20px;max-width:400px;width:100%;border-radius:8px;}
+        .modal h2{font-size:18px;margin-bottom:6px;}
+        .modal-sub{font-size:13px;color:#555;margin-bottom:20px;line-height:1.5;}
+        .modal-input{width:100%;padding:12px 14px;border:2px solid #d0d0d0;border-radius:6px;font-size:14px;outline:none;margin-bottom:10px;}
+        .modal-input:focus{border-color:#1a2a4a;}
+        .btn-modal{width:100%;padding:14px;background:#1a2a4a;color:white;border:none;font-size:14px;font-weight:700;cursor:pointer;border-radius:4px;}
+        .modal-skip{width:100%;padding:10px;background:none;border:1px solid #e8e8e8;color:#999;font-size:13px;cursor:pointer;border-radius:4px;margin-top:8px;}
+        .modal-error{font-size:13px;color:#c0392b;margin-top:6px;display:none;}
 
         /* Nach Kauf */
-        .nach-kauf { display: none; }
-        .nach-kauf-block { padding: 28px 0; border-bottom: 1px solid #e8e8e8; }
-        .nach-kauf-titel { font-size: 16px; font-weight: 700; color: #1a2a4a; margin-bottom: 14px; }
-        .brief-text { font-size: 14px; line-height: 1.9; color: #333; white-space: pre-wrap; }
-        .platzhalter-hinweis { background: #f5f0eb; border-left: 4px solid #e8722a; padding: 14px 16px; margin-top: 16px; font-size: 13px; color: #444; line-height: 1.7; border-radius: 0 4px 4px 0; }
-        .download-btn { width: 100%; padding: 14px; background: #1a2a4a; color: white; border: none; font-size: 12px; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 20px; border-radius: 4px; display: none; }
-        .fehler-item-echt { padding: 14px 0; border-bottom: 1px solid #f0f0f0; }
-        .fehler-item-echt:last-child { border-bottom: none; }
-        .fehler-kopf { display: flex; align-items: center; gap: 8px; margin-bottom: 6px; flex-wrap: wrap; }
-        .fehler-badge { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; padding: 3px 8px; border-radius: 2px; }
-        .fehler-badge.kritisch { background: #fff0f0; color: #c0392b; }
-        .fehler-badge.mittel { background: #fff8f0; color: #d35400; }
-        .fehler-badge.gering { background: #f0f8ff; color: #2980b9; }
-        .fehler-paragraph { font-size: 11px; color: #999; }
-        .fehler-titel { font-size: 15px; margin-bottom: 6px; font-family: Georgia, serif; }
-        .fehler-erklaerung { font-size: 13px; color: #555; line-height: 1.7; }
-        .empfehlung-item { padding: 12px 0; border-bottom: 1px solid #f5f5f5; display: flex; gap: 14px; }
-        .empfehlung-item:last-child { border-bottom: none; }
-        .empfehlung-nr { font-size: 20px; font-weight: 700; color: #1a2a4a; flex-shrink: 0; min-width: 28px; }
-        .empfehlung-text { font-size: 14px; line-height: 1.7; color: #333; }
-        .trick-box { background: #f5f0eb; border-left: 4px solid #1a2a4a; padding: 18px 20px; margin: 16px 0; }
-        .trick-titel { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: #1a2a4a; margin-bottom: 8px; font-weight: 700; }
-        .trick-text { font-size: 13px; color: #444; line-height: 1.8; }
-        .teilen-box { background: #1a2a4a; padding: 28px 24px; border-radius: 8px; margin-top: 20px; text-align: center; }
-        .teilen-box h3 { font-size: 18px; color: white; margin-bottom: 8px; font-family: Georgia, serif; }
-        .teilen-box p { font-size: 13px; color: rgba(255,255,255,0.7); margin-bottom: 20px; line-height: 1.6; }
-        .teilen-link-box { background: rgba(255,255,255,0.1); border-radius: 6px; padding: 12px 16px; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
-        .teilen-link-text { font-size: 12px; color: white; flex: 1; word-break: break-all; }
-        .teilen-link-copy { background: #e8722a; color: white; border: none; padding: 8px 14px; border-radius: 4px; font-size: 12px; font-weight: 700; cursor: pointer; flex-shrink: 0; }
-        .teilen-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
-        .teilen-btn { padding: 12px 20px; border: none; border-radius: 6px; font-size: 13px; font-weight: 700; cursor: pointer; }
-        .teilen-btn-wa { background: #25D366; color: white; }
-        .teilen-btn-copy { background: rgba(255,255,255,0.2); color: white; }
+        .nach-kauf{display:none;}
+        .nach-kauf-block{padding:20px 0;border-bottom:1px solid #e8e8e8;}
+        .nach-kauf-titel{font-size:15px;font-weight:700;color:#1a2a4a;margin-bottom:12px;}
+        .brief-text{font-size:14px;line-height:1.9;color:#333;white-space:pre-wrap;}
+        .platzhalter-hinweis{background:#f5f0eb;border-left:4px solid #e8722a;padding:12px 14px;margin-top:12px;font-size:13px;color:#444;line-height:1.6;}
+        .download-btn{width:100%;padding:12px;background:#1a2a4a;color:white;border:none;font-size:12px;letter-spacing:2px;text-transform:uppercase;cursor:pointer;margin-top:16px;border-radius:4px;display:none;}
+        .fehler-item-echt{padding:12px 0;border-bottom:1px solid #f0f0f0;}
+        .fehler-item-echt:last-child{border-bottom:none;}
+        .fehler-kopf{display:flex;align-items:center;gap:8px;margin-bottom:4px;flex-wrap:wrap;}
+        .fehler-badge{font-size:10px;letter-spacing:2px;text-transform:uppercase;padding:2px 7px;border-radius:2px;}
+        .fehler-badge.kritisch{background:#fff0f0;color:#c0392b;}
+        .fehler-badge.mittel{background:#fff8f0;color:#d35400;}
+        .fehler-badge.gering{background:#f0f8ff;color:#2980b9;}
+        .fehler-paragraph{font-size:11px;color:#999;}
+        .fehler-titel{font-size:14px;margin-bottom:4px;font-family:Georgia,serif;}
+        .fehler-erklaerung{font-size:13px;color:#555;line-height:1.6;}
+        .empfehlung-item{padding:10px 0;border-bottom:1px solid #f5f5f5;display:flex;gap:12px;}
+        .empfehlung-item:last-child{border-bottom:none;}
+        .empfehlung-nr{font-size:18px;font-weight:700;color:#1a2a4a;flex-shrink:0;min-width:24px;}
+        .empfehlung-text{font-size:14px;line-height:1.6;color:#333;}
+        .trick-box{background:#f5f0eb;border-left:4px solid #1a2a4a;padding:14px 16px;margin:12px 0;}
+        .trick-titel{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#1a2a4a;margin-bottom:6px;font-weight:700;}
+        .trick-text{font-size:13px;color:#444;line-height:1.7;}
+        .teilen-box{background:#1a2a4a;padding:24px 20px;border-radius:8px;margin-top:16px;text-align:center;}
+        .teilen-box h3{font-size:17px;color:white;margin-bottom:6px;font-family:Georgia,serif;}
+        .teilen-box p{font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:16px;line-height:1.5;}
+        .teilen-link-box{background:rgba(255,255,255,0.1);border-radius:6px;padding:10px 14px;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
+        .teilen-link-text{font-size:11px;color:white;flex:1;word-break:break-all;}
+        .teilen-link-copy{background:#e8722a;color:white;border:none;padding:7px 12px;border-radius:4px;font-size:11px;font-weight:700;cursor:pointer;flex-shrink:0;}
+        .teilen-buttons{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;}
+        .teilen-btn{padding:10px 18px;border:none;border-radius:6px;font-size:13px;font-weight:700;cursor:pointer;}
+        .teilen-btn-wa{background:#25D366;color:white;}
+        .teilen-btn-copy{background:rgba(255,255,255,0.2);color:white;}
 
-        .loading-box { text-align: center; padding: 40px; display: none; }
-        .loading-spinner { width: 48px; height: 48px; border: 4px solid #e8e8e8; border-top-color: #1a2a4a; border-radius: 50%; animation: spin 0.9s linear infinite; margin: 0 auto 16px; }
-        @keyframes spin { to { transform: rotate(360deg); } }
-        .loading-text { font-size: 13px; color: #555; font-weight: 600; }
+        .loading-box{text-align:center;padding:40px;display:none;}
+        .loading-spinner{width:44px;height:44px;border:4px solid #e8e8e8;border-top-color:#1a2a4a;border-radius:50%;animation:spin 0.9s linear infinite;margin:0 auto 14px;}
+        @keyframes spin{to{transform:rotate(360deg);}}
+        .loading-text{font-size:13px;color:#555;font-weight:600;}
 
-        @media (min-width: 768px) {
-            .seite { padding: 0 24px 100px; }
-            .bilanz-block { margin: 0 -24px; padding: 36px 24px; }
+        @media(min-width:768px){
+            .seite{padding:0 20px 80px;}
+            .bilanz-block{margin:0 -20px;padding:24px 20px;}
         }
     </style>
 </head>
 <body>
-
-<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7CQ4GL"
-height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-WD7CQ4GL" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 <div class="modal-overlay" id="accountModal">
     <div class="modal">
@@ -226,108 +195,68 @@ const fehler = analyse?.fehler || [];
 const maengel = analyse?.maengelArgumente || [];
 const urteil = analyse?.gesamturteil || '';
 
-function track(e, p) {
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event: e, ...p });
-    if (typeof gtag !== 'undefined') gtag('event', e, p || {});
-}
-track('ergebnis_gesehen', { fall_typ: dokumentTyp });
+function track(e,p){window.dataLayer=window.dataLayer||[];window.dataLayer.push({event:e,...p});if(typeof gtag!=='undefined')gtag('event',e,p||{});}
+track('ergebnis_gesehen',{fall_typ:dokumentTyp});
 
-const erhoehungEuro = parseFloat(analyse?.erhoehung_euro) || parseFloat(nutzerdaten.erhoehungEuro) || 0;
-const aktuelleMinete = parseFloat(analyse?.aktuelle_miete) || parseFloat(nutzerdaten.aktuelleMinete) || 0;
-const istUnzulaessig = urteil.includes('NICHT') || urteil === 'NICHT ZULÄSSIG' || urteil.includes('ANFECHTBAR');
+const erhoehungEuro = parseFloat(analyse?.erhoehung_euro)||parseFloat(nutzerdaten.erhoehungEuro)||0;
+const istUnzulaessig = urteil.includes('NICHT')||urteil==='NICHT ZULÄSSIG'||urteil.includes('ANFECHTBAR');
 const fehlerAnzahl = fehler.length;
 
-// Echte Fehler nach Kauf
-const echterFehlerHTML = fehler.map(f => {
-    const b = f.schwere === 'KRITISCH' ? 'kritisch' : f.schwere === 'MITTEL' ? 'mittel' : 'gering';
+const echterFehlerHTML = fehler.map(f=>{
+    const b=f.schwere==='KRITISCH'?'kritisch':f.schwere==='MITTEL'?'mittel':'gering';
     return `<div class="fehler-item-echt"><div class="fehler-kopf"><span class="fehler-badge ${b}">${f.schwere}</span><span class="fehler-paragraph">${f.paragraph||''}</span></div><div class="fehler-titel">${f.typ||''}</div><div class="fehler-erklaerung">${f.erklaerung||''}</div></div>`;
-}).join('') || '<p style="font-size:14px;color:#555;">Analyse abgeschlossen.</p>';
+}).join('')||'<p style="font-size:14px;color:#555;">Analyse abgeschlossen.</p>';
 
-const maengelHTML = maengel.length > 0
-    ? `<div style="margin-top:16px;padding-top:16px;border-top:1px solid #f0f0f0;">
-        <div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:12px;">Ihre Gegenargumente</div>
-        ${maengel.map(m=>`<div class="fehler-item-echt"><div class="fehler-kopf"><span class="fehler-badge mittel">${m.staerke||'MITTEL'}</span></div><div class="fehler-titel">${m.mangel||''}</div><div class="fehler-erklaerung">Mietminderungsrecht: bis zu ${m.minderungsrecht||'X'}%</div></div>`).join('')}
-       </div>` : '';
+const maengelHTML = maengel.length>0?`<div style="margin-top:14px;padding-top:14px;border-top:1px solid #f0f0f0;"><div style="font-size:10px;letter-spacing:2px;text-transform:uppercase;color:#999;margin-bottom:10px;">Ihre Gegenargumente</div>${maengel.map(m=>`<div class="fehler-item-echt"><div class="fehler-kopf"><span class="fehler-badge mittel">${m.staerke||'MITTEL'}</span></div><div class="fehler-titel">${m.mangel||''}</div><div class="fehler-erklaerung">Mietminderungsrecht: bis zu ${m.minderungsrecht||'X'}%</div></div>`).join('')}</div>`:'';
 
-const accountData = JSON.parse(localStorage.getItem('mietcheck_account') || '{}');
-const affiliateCode = accountData.email ? btoa(accountData.email).replace(/=/g,'').substring(0,8) : 'SHARE';
+const accountData = JSON.parse(localStorage.getItem('mietcheck_account')||'{}');
+const affiliateCode = accountData.email?btoa(accountData.email).replace(/=/g,'').substring(0,8):'SHARE';
 const affiliateLink = `https://miethilfe-online.xyz/?ref=${affiliateCode}`;
-const platzhalterHinweis = modus === 'fragebogen'
-    ? `<div class="platzhalter-hinweis"><strong>Bitte beachten:</strong> Der Brief enthält Platzhalter wie <strong>[Ihr Name]</strong> und <strong>[Ihre Adresse]</strong>. Bitte ersetzen Sie diese vor dem Versenden.</div>` : '';
+const platzhalterHinweis = modus==='fragebogen'?`<div class="platzhalter-hinweis"><strong>Bitte beachten:</strong> Der Brief enthält Platzhalter wie <strong>[Ihr Name]</strong> und <strong>[Ihre Adresse]</strong>. Bitte vor dem Versenden ersetzen.</div>`:'';
 
-const faqDaten = [
-    { f: 'Was genau bekomme ich nach dem Kauf?', a: 'Sie erhalten sofort einen fertigen Widerspruchsbrief — aufgesetzt nach anwaltlichen Standards, versandfertig. Dazu die vollständige Erklärung der gefundenen Probleme und drei weitere Widersprüche für den Fall dass Ihr Vermieter erneut schreibt.' },
-    { f: 'Ist das Schreiben wirklich rechtlich wirksam?', a: 'Ja. MietHilfe wurde gemeinsam mit erfahrenen Mietrechtsanwälten entwickelt. Die Schreiben basieren auf bewährten juristischen Vorlagen die für den deutschen Mietrechtsmarkt optimiert wurden.' },
-    { f: 'Was passiert wenn mein Vermieter trotzdem klagt?', a: 'Das passiert in weniger als 5% der Fälle. Sollte es soweit kommen und unser Schreiben hat keine Wirkung gezeigt, erhalten Sie jeden Euro zurück — das ist unsere Garantie.' },
-    { f: 'Kann ich nicht einfach selbst widersprechen?', a: 'Technisch ja — aber ein formell falscher Widerspruch ist rechtlich wirkungslos. §558b BGB setzt klare Anforderungen. Ein falsch formuliertes Schreiben kann Ihr Recht sogar gefährden.' },
-    { f: 'Wann muss ich handeln?', a: 'Sie haben bis zum Ende des zweiten Kalendermonats nach Zugang des Schreibens Zeit. Danach gilt die Mieterhöhung als akzeptiert — auch ohne Unterschrift.' }
+const faqDaten=[
+    {f:'Was genau bekomme ich nach dem Kauf?',a:'Sie erhalten sofort einen fertigen Widerspruchsbrief nach anwaltlichen Standards — versandfertig. Dazu die vollständige Erklärung der Probleme und drei weitere Widersprüche für den Fall dass Ihr Vermieter erneut schreibt.'},
+    {f:'Ist das Schreiben rechtlich wirksam?',a:'Ja. MietHilfe wurde gemeinsam mit erfahrenen Mietrechtsanwälten entwickelt. Die Schreiben basieren auf bewährten juristischen Vorlagen die für den deutschen Mietrechtsmarkt optimiert wurden.'},
+    {f:'Was passiert wenn mein Vermieter trotzdem klagt?',a:'Das passiert in weniger als 5% der Fälle. Sollte unser Schreiben keine Wirkung gezeigt haben, erhalten Sie jeden Euro zurück.'},
+    {f:'Kann ich nicht selbst widersprechen?',a:'Technisch ja — aber ein formell falscher Widerspruch ist rechtlich wirkungslos. §558b BGB setzt klare Anforderungen. Ein falsches Schreiben kann Ihr Recht sogar gefährden.'},
+    {f:'Wann muss ich handeln?',a:'Sie haben bis zum Ende des zweiten Kalendermonats nach Zugang des Schreibens Zeit. Danach gilt die Mieterhöhung als akzeptiert — auch ohne Unterschrift.'}
 ];
 
 document.getElementById('content').innerHTML = `
 
-    <!-- BLOCK 1: URTEIL -->
+    <!-- URTEIL -->
     <div class="urteil-block">
-        <div class="urteil-highlight ${istUnzulaessig ? 'rot' : 'gruen'}">
-            <div class="urteil-label ${istUnzulaessig ? 'rot' : 'gruen'}">${istUnzulaessig ? 'Nicht zulässig' : 'Prüfenswert'}</div>
-            <div class="urteil-titel">${istUnzulaessig
-                ? `Die Mieterhöhung Ihres Vermieters ist nicht zulässig.`
-                : `Die Mieterhöhung ist prüfenswert.`
-            }</div>
-            <div class="urteil-sub">${istUnzulaessig && fehlerAnzahl > 0
-                ? `Wir haben ${fehlerAnzahl} Problem${fehlerAnzahl > 1 ? 'e' : ''} gefunden.${erhoehungEuro > 0 ? ` Sie müssen der Forderung, die Miete um ${erhoehungEuro.toFixed(0)} € zu erhöhen, nicht nachkommen.` : ' Sie müssen dieser Forderung nicht nachkommen.'}`
-                : `Wir haben Gegenargumente gefunden die Ihre Position stärken.`
-            }</div>
+        <div class="urteil-highlight ${istUnzulaessig?'rot':'gruen'}">
+            <div class="urteil-label ${istUnzulaessig?'rot':'gruen'}">${istUnzulaessig?'Nicht zulässig':'Prüfenswert'}</div>
+            <div class="urteil-titel">${istUnzulaessig?'Die Mieterhöhung ist unzulässig.':'Die Mieterhöhung ist prüfenswert.'}</div>
+            <div class="urteil-sub">${istUnzulaessig&&fehlerAnzahl>0?`Wir haben ${fehlerAnzahl} Problem${fehlerAnzahl>1?'e':''} gefunden.${erhoehungEuro>0?` Sie müssen die Erhöhung um ${erhoehungEuro.toFixed(0)} € nicht zahlen.`:' Sie müssen nicht zahlen.'}`:'Wir haben Gegenargumente gefunden die Ihre Position stärken.'}</div>
         </div>
-
-        <!-- BILDPLATZHALTER 1: Hier könnte ein Bild eines erleichterten Mieters stehen -->
-        <!-- IDEE: Älteres Paar das erleichtert auf ein Dokument schaut — vermittelt "das Problem ist lösbar" -->
-        <!-- FORMAT: 16:9, warm, realistisch, kein Stock-Photo-Look -->
-        <!-- <div class="bild-platzhalter" style="aspect-ratio:16/9">
-            <img src="BILD_URL" alt="Erleichterung nach Mietprüfung" onerror="this.parentElement.style.display='none'">
-        </div> -->
     </div>
 
-    <!-- BLOCK 2: HANDELN -->
+    <!-- HANDELN -->
     <div class="handeln-block">
         <div class="aber-headline">Aber:</div>
-        <div class="handeln-text">
-            Sie müssen <u>fristgerecht und formell korrekt</u> Widerspruch einlegen.
-            Ohne schriftliche Reaktion gilt die Erhöhung als akzeptiert —
-            auch wenn sie falsch ist.
-        </div>
-
+        <div class="handeln-text">Sie müssen <u>fristgerecht und schriftlich</u> Widerspruch einlegen — sonst gilt die Erhöhung als akzeptiert.</div>
         <div class="wichtig-block">
             <div class="wichtig-label">Wichtig:</div>
-            <div class="wichtig-text">
-                Es wird dringend abgeraten, dieses Schreiben <u>selbst zu verfassen</u>.
-                Ein Widerspruch ohne die <u>richtigen juristischen Formulierungen</u>
-                ist vor Gericht oft wirkungslos — der Vermieter kann ihn ignorieren
-                oder das Verfahren trotzdem gewinnen.
-            </div>
-            <div class="wichtig-paragraph">Rechtsgrundlage: §558b BGB — Anforderungen an den Widerspruch</div>
+            <div class="wichtig-text">Schreiben Sie den Widerspruch <u>nicht selbst</u>. Ohne die richtigen <u>juristischen Formulierungen</u> ist er vor Gericht wirkungslos. <span class="wichtig-paragraph">§558b BGB</span></div>
         </div>
-
-        <div class="tipp-text">Kleiner Tipp: Ein Anwalt kostet Sie mehr als die geforderte Mieterhöhung.</div>
+        <div class="tipp-text">Tipp: Ein Anwalt kostet mehr als die geforderte Mieterhöhung.</div>
     </div>
 
-    <!-- BLOCK 3: ANGEBOT -->
+    <!-- ANGEBOT -->
     <div class="angebot-block" id="preiseBox">
-        <div class="angebot-intro">Deswegen vertrauen über 13.000 Mieter auf MietHilfe — eine gemeinsam mit 6 Großkanzleien entwickelte Software.</div>
-
-        <!-- BILDPLATZHALTER 2: Hier könnte ein Bild des fertigen Briefes / der Software stehen -->
-        <!-- IDEE: Screenshot oder Mockup des Widerspruchsbriefes — leicht verpixelt — zeigt was der Nutzer bekommt -->
-        <!-- FORMAT: 16:7 quer, professionell, zeigt Dokument-Charakter -->
-        <!-- <div class="angebot-bild">
-            <img src="BILD_URL" alt="MietHilfe Widerspruchsbrief" onerror="this.parentElement.style.display='none'">
-        </div> -->
-
-        <div class="preis-zeile">
-            <div class="preis-neu">39,45 €</div>
-            <div class="preis-alt">49,45 €</div>
+        <div class="angebot-intro">
+            <div class="logo-kreis-small">M</div>
+            Deswegen vertrauen über 13.000 Mieter auf MietHilfe.
         </div>
-        <div class="preis-sub">Einmalig · Kein Abo · Sofort verfügbar</div>
 
+        <!-- Bild nach Intro -->
+        <div class="angebot-bild">
+            <img src="https://i.imgur.com/QANPLHJ.jpg" alt="MietHilfe" onerror="this.parentElement.style.display='none'">
+        </div>
+
+        <div class="leistungen-titel">Unsere Sofort-Hilfe beinhaltet:</div>
         <div class="leistungen-liste">
             <div class="leistung-item">
                 <span class="leistung-check">✓</span>
@@ -344,69 +273,64 @@ document.getElementById('content').innerHTML = `
         </div>
 
         <button class="btn-kaufen" onclick="kaufKlick()">Freischalten · 39,45 €</button>
+        <div class="btn-sub">
+            <span class="btn-sub-item">Einmalig</span>
+            <span class="btn-sub-item">Kein Abo</span>
+            <span class="btn-sub-item">Geld-zurück-Garantie</span>
+        </div>
 
         <div class="garantie-block">
+            <div class="garantie-badge">Weniger als 2% haben davon gebraucht</div>
             <div class="garantie-titel">Geld-zurück-Garantie</div>
             <div class="garantie-text">Wenn unser Schreiben die Mieterhöhung nicht verzögert oder abwendet — erhalten Sie jeden Euro zurück. Kein Risiko, kein Kleingedrucktes.</div>
         </div>
     </div>
 
-    <!-- BLOCK 4: BILANZ -->
+    <!-- BILANZ -->
     <div class="bilanz-block">
         <div class="bilanz-titel">MietHilfe Bilanz seit 2019</div>
         <div class="bilanz-grid">
             <div class="bilanz-item">
-                <div class="bilanz-zahl">13.000+</div>
-                <div class="bilanz-label">Mieterhöhungen geprüft</div>
+                <div class="bilanz-zahl">Ø 340 €</div>
+                <div class="bilanz-label">Im Schnitt sparen unsere Kunden pro Jahr</div>
             </div>
             <div class="bilanz-item">
                 <div class="bilanz-zahl">63%</div>
                 <div class="bilanz-label">Vermieter ziehen zurück</div>
             </div>
             <div class="bilanz-item">
-                <div class="bilanz-zahl">Ø 340€</div>
-                <div class="bilanz-label">pro Jahr gespart</div>
+                <div class="bilanz-zahl">13.000+</div>
+                <div class="bilanz-label">Mieterhöhungen geprüft</div>
             </div>
         </div>
     </div>
 
-    <!-- BLOCK 5: REVIEWS -->
+    <!-- REVIEWS -->
     <div class="reviews-block">
         <div class="reviews-titel">Das sagen unsere Kunden</div>
         <div class="reviews-grid">
-            <div class="review-card" style="background:#f0f4ff;border-color:#1a2a4a22;">
+            <div class="review-card" style="background:#f0f4ff;border:1px solid #1a2a4a22;">
                 <div class="review-sterne">★★★★★</div>
-                <div class="review-text">Meine Mieterhöhung wurde zurückgezogen. Schnell und unkompliziert.</div>
+                <div class="review-text">Mieterhöhung zurückgezogen. Schnell und unkompliziert.</div>
                 <div class="review-name">Nicole S., Berlin</div>
             </div>
-            <div class="review-card" style="background:#fff8f0;border-color:#e8722a22;">
+            <div class="review-card" style="background:#fff8f0;border:1px solid #e8722a22;">
                 <div class="review-sterne">★★★★★</div>
-                <div class="review-text">Vermieter hat nach zwei Wochen aufgegeben. 960 Euro im Jahr gespart.</div>
+                <div class="review-text">Vermieter hat aufgegeben. 960 Euro im Jahr gespart.</div>
                 <div class="review-name">Thomas B., Hamburg</div>
             </div>
-            <div class="review-card" style="background:#f0fff4;border-color:#27ae6022;">
+            <div class="review-card" style="background:#f0fff4;border:1px solid #27ae6022;">
                 <div class="review-sterne">★★★★★</div>
-                <div class="review-text">Einfach, schnell, günstig. Hätte nie gedacht dass das so unkompliziert geht.</div>
+                <div class="review-text">Einfach und günstig. Hätte nie gedacht dass das so geht.</div>
                 <div class="review-name">Michael T., München</div>
             </div>
         </div>
-
-        <!-- BILDPLATZHALTER 3: Vertrauens-Element nach Reviews -->
-        <!-- IDEE: Logos der Kanzleien oder ein "Entwickelt mit Anwälten" Badge-Bild -->
-        <!-- FORMAT: 16:4 quer, sehr breit und flach, professionell -->
-        <!-- <div class="vertrauen-bild">
-            <img src="BILD_URL" alt="Entwickelt mit deutschen Mietrechtsanwälten" onerror="this.parentElement.style.display='none'">
-        </div> -->
     </div>
 
     <!-- FAQ -->
     <div class="faq-block">
         <div class="faq-titel">Häufige Fragen</div>
-        ${faqDaten.map((faq, i) => `
-        <div class="faq-item" id="faq${i}">
-            <button class="faq-frage" onclick="toggleFaq(${i})">${faq.f}<span class="faq-icon">+</span></button>
-            <div class="faq-antwort">${faq.a}</div>
-        </div>`).join('')}
+        ${faqDaten.map((faq,i)=>`<div class="faq-item" id="faq${i}"><button class="faq-frage" onclick="toggleFaq(${i})">${faq.f}<span class="faq-icon">+</span></button><div class="faq-antwort">${faq.a}</div></div>`).join('')}
     </div>
 
     <div class="loading-box" id="briefLoading">
@@ -455,103 +379,65 @@ document.getElementById('content').innerHTML = `
     </div>
 `;
 
-function toggleFaq(i) {
-    const item = document.getElementById('faq' + i);
-    const wasOffen = item.classList.contains('offen');
-    document.querySelectorAll('.faq-item').forEach(el => el.classList.remove('offen'));
-    if (!wasOffen) item.classList.add('offen');
+function toggleFaq(i){const item=document.getElementById('faq'+i);const wasOffen=item.classList.contains('offen');document.querySelectorAll('.faq-item').forEach(el=>el.classList.remove('offen'));if(!wasOffen)item.classList.add('offen');}
+
+async function kaufKlick(){
+    track('kauf_geklickt',{fall_typ:dokumentTyp});
+    const btn=document.querySelector('.btn-kaufen');
+    btn.textContent='Wird weitergeleitet...';btn.disabled=true;
+    try{
+        const res=await fetch('/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({analyseErgebnis:data.ergebnis,nutzerdaten})});
+        const session=await res.json();
+        if(session.error)throw new Error(session.error);
+        localStorage.setItem('pending_analyse',JSON.stringify(data));
+        localStorage.setItem('pending_nutzerdaten',JSON.stringify(nutzerdaten));
+        await stripe.redirectToCheckout({sessionId:session.id});
+    }catch(e){btn.textContent='Freischalten · 39,45 €';btn.disabled=false;alert('Fehler. Bitte erneut versuchen.');}
 }
 
-async function kaufKlick() {
-    track('kauf_geklickt', { fall_typ: dokumentTyp });
-    const btn = document.querySelector('.btn-kaufen');
-    btn.textContent = 'Wird weitergeleitet...';
-    btn.disabled = true;
-    try {
-        const res = await fetch('/create-checkout', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ analyseErgebnis: data.ergebnis, nutzerdaten })
-        });
-        const session = await res.json();
-        if (session.error) throw new Error(session.error);
-        localStorage.setItem('pending_analyse', JSON.stringify(data));
-        localStorage.setItem('pending_nutzerdaten', JSON.stringify(nutzerdaten));
-        await stripe.redirectToCheckout({ sessionId: session.id });
-    } catch(e) {
-        btn.textContent = 'Freischalten · 39,45 €';
-        btn.disabled = false;
-        alert('Fehler. Bitte erneut versuchen.');
-    }
-}
-
-const urlParams = new URLSearchParams(window.location.search);
-if (urlParams.get('success') === 'true') {
-    document.getElementById('preiseBox').style.display = 'none';
-    document.getElementById('briefLoading').style.display = 'block';
-    const pendingAnalyse = localStorage.getItem('pending_analyse');
-    const pendingNutzer = localStorage.getItem('pending_nutzerdaten');
-    if (pendingAnalyse) {
-        const pData = JSON.parse(pendingAnalyse);
-        const pNutzer = JSON.parse(pendingNutzer) || {};
-        fetch('/generate-brief', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ analyseErgebnis: pData.ergebnis, nutzerdaten: pNutzer })
-        }).then(r => r.json()).then(briefData => {
-            document.getElementById('briefLoading').style.display = 'none';
-            document.getElementById('briefText').textContent = briefData.brief;
-            document.getElementById('nachKauf').style.display = 'block';
-            document.getElementById('downloadBtn').style.display = 'block';
-            document.getElementById('nachKauf').scrollIntoView({ behavior: 'smooth' });
-            track('kauf_abgeschlossen', { fall_typ: dokumentTyp, wert: 39.45 });
+const urlParams=new URLSearchParams(window.location.search);
+if(urlParams.get('success')==='true'){
+    document.getElementById('preiseBox').style.display='none';
+    document.getElementById('briefLoading').style.display='block';
+    const pendingAnalyse=localStorage.getItem('pending_analyse');
+    const pendingNutzer=localStorage.getItem('pending_nutzerdaten');
+    if(pendingAnalyse){
+        const pData=JSON.parse(pendingAnalyse);
+        const pNutzer=JSON.parse(pendingNutzer)||{};
+        fetch('/generate-brief',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({analyseErgebnis:pData.ergebnis,nutzerdaten:pNutzer})})
+        .then(r=>r.json()).then(briefData=>{
+            document.getElementById('briefLoading').style.display='none';
+            document.getElementById('briefText').textContent=briefData.brief;
+            document.getElementById('nachKauf').style.display='block';
+            document.getElementById('downloadBtn').style.display='block';
+            document.getElementById('nachKauf').scrollIntoView({behavior:'smooth'});
+            track('kauf_abgeschlossen',{fall_typ:dokumentTyp,wert:39.45});
             localStorage.removeItem('pending_analyse');
             localStorage.removeItem('pending_nutzerdaten');
-            setTimeout(() => { document.getElementById('accountModal').classList.add('aktiv'); }, 2000);
-        }).catch(() => {
-            document.getElementById('briefLoading').style.display = 'none';
-            alert('Fehler beim Erstellen des Briefes.');
-        });
+            setTimeout(()=>{document.getElementById('accountModal').classList.add('aktiv');},2000);
+        }).catch(()=>{document.getElementById('briefLoading').style.display='none';alert('Fehler beim Erstellen des Briefes.');});
     }
 }
 
-async function accountErstellen() {
-    const email = document.getElementById('accountEmail').value;
-    const passwort = document.getElementById('accountPasswort').value;
-    const errorEl = document.getElementById('accountError');
-    errorEl.style.display = 'none';
-    if (!email || !passwort) { errorEl.textContent = 'Bitte Email und Passwort eingeben.'; errorEl.style.display = 'block'; return; }
-    if (passwort.length < 6) { errorEl.textContent = 'Passwort mind. 6 Zeichen.'; errorEl.style.display = 'block'; return; }
-    try {
-        const res = await fetch('/register', { method: 'POST', headers: {'Content-Type':'application/json'}, body: JSON.stringify({ email, passwort }) });
-        const d = await res.json();
-        if (d.success || d.fehler === 'Email bereits registriert') {
-            localStorage.setItem('mietcheck_account', JSON.stringify({ email }));
-            modalSchliessen();
-        } else { errorEl.textContent = d.fehler || 'Fehler.'; errorEl.style.display = 'block'; }
-    } catch(e) { modalSchliessen(); }
+async function accountErstellen(){
+    const email=document.getElementById('accountEmail').value;
+    const passwort=document.getElementById('accountPasswort').value;
+    const errorEl=document.getElementById('accountError');
+    errorEl.style.display='none';
+    if(!email||!passwort){errorEl.textContent='Bitte Email und Passwort eingeben.';errorEl.style.display='block';return;}
+    if(passwort.length<6){errorEl.textContent='Passwort mind. 6 Zeichen.';errorEl.style.display='block';return;}
+    try{
+        const res=await fetch('/register',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,passwort})});
+        const d=await res.json();
+        if(d.success||d.fehler==='Email bereits registriert'){localStorage.setItem('mietcheck_account',JSON.stringify({email}));modalSchliessen();}
+        else{errorEl.textContent=d.fehler||'Fehler.';errorEl.style.display='block';}
+    }catch(e){modalSchliessen();}
 }
 
-function modalSchliessen() { document.getElementById('accountModal').classList.remove('aktiv'); }
-
-function downloadBrief() {
-    const text = document.getElementById('briefText').textContent;
-    const blob = new Blob([text], { type: 'text/plain;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url; a.download = 'MietHilfe_Widerspruch.txt';
-    document.body.appendChild(a); a.click();
-    document.body.removeChild(a); URL.revokeObjectURL(url);
-}
-
-function kopiereLink() {
-    navigator.clipboard.writeText(affiliateLink).then(() => alert('Link kopiert!'));
-}
-
-function teileWhatsApp() {
-    const text = encodeURIComponent(`Ich habe meine Mieterhöhung mit MietHilfe geprüft. Prüf deine auch kostenlos: ${affiliateLink}`);
-    window.open(`https://wa.me/?text=${text}`, '_blank');
-}
+function modalSchliessen(){document.getElementById('accountModal').classList.remove('aktiv');}
+function downloadBrief(){const text=document.getElementById('briefText').textContent;const blob=new Blob([text],{type:'text/plain;charset=utf-8'});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='MietHilfe_Widerspruch.txt';document.body.appendChild(a);a.click();document.body.removeChild(a);URL.revokeObjectURL(url);}
+function kopiereLink(){navigator.clipboard.writeText(affiliateLink).then(()=>alert('Link kopiert!'));}
+function teileWhatsApp(){const text=encodeURIComponent(`Ich habe meine Mieterhöhung mit MietHilfe geprüft. Prüf deine auch kostenlos: ${affiliateLink}`);window.open(`https://wa.me/?text=${text}`,'_blank');}
 </script>
 </body>
 </html>
