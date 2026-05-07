@@ -248,28 +248,15 @@ document.getElementById('content').innerHTML = `
         <div class="urteil-inner ${istUnzulaessig?'':'gruen'}">
             <div class="urteil-left">
                 <div class="urteil-label ${istUnzulaessig?'':'gruen'}">Urteil: ${istUnzulaessig?'Unzulässig':'Prüfenswert'}</div>
-                <div class="urteil-titel">${istUnzulaessig?'Die Mieterhöhung ist unzulässig.':'Die Mieterhöhung ist prüfenswert.'}</div>
                 <div class="urteil-empfehlung ${istUnzulaessig?'':'gruen'}">Wir empfehlen, Widerspruch einzureichen.</div>
-            </div>
-            <div class="urteil-icon">
-                <svg viewBox="0 0 24 24" class="${istUnzulaessig?'':'gruen'}">
-                    <path d="M6 4v8l3 3M3 7h6M13 4l7 7-2 2-7-7 2-2z M10 13l-4 4 1.5 1.5 4-4"/>
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4M7 20h10M12 16v4"/>
-                    <rect x="3" y="3" width="8" height="3" rx="1"/>
-                    <path stroke-linecap="round" d="M7 6v10l4-2 4 2V6"/>
-                </svg>
             </div>
         </div>
     </div>
 
-    <!-- ABER + WICHTIG -->
+    <!-- ABER -->
     <div class="handeln-block">
         <div class="aber-headline">Aber:</div>
-        <div class="handeln-text">Sie müssen <u>fristgerecht und schriftlich</u> widersprechen — sonst gilt die Erhöhung als akzeptiert, auch wenn sie falsch ist.</div>
-        <div class="wichtig-block">
-            <div class="wichtig-label">Wichtig:</div>
-            <div class="wichtig-text">Schreiben Sie den Widerspruch <u>nicht selbst</u>. Ohne die richtigen <u>juristischen Formulierungen</u> ist er wirkungslos. <span class="wichtig-paragraph">§558b BGB</span></div>
-        </div>
+        <div class="handeln-text">Sie müssen <u>fristgerecht und schriftlich</u> widersprechen — sonst gilt die Erhöhung als akzeptiert, auch wenn sie falsch ist. Schreiben Sie den Widerspruch <u>nicht selbst</u> — ohne juristische Formulierungen ist er wirkungslos. <span style="font-size:11px;color:#1a2a4a;font-weight:700;">§558b BGB</span></div>
     </div>
 
     <!-- 3 OPTIONEN -->
@@ -295,12 +282,11 @@ document.getElementById('content').innerHTML = `
             <div class="option-header" onclick="toggleOption(1)">
                 <div class="option-name">Mietrechtsanwalt</div>
                 <div class="option-name-right">
-                    <span class="option-nicht-empf">teuer & langsam</span>
                     <span class="option-arrow">▼</span>
                 </div>
             </div>
             <div class="option-body">
-                Erstberatung 90–150 €, Widerspruchsschreiben 300–600 €. Wartezeit 1–2 Wochen. Für ein einzelnes Schreiben schlicht überdimensioniert.
+                Kostet in der Regel genauso viel wie die neue Miete selbst — plus 1–2 Wochen Wartezeit.
             </div>
         </div>
 
@@ -309,15 +295,14 @@ document.getElementById('content').innerHTML = `
             <div class="option-header" onclick="toggleOption(2)">
                 <div class="option-name" style="color:#1a2a4a;">MietHilfe Sofort-Hilfe</div>
                 <div class="option-name-right">
-                    <span style="font-size:11px;color:#27ae60;font-weight:700;">empfohlen</span>
                     <span class="option-arrow">▼</span>
                 </div>
             </div>
             <div class="option-body">
                 <div class="option-hacken">
-                    <div class="option-hack"><span class="option-hack-check">✓</span><span>Juristisch fundierter Widerspruchsbrief</span></div>
-                    <div class="option-hack"><span class="option-hack-check">✓</span><span>In 63% zieht der Vermieter zurück</span></div>
-                    <div class="option-hack"><span class="option-hack-check">✓</span><span>3 Folge-Widersprüche inklusive</span></div>
+                    <div class="option-hack"><span class="option-hack-check">✓</span><span>Juristisch fundierter Widerspruchsbrief — sofort versandfertig</span></div>
+                    <div class="option-hack"><span class="option-hack-check">✓</span><span>In den meisten Fällen verschiebt sich die Mieterhöhung oder fällt ganz weg — wenn nicht, greift die Garantie</span></div>
+                    <div class="option-hack"><span class="option-hack-check">✓</span><span>Unterstützung beim weiteren Verlauf — falls Ihr Vermieter erneut schreibt</span></div>
                 </div>
             </div>
         </div>
@@ -332,6 +317,7 @@ document.getElementById('content').innerHTML = `
         <div class="angebot-bild">
             <img src="https://i.imgur.com/QANPLHJ.jpg" alt="MietHilfe" onerror="this.parentElement.style.display='none'">
         </div>
+        <p style="font-size:13px;color:#666;margin-bottom:12px;line-height:1.5;">Sie geben Ihre Angaben ein — unsere Software erstellt daraus Ihren persönlichen Widerspruchsbrief, der so direkt an ihren Vermieter geht.</p>
         <div class="leistungen-titel">Unsere Sofort-Hilfe beinhaltet:</div>
         <div class="leistungen-liste">
             <div class="leistung-item"><span class="leistung-check">✓</span><span class="leistung-text">Ihr Vermieter erhält ein <strong>juristisch fundiertes Widerspruchsschreiben</strong> — nach anwaltlichen Standards, sofort versandfertig.</span></div>
